@@ -1,34 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Boas-vindas ao repositório do projeto Hospital Veterinário WebPage!
 
-## Getting Started
+Esse aplicativo web vem com o objetivo de simular uma página real de um hospital veterinário com informações sobre o estabelecimento, serviços ofertados e localização. Além disso, também há um campo de BLOG, com informações relevantes que um administrador por gerenciar como desejar. Por fim, na aplicação, os clientes/usuários também podem agendar consultas e serviços para seus pets, além de ter acesso a um histórico de atendimentos e serviços já prestados.
 
-First, run the development server:
+## 🤷🏽‍♀️Como utilizar?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Para utilizar o app, utilize o link de deploy abaixo ou faça um clone do repositório, abra o diretório e execute o comando npm install pelo terminal. Depois execute npm start para abrir a aplicação no navegador. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ ## 👨‍💻 O que foi desenvolvido tecnicamente?
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+No projeto, desenvolveu-se uma aplicação full-stack envolvendo front-end com HTML, CSS, JAVASCRIPT e REACTJs.</br>
+Para estilização utilizamos css com...</br>
+No Back-end utilizamos Node.js com...</br>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## :memo: Habilidades utilizadas: 
 
-## Learn More
+- Utilização de Context API do _React_ para gerenciar estado
+- Utilização de _React Hook useState_
+- Utilização de _React Hook useContext_
+- Utilização de _React Hook useEffect_
+- A COMPLETAR...
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acesse aqui: <a href="">HV DEV</a>
