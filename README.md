@@ -4,7 +4,7 @@ Esse aplicativo web vem com o objetivo de simular uma página real de um hospita
 
 ## 🤷🏽‍♀️Como utilizar?
 
-Para utilizar o app, utilize o link de deploy abaixo ou faça um clone do repositório, abra o diretório e execute o comando npm install pelo terminal. Depois execute npm start para abrir a aplicação no navegador. 
+Para utilizar o app, utilize o link de deploy abaixo ou faça um clone do repositório, abra o diretório e execute o comando npm install pelo terminal. Depois execute npm run dev para abrir a aplicação no navegador. 
 
  ## 👨‍💻 O que foi desenvolvido tecnicamente?
 
