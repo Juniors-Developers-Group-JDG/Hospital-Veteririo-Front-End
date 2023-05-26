@@ -1,17 +1,15 @@
 {
-  "name": "register",
+  "name": "hospital-veterinario-front-end",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "sass": "sass --watch src/sass:public/styles.css"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@types/node-sass": "^4.11.3",
-    "eslint": "8.41.0",
+    "eslint": "8.40.0",
     "eslint-config-next": "13.4.3",
     "next": "13.4.3",
     "react": "18.2.0",
