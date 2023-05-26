@@ -8,33 +8,26 @@ body
     max-width: variables.$container-width
     background-repeat: no-repeat
 
+.register-h1
+    color: variables.$primary-color
+    font-family: sans-serif
+    font-style: normal
+    font-weight: 600
+    font-size: 30px
+    line-height: 36px
+    width: 11.25rem
+    height: 2.25rem
+    margin-left: 4.25rem
+    margin-top: 1.8125rem
+
 .container
     color: variables.$primary-color
     width: 100%
     padding: 1.5rem
    
-    &-h1
-        font-family: sans-serif
-        font-style: normal
-        font-weight: 600
-        font-size: 30px
-        line-height: 36px
-        margin-left: 4.25rem
-        margin-top: 1.8125rem
-
     &-input
         position: relative
-        border-radius: 7px
-        border: none
-        outline: none
-        width: 15.625rem
-        height: 2.5rem
-        margin: 0.4rem auto
-        margin-left: 4rem
-        margin-top: 1rem
-        padding: 10px
-
-        
+        @include mixins.inputs
 
     &-form
         top: 5px
@@ -42,22 +35,4 @@ body
         right: 50%
         height: 32.875rem
         width: 15.625rem
-        
-    &-button
-        font-family: sans-serif
-        font-style: normal
-        font-weight: 400
-        font-size: 20px
-        line-height: 24px
-        border-radius: 5px
-        border: none
-        background-color: #227F5E
-        color: #fff
-        outline: none
-        width: 15.625rem
-        height: 2.5rem
-        margin-left: 4rem
-        margin-top: 2.5625rem
-        padding: 10px
-
 

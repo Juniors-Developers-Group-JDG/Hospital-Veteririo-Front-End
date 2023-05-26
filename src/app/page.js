@@ -1,11 +1,9 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import HomePage from './home/HomePage';
+import Register from "./register/page";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-     <HomePage />
+    <main>
+      <Register />
     </main>
   );
 }

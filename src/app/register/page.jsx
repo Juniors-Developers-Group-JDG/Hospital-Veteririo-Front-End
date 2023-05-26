@@ -2,77 +2,47 @@
 import { useState } from "react";
 import Style from "./styles.sass";
 import NavBar from "@/app/nav_bar/page";
+import Email from "@/components/form_components/email/page";
+import Cep from "@/components/form_components/CEP/page";
+import Address from "@/components/form_components/address/page";
+import PhoneNumber from "@/components/form_components/phone_number/page";
+import Password from "@/components/form_components/password/page";
+import ConfirmPassword from "@/components/form_components/password/confirm_password/page";
+import Button from "@/components/form_components/button/page";
 
 export default function Register() {
-  // input do tipo "tel" -> [0-9]{5} -> Vamos receber apenas algarismos de 0 a 9 ([0-9]). E eles irão se repetir por 5 vezes ({5}).
-
   const [email, setEmail] = useState("");
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState("");
   const [number, setNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (event) => {
+    if (password === confirmPassword) {
+      console.log("OK!");
+    }
+
     event.preventDefault();
-    console.log(number);
+    console.log(email);
   };
 
   return (
     <>
       <NavBar />
+      <h1 className={`${Style.register_h1} register-h1`}>Cadastre-se</h1>
       <div className={`${Style.container} container`}>
-        <h1 className={`${Style.container_h1} container-h1`}>Cadastre-se</h1>
         <form className={`${Style.container_form} container-form`}>
-          <label>
-            <input
-              type="email"
-              className={`${Style.container_input} container-input container-input-email`}
-              placeholder="E-mail"
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              className={`${Style.container_input} container-input container-input-cep`}
-              placeholder="CEP"
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              className={`${Style.container_input} container-input container-input-address`}
-              placeholder="Logradouro"
-              onChange={(event) => setAddress(event.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="tel"
-              pattern="^\([0-9]{2}\) [0-9]{5}-[0-9]{4}$"
-              placeholder={`(xx) xxxxx-xxxx`}
-              onChange={(event) => setNumber(event.target.value)}
-              className={`${Style.container_input} container-input container-input-number`}
-            />
-          </label>
-          <label>
-            <input
-              type="password"
-              className={`${Style.container_input} container-input container-input-password`}
-              placeholder="Senha"
-            />
-          </label>
-          <label>
-            <input
-              type="password"
-              className={`${Style.container_input} container-input container-input-password`}
-              placeholder="Confirme sua senha"
-            />
-          </label>
-          <button
-            type="submit"
-            className={`${Style.container_button} container-button`}
-          >
-            Cadastrar
-          </button>
+          <Email email={email} setEmail={setEmail} />
+          <Cep cep={cep} setCep={setCep} />
+          <Address address={address} setAddress={setAddress} />
+          <PhoneNumber number={number} setNumber={setNumber} />
+          <Password password={password} setPassword={setPassword} />
+          <ConfirmPassword
+            confirmPassword={confirmPassword}
+            setConfirmPassword={setConfirmPassword}
+          />
+          <Button handleSubmit={handleSubmit} />
         </form>
       </div>
     </>
