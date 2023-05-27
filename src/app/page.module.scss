@@ -1,8 +1,9 @@
 .main {
   display: flex;
   width: 100%;
-  min-height: 100vh;
-  padding: 2rem 1.5rem;
+  position: relative;
+  top: 45%;
+  transform: translateY(-50%); 
 }
 
 .image {
