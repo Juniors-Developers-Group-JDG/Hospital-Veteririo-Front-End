@@ -1,9 +1,6 @@
 .main {
+  flex: 1;
   display: flex;
-  width: 100%;
-  position: relative;
-  top: 45%;
-  transform: translateY(-50%); 
 }
 
 .image {
