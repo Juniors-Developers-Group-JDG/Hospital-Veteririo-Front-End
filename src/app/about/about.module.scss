@@ -2,10 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  top: 45%;
-  transform: translateY(-50%); 
+  flex: 1;
 }
+
 .section_right{
   display: flex;
   flex: 1;
