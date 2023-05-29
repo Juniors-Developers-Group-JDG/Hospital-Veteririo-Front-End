@@ -22,7 +22,7 @@ export default function ForgotPassword() {
     <div className={`${Style.container} container`}>
       <div className={`${Style.container} container_content`}>
         <h1 className={`${Style.container_h1} container-h1`}>Esqueci minha senha</h1>
-        <p>Para redefinir sua senha, informe  o e-mail cadastrado na sua conta e lhe enviaremos um linkcom as instruções.</p>
+        <p>Para redefinir sua senha, informe  o e-mail cadastrado na sua conta e lhe enviaremos um link com as instruções.</p>
         <form className={`${Style.container_form} container-form`}>
           <label htmlFor='email' className={`${Style.container_label} container-label`}>
             E-mail
