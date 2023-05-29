@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Style from "./styles.sass";
 import NavBar from '@/app/nav_bar/page';
+import { IoMdArrowBack } from 'react-icons/io';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -15,11 +16,22 @@ export default function ForgotPassword() {
     const { value } = event.target;
     setEmail(value);
   };
+
+  const getBack = () => {
+    window.location.href = '/login';
+  }
   
   return (
   <>
     <NavBar />
     <div className={`${Style.container} container`}>
+      <div className={`${Style.container_image} container-image`}>
+        <IoMdArrowBack
+          className={`${Style.container_image_icon} container-image-icon`}
+          onClick={ () => getBack() }
+        />
+        Voltar
+      </div>
       <div className={`${Style.container} container_content`}>
         <h1 className={`${Style.container_h1} container-h1`}>Esqueci minha senha</h1>
         <p>Para redefinir sua senha, informe  o e-mail cadastrado na sua conta e lhe enviaremos um link com as instruções.</p>
