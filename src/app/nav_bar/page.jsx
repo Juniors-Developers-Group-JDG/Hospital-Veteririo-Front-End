@@ -10,7 +10,7 @@ export default function NavBar() {
       <h1 className={`${Style.div_nav_bar_h1} div-nav-bar-h1`}>LOGO</h1>
       {pathname === "/login" ||
       pathname === "/register" ||
-      pathname === "/forgetPassword" ? (
+      pathname === "/forgotPassword" ? (
         <div className={`${Style.div_nav_bar_links} div-nav-bar-links`}>
           <Link
             className={`${Style.div_nav_bar_links_home} div-nav-bar-links-home`}
