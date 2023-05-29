@@ -12,6 +12,9 @@ body
     height: 5.625rem
     position: fixed
     top: 0
+
+    @media screen and (max-width: 400px)
+        justify-content: space-between
     
     &-h1
         font-style: normal
@@ -30,6 +33,22 @@ body
         line-height: 29px
         width: 100%
         margin-right: 7.1875rem
+
+        @media screen and (max-width: 400px)
+        margin-right: 0
+        width: fit-content
+        
+        a
+            color: #fff
+            text-decoration: none
+            justify-content: flex-end
+            margin-right: 3rem
+            &:hover
+                color: #000
+            
+            @media screen and (max-width: 400px)
+                margin-right: 10%
+                width: fit-content
 
         &-home,
         &-blog,
