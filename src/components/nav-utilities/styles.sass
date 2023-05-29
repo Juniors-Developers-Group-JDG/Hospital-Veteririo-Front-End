@@ -1,0 +1,57 @@
+:root
+  --green: #227f5e
+  --preto: #223329
+  --beije: #ded8d2
+
+.group-navUtilities-container
+    width: 100%
+    max-width: 1200px
+
+    &-nav
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        position: relative
+        margin: 5%
+        left: 2%
+    
+    &-ul
+        margin-left: 50px
+        display: flex
+        justify-content: space-around
+        align-items: center
+        flex-direction: row
+        width: 400px
+
+    &-li
+        color: #fff
+        list-style: none
+        background-color: var(--green)
+        padding: 5px 12px
+        font-size: 20px
+        cursor: pointer
+        transition: all 0.3s
+        margin-right: 35px
+        &:hover
+            opacity: 0.7
+
+    &-a
+        text-decoration: none
+        color: #ffffff
+
+
+/*RESPONSIVE*/
+
+// @media only screen and (max-width: 600px) {
+//   .group-navUtilities ul {
+//     flex-wrap: wrap;
+//     width: auto;
+//     margin-left: 0;
+//     justify-content: center;
+//   }
+
+//   .group-navUtilities li {
+//     margin-right: 15px;
+//     margin-bottom: 10px;
+//   }
+// }
