@@ -1,0 +1,77 @@
+@use '../styles/variables'
+    
+.container 
+    display: flex
+    justify-content: center
+    width: 100%
+    max-width: 1200px
+    /* Adjusted margin-top to -50px */
+    margin: -30px auto 0
+
+    &-group
+        width: 25%
+        height: 62vh
+        margin-top: 10px
+        border-right: 1px solid variables.$green
+
+        &-ul 
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            width: 90%
+            margin: auto
+            padding: 0
+
+        &-li
+            list-style: none
+            height: 60px
+            width: 100%
+            margin-top: 20px
+            border: 2px solid #D3CAC2
+            box-shadow: 0 0 1px 0 #756D6D
+            color: #888383
+            display: flex
+            justify-content: center
+            align-items: center
+            font-size: 24px
+            cursor: pointer
+            transition: all 0.3s
+            &:hover
+                color: #000
+                transform: scale(1.1)
+                border: none
+                border-left: 2px solid #000
+                border-right: 2px solid #000
+    &-about
+        width: 80%
+        height: 38vh
+        position: relative
+        margin-left: 2.5%
+    
+        &-h2
+            text-align: left
+            font-size: 24px
+            margin-bottom: 30px
+            color: variables.$green
+        
+        &-p
+            text-align: left
+            font-size: 16px
+
+/* RESPONSIVE */
+
+// @media (max-width: 768px) {
+//     .group-exams {
+//         width: 100%;
+//         height: auto;
+//         margin-top: 0;
+//         margin-bottom: 20px;
+//     }
+
+//     .about-exams {
+//         width: 100%;
+//         height: auto;
+//         margin-left: 0;
+//     }
+// }

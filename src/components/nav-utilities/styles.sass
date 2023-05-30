@@ -1,9 +1,6 @@
-:root
-  --green: #227f5e
-  --preto: #223329
-  --beije: #ded8d2
+@use '../styles/variables'
 
-.group-navUtilities-container
+.group-navUtilities
     width: 100%
     max-width: 1200px
 
@@ -26,7 +23,7 @@
     &-li
         color: #fff
         list-style: none
-        background-color: var(--green)
+        background-color: variables.$green
         padding: 5px 12px
         font-size: 20px
         cursor: pointer

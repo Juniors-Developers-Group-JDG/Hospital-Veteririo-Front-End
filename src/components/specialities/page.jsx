@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Styles from "./styles.sass";
+import Styles from "../styles/styles.sass";
 import { itemTextsSpecialities } from "./text_itens_specialities";
 
 export default function Specialities() {
@@ -13,28 +13,54 @@ export default function Specialities() {
   };
 
   return (
-    <div className={Styles.container}>
-      <div className={Styles["group-specialities"]}>
-        <nav>
-          <ul>
-            <li onClick={() => handleItemClick("Acupuntura")}>Acupuntura</li>
-            <li onClick={() => handleItemClick("Anestesiologia")}>
-              Anestesiologia
-            </li>
-            <li onClick={() => handleItemClick("Cardiologia")}>Cardiologia</li>
-            <li onClick={() => handleItemClick("Dermatologia")}>
-              Dermatologia
-            </li>
-            <li onClick={() => handleItemClick("Infectologia")}>
-              Infectologia
-            </li>
-            <li onClick={() => handleItemClick("Neurologia")}>Neurologia</li>
-          </ul>
-        </nav>
+    <div className={`${Styles.container} container`}>
+      <div className={`${Styles.container_group} container-group`}>
+        <ul className={`${Styles.container_ul} container-group-ul`}>
+          <li
+            className={`${Styles.container_li} container-group-li`}
+            onClick={() => handleItemClick("Acupuntura")}
+          >
+            Acupuntura
+          </li>
+          <li
+            className={`${Styles.container_li} container-group-li`}
+            onClick={() => handleItemClick("Anestesiologia")}
+          >
+            Anestesiologia
+          </li>
+          <li
+            className={`${Styles.container_li} container-group-li`}
+            onClick={() => handleItemClick("Cardiologia")}
+          >
+            Cardiologia
+          </li>
+          <li
+            className={`${Styles.container_li} container-group-li`}
+            onClick={() => handleItemClick("Dermatologia")}
+          >
+            Dermatologia
+          </li>
+          <li
+            className={`${Styles.container_li} container-group-li`}
+            onClick={() => handleItemClick("Infectologia")}
+          >
+            Infectologia
+          </li>
+          <li
+            className={`${Styles.container_li} container-group-li`}
+            onClick={() => handleItemClick("Neurologia")}
+          >
+            Neurologia
+          </li>
+        </ul>
       </div>
-      <div className={Styles["about-specialities"]}>
-        <h2>{activeItem}</h2>
-        <p>{time}</p>
+      <div className={`${Styles.container_about} container-about`}>
+        <h2 className={`${Styles.container_about_h2} container-about-h2`}>
+          {activeItem}
+        </h2>
+        <p className={`${Styles.container_about_p} container-about-p`}>
+          {time}
+        </p>
       </div>
     </div>
   );
