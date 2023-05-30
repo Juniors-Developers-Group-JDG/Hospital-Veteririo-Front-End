@@ -7,13 +7,14 @@ body
 .div-nav-bar
     display: flex
     align-items: center
+    justify-content: space-between
     background-color:  #227F5E
     width: 100vw
     height: 5.625rem
     position: fixed
     top: 0
 
-    @media screen and (max-width: 400px)
+    @media screen and (max-width: 600px)
         justify-content: space-between
     
     &-h1
@@ -34,8 +35,8 @@ body
         width: 100%
         margin-right: 7.1875rem
 
-        @media screen and (max-width: 400px)
-        margin-right: 0
+        @media screen and (max-width: 600px)
+        margin-right: 5%
         width: fit-content
         
         a
@@ -44,9 +45,11 @@ body
             justify-content: flex-end
             margin-right: 3rem
             &:hover
-                color: #000
+                color: #80FB93
+                border-bottom: 1px solid #fff
+                transition: 0.2s ease-in-out
             
-            @media screen and (max-width: 400px)
+            @media screen and (max-width: 600px)
                 margin-right: 10%
                 width: fit-content
 

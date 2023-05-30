@@ -25,10 +25,9 @@ export default function ForgotPassword() {
   <>
     <NavBar />
     <div className={`${Style.container} container`}>
-      <div className={`${Style.container_image} container-image`}>
+      <div className={`${Style.container_image} container-image`} onClick={ () => getBack() }>
         <IoMdArrowBack
           className={`${Style.container_image_icon} container-image-icon`}
-          onClick={ () => getBack() }
         />
         Voltar
       </div>
