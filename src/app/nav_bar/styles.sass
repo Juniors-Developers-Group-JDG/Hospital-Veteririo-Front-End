@@ -34,10 +34,21 @@ body
         line-height: 29px
         width: 100%
         margin-right: 7.1875rem
-
+    
         @media screen and (max-width: 600px)
-        margin-right: 5%
-        width: fit-content
+            margin-right: 0
+            width: 100%
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: center
+            position: absolute
+            top: 5.625rem
+            background-color: #227F5E
+            right: 0
+            padding: 0.625rem
+            transition: 0.5s ease-in-out
+            z-index: 999
         
         a
             color: #fff
@@ -51,7 +62,7 @@ body
             
             @media screen and (max-width: 600px)
                 margin-right: 10%
-                width: fit-content
+                width: fit-content   
 
         &-home,
         &-blog,
@@ -66,3 +77,32 @@ body
             margin-right: 3rem
             &:hover
                 color: #000
+
+    &-close 
+        @media screen and (max-width: 600px)
+            display: flex
+            flex-direction: column
+            position: absolute
+            justify-content: center
+            align-items: center
+            top: 5.625rem
+            background-color: #227F5E
+            right: 0
+            padding: 0.625rem
+            width: 100%
+            margin-top: -100%
+            transition: 0.5s ease-in-out
+            z-index: 999
+
+    &-hamburguer-menu 
+        margin-right: 1.875rem
+
+        &-icon
+            color: #fff
+            font-size: 2.5rem
+            cursor: pointer
+            display: none
+
+            @media screen and (max-width: 600px)
+                display: block
+                font-size: 1.5rem
