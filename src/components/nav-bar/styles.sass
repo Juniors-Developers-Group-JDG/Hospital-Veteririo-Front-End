@@ -1,4 +1,5 @@
 @use '../styles/variables'
+@use '../styles/mixins'
 
 body
     width: 100%
@@ -7,9 +8,9 @@ body
     display: flex
     align-items: center
     background-color:  variables.$green
-    width: 100vw
+    width: 100%
     height: 5.625rem
-    
+   
     &-h1
         font-style: normal
         font-weight: 400
@@ -41,3 +42,13 @@ body
             margin-right: 3rem
             &:hover
                 color: #000
+            
+            @include mixins.mobile
+                display: none
+                &-menu-burger
+                    display: block
+    &-links-close
+        display: none
+    &-links-open
+        display: block
+        

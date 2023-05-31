@@ -1,3 +1,5 @@
+@use '../../../src/components/styles/mixins'
+    
 .app-container-services
 
     &-bg-image
@@ -7,3 +9,5 @@
         right: 0%
         overflow: hidden
         bottom: 0%
+        @include mixins.mobile
+            display: none
