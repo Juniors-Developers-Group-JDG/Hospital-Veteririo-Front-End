@@ -41,7 +41,7 @@ export default function Register() {
       <div onSubmit={handleSubmit} className={`${Style.container} container`}>
         <Image
           src={Bg_dog_paw}
-          alt="Imagem de uma pata de cachorro"
+          alt="Imagem de uma pata de cachorro."
           className={`${Style.dog_paw} dog_paw`}
         />
         <form className={`${Style.container_form} container-form`}>
