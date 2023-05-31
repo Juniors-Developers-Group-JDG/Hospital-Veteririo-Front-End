@@ -11,7 +11,7 @@ export default function Password({ password, setPassword }) {
         id="password"
         type="password"
         value={password}
-        className={`${Style.label_input} label-input`}
+        className={`${Style.input} input`}
         onChange={(event) => setPassword(event.target.value)}
       />
     </>

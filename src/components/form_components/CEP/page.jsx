@@ -13,7 +13,7 @@ export default function Cep({ cep, setCep }) {
         mask="00000-000"
         name="cep"
         id="cep"
-        className={`${Style.label_input} label-input`}
+        className={`${Style.input} input`}
         onChange={(event) => setCep(event.target.value)}
       />
     </>

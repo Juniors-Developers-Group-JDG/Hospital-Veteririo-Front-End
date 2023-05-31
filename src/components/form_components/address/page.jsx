@@ -11,7 +11,7 @@ export default function Address({ address, setAddress }) {
         type="text"
         name="address"
         id="address"
-        className={`${Style.label_input} label-input`}
+        className={`${Style.input} input`}
         onChange={(event) => setAddress(event.target.value)}
       />
     </>

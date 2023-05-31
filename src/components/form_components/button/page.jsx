@@ -1,4 +1,4 @@
-import Styles from "./styles.sass";
+import Styles from "../styles.sass";
 
 export default function Button() {
   return (

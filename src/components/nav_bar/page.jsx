@@ -2,18 +2,16 @@
 import Link from "next/link";
 import Style from "./styles.sass";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from 'react';
-import { RxHamburgerMenu } from 'react-icons/rx';
-import { MdOutlineCancel } from 'react-icons/md';
+import { useEffect, useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { MdOutlineCancel } from "react-icons/md";
 
 export default function NavBar() {
-
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [mobile, setMobile] = useState(window.innerWidth < 480 ? true : false);
 
   const clickMenu = () => {
     setMenuIsOpen(!menuIsOpen);
-    console.log(menuIsOpen);
   };
 
   useEffect(() => {
@@ -28,34 +26,27 @@ export default function NavBar() {
 
   const pathname = usePathname();
   return (
-    <div className='div-nav-bar'>
+    <div className="div-nav-bar">
       <h1 className={`${Style.div_nav_bar_h1} div-nav-bar-h1`}>LOGO</h1>
-      <div
-        onClick={clickMenu}
-        className='div-nav-bar-hamburguer-menu'
-      >
-          {
-            mobile ? (
-              menuIsOpen ? (
-                <MdOutlineCancel 
-                  className='div-nav-bar-hamburguer-menu-icon'
-                />
-              ) : (
-                <RxHamburgerMenu
-                  className='div-nav-bar-hamburguer-menu-icon'
-                />
-              )
-            ) : null
-          }
+      <div onClick={clickMenu} className="div-nav-bar-hamburguer-menu">
+        {mobile ? (
+          menuIsOpen ? (
+            <MdOutlineCancel className="div-nav-bar-hamburguer-menu-icon" />
+          ) : (
+            <RxHamburgerMenu className="div-nav-bar-hamburguer-menu-icon" />
+          )
+        ) : null}
       </div>
-      {
-      pathname === "/login" ||
+      {pathname === "/login" ||
       pathname === "/register" ||
       pathname === "/forgotPassword" ? (
-        <div className={
-          menuIsOpen ? `${Style.div_nav_bar_links} div-nav-bar-links` :
-          `${Style.div_nav_bar_links} div-nav-bar-close`
-        }>
+        <div
+          className={
+            menuIsOpen
+              ? `${Style.div_nav_bar_links} div-nav-bar-links`
+              : `${Style.div_nav_bar_links} div-nav-bar-close`
+          }
+        >
           <Link
             className={`${Style.div_nav_bar_links_home} div-nav-bar-links-home`}
             href="#"
@@ -70,10 +61,13 @@ export default function NavBar() {
           </Link>
         </div>
       ) : (
-        <div className={
-          menuIsOpen ? `${Style.div_nav_bar_links} div-nav-bar-links` :
-          `${Style.div_nav_bar_links} div-nav-bar-close`
-        }>
+        <div
+          className={
+            menuIsOpen
+              ? `${Style.div_nav_bar_links} div-nav-bar-links`
+              : `${Style.div_nav_bar_links} div-nav-bar-close`
+          }
+        >
           <Link
             className={`${Style.div_nav_bar_links_home} div-nav-bar-links-home`}
             href="#"

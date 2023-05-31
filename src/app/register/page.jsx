@@ -1,18 +1,15 @@
 "use client";
-import { useState } from "react";
-import Style from "./styles.sass";
-import Email from "@/components/form_components/email/page";
 import Cep from "@/components/form_components/CEP/page";
 import Address from "@/components/form_components/address/page";
-import PhoneNumber from "@/components/form_components/phone_number/page";
-import Password from "@/components/form_components/password/page";
-import ConfirmPassword from "@/components/form_components/password/confirm_password/page";
 import Button from "@/components/form_components/button/page";
-
-import Image from "next/image";
-import Bg_dog_paw from "../../assets/dog_paw_image.png";
-import NavBar from '../nav_bar/page';
-import { IoMdArrowBack } from 'react-icons/io';
+import Email from "@/components/form_components/email/page";
+import ConfirmPassword from "@/components/form_components/password/confirm_password/page";
+import Password from "@/components/form_components/password/page";
+import PhoneNumber from "@/components/form_components/phone_number/page";
+import { useState } from "react";
+import Style from "./styles.sass";
+import { IoMdArrowBack } from "react-icons/io";
+import NavBar from "../../components/nav_bar/page";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -24,9 +21,12 @@ export default function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (password === confirmPassword) {
-      console.log("OK!");
-    }
+    console.log(email);
+    console.log(cep);
+    console.log(address);
+    console.log(number);
+    console.log(password);
+    console.log(confirmPassword);
 
     setEmail("");
     setCep("");
@@ -36,22 +36,30 @@ export default function Register() {
     setConfirmPassword("");
   };
 
-    const getBack = () => {
-    window.location.href = '/login';
-  }
+  const getBack = () => {
+    window.location.href = "/login";
+  };
 
   return (
     <>
       <NavBar />
-      <h1 className={`${Style.register_h1} register-h1`}>Cadastre-se</h1>
-      <div onSubmit={handleSubmit} className={`${Style.container} container`}>
-        <div className={`${Style.container_image} container-image`} onClick={ () => getBack() }>
+      <div
+        className={`${Style.container_register} container-register-image`}
+        onClick={() => getBack()}
+      >
         <IoMdArrowBack
-          className={`${Style.container_image_icon} container-image-icon`}
+          className={`${Style.container_register_image_icon} container-register-image-icon`}
         />
         Voltar
       </div>
-        <form className={`${Style.container_form} container-form`}>
+      <h1 className={`${Style.register_h1} register-h1`}>Cadastre-se</h1>
+      <div
+        onSubmit={handleSubmit}
+        className={`${Style.container_register} container-register`}
+      >
+        <form
+          className={`${Style.container_register_form} container-register-form`}
+        >
           <Email email={email} setEmail={setEmail} />
           <Cep cep={cep} setCep={setCep} />
           <Address address={address} setAddress={setAddress} />

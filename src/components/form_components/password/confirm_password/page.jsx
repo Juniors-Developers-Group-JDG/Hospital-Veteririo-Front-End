@@ -14,7 +14,7 @@ export default function ConfirmPassword({
         id="confirm_password"
         type="password"
         value={confirmPassword}
-        className={`${Style.label_input} label-input`}
+        className={`${Style.input} input`}
         onChange={(event) => setConfirmPassword(event.target.value)}
       />
     </>

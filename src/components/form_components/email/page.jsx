@@ -9,7 +9,7 @@ export default function Email({ email, setEmail }) {
       <input
         value={email}
         type="email"
-        className={`${Style.label_input} label-input`}
+        className={`${Style.input} input`}
         name="email"
         id="email"
         onChange={(event) => setEmail(event.target.value)}

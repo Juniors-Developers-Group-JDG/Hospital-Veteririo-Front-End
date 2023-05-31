@@ -4,7 +4,7 @@ import Style from "../styles.sass";
 export default function PhoneNumber({ number, setNumber }) {
   return (
     <>
-      <label htmlFor="phone_number" className={`${Style.phone_number} label`}>
+      <label htmlFor="phone_number" className={`${Style.label} label`}>
         Telefone
       </label>
       <IMaskInput
@@ -14,7 +14,7 @@ export default function PhoneNumber({ number, setNumber }) {
         mask="(00) 00000-0000"
         placeholder={`(xx) xxxxx-xxxx`}
         onChange={(event) => setNumber(event.target.value)}
-        className={`${Style.label_input} label-input label-input-phone`}
+        className={`${Style.input} input input-phone`}
       />
     </>
   );
