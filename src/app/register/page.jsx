@@ -8,9 +8,11 @@ import PhoneNumber from "@/components/form_components/phone_number/page";
 import Password from "@/components/form_components/password/page";
 import ConfirmPassword from "@/components/form_components/password/confirm_password/page";
 import Button from "@/components/form_components/button/page";
-import NavBar from "@/components/nav_bar/page";
+
 import Image from "next/image";
 import Bg_dog_paw from "../../assets/dog_paw_image.png";
+import NavBar from '../nav_bar/page';
+import { IoMdArrowBack } from 'react-icons/io';
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -34,16 +36,21 @@ export default function Register() {
     setConfirmPassword("");
   };
 
+    const getBack = () => {
+    window.location.href = '/login';
+  }
+
   return (
     <>
       <NavBar />
       <h1 className={`${Style.register_h1} register-h1`}>Cadastre-se</h1>
       <div onSubmit={handleSubmit} className={`${Style.container} container`}>
-        <Image
-          src={Bg_dog_paw}
-          alt="Imagem de uma pata de cachorro."
-          className={`${Style.dog_paw} dog_paw`}
+        <div className={`${Style.container_image} container-image`} onClick={ () => getBack() }>
+        <IoMdArrowBack
+          className={`${Style.container_image_icon} container-image-icon`}
         />
+        Voltar
+      </div>
         <form className={`${Style.container_form} container-form`}>
           <Email email={email} setEmail={setEmail} />
           <Cep cep={cep} setCep={setCep} />
