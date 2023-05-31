@@ -1,15 +1,18 @@
 @use '../../styles/mixins'
 @use '../../styles/variables'
     
+html
+    @media screen and (max-width: 480px )
+        background-color: variables.$bg-color
+        height: 100vh
+
 body
     background: variables.$bg-image_dog no-repeat
     background-size: 100vw
     max-width: variables.$container-width
-
-.dog-paw
-    background: variables.$bg_dog_paw 
-    background-position: bottom
-
+    @media screen and (max-width: 480px)
+        background: none
+   
 
 .register-h1
     color: variables.$primary-color
