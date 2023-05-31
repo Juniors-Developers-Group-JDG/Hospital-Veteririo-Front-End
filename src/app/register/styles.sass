@@ -1,0 +1,41 @@
+@use '../../styles/mixins'
+@use '../../styles/variables'
+    
+body
+    background: variables.$bg-image_dog no-repeat
+    background-size: 100vw
+    max-width: variables.$container-width
+
+.dog-paw
+    background: variables.$bg_dog_paw 
+    background-position: bottom
+
+
+.register-h1
+    color: variables.$primary-color
+    font-family: sans-serif
+    font-style: normal
+    font-weight: 600
+    font-size: 30px
+    line-height: 36px
+    width: 11.25rem
+    height: 2.25rem
+    margin-left: 4.25rem
+    margin-top: 1.625rem
+
+
+.container
+    color: variables.$primary-color
+    width: 100%
+    padding: 1.5rem
+
+   
+    &-input
+        @include mixins.inputs
+
+    &-form
+        @include mixins.flex
+        right: 50%
+        height: 32.875rem
+        width: 15.625rem
+
