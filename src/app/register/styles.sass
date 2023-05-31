@@ -2,11 +2,14 @@
 @use '../../styles/variables'
     
 body
-    background-image: variables.$bg-image
+    background: variables.$bg-image_dog no-repeat
     background-size: 100vw
-    background-repeat: no-repeat
     max-width: variables.$container-width
-    background-repeat: no-repeat
+
+.dog-paw
+    background: variables.$bg_dog_paw 
+    background-position: bottom
+
 
 .register-h1
     color: variables.$primary-color
@@ -18,19 +21,19 @@ body
     width: 11.25rem
     height: 2.25rem
     margin-left: 4.25rem
-    margin-top: 1.8125rem
+    margin-top: 1.625rem
+
 
 .container
     color: variables.$primary-color
     width: 100%
     padding: 1.5rem
+
    
     &-input
-        position: relative
         @include mixins.inputs
 
     &-form
-        top: 5px
         @include mixins.flex
         right: 50%
         height: 32.875rem

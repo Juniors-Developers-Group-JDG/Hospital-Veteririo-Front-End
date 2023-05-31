@@ -1,4 +1,5 @@
 import Style from "../styles.sass";
+import { IMaskInput } from "react-imask";
 
 export default function Cep({ cep, setCep }) {
   return (
@@ -6,9 +7,10 @@ export default function Cep({ cep, setCep }) {
       <label htmlFor="cep" className={`${Style.label} label`}>
         CEP
       </label>
-      <input
+      <IMaskInput
         value={cep}
         type="text"
+        mask="00000-000"
         name="cep"
         id="cep"
         className={`${Style.label_input} label-input`}

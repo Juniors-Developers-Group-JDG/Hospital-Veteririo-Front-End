@@ -1,12 +1,8 @@
 import Styles from "./styles.sass";
 
-export default function Button({ handleSubmit }) {
+export default function Button() {
   return (
-    <button
-      type="submit"
-      className={`${Styles.button} button`}
-      onSubmit={handleSubmit}
-    >
+    <button type="submit" className={`${Styles.button} button`}>
       Cadastrar
     </button>
   );

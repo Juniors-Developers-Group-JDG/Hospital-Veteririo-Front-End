@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Style from "./styles.sass";
-import NavBar from "@/app/nav_bar/page";
 import Email from "@/components/form_components/email/page";
 import Cep from "@/components/form_components/CEP/page";
 import Address from "@/components/form_components/address/page";
@@ -9,6 +8,9 @@ import PhoneNumber from "@/components/form_components/phone_number/page";
 import Password from "@/components/form_components/password/page";
 import ConfirmPassword from "@/components/form_components/password/confirm_password/page";
 import Button from "@/components/form_components/button/page";
+import NavBar from "@/components/nav_bar/page";
+import Image from "next/image";
+import Bg_dog_paw from "../../assets/dog_paw_image.png";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -19,19 +21,29 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     if (password === confirmPassword) {
       console.log("OK!");
     }
 
-    event.preventDefault();
-    console.log(email);
+    setEmail("");
+    setCep("");
+    setAddress("");
+    setNumber("");
+    setPassword("");
+    setConfirmPassword("");
   };
 
   return (
     <>
       <NavBar />
       <h1 className={`${Style.register_h1} register-h1`}>Cadastre-se</h1>
-      <div className={`${Style.container} container`}>
+      <div onSubmit={handleSubmit} className={`${Style.container} container`}>
+        <Image
+          src={Bg_dog_paw}
+          alt="Imagem de uma pata de cachorro"
+          className={`${Style.dog_paw} dog_paw`}
+        />
         <form className={`${Style.container_form} container-form`}>
           <Email email={email} setEmail={setEmail} />
           <Cep cep={cep} setCep={setCep} />
@@ -42,7 +54,7 @@ export default function Register() {
             confirmPassword={confirmPassword}
             setConfirmPassword={setConfirmPassword}
           />
-          <Button handleSubmit={handleSubmit} />
+          <Button />
         </form>
       </div>
     </>
