@@ -1,0 +1,108 @@
+@use '../../styles/mixins'
+@use '../../styles/variables'
+
+body
+    width: 100%
+
+.div-nav-bar
+    display: flex
+    align-items: center
+    justify-content: space-between
+    background-color:  #227F5E
+    width: 100vw
+    height: 5.625rem
+    position: fixed
+    top: 0
+
+    @media screen and (max-width: 600px)
+        justify-content: space-between
+    
+    &-h1
+        font-style: normal
+        font-weight: 400
+        font-size: 24px
+        line-height: 29px
+        color: #fff
+        margin-left: 1.875rem
+
+    &-links
+        display: flex
+        justify-content: flex-end
+        font-style: normal
+        font-weight: 400
+        font-size: 20px
+        line-height: 29px
+        width: 100%
+        margin-right: 7.1875rem
+    
+        @media screen and (max-width: 600px)
+            margin-right: 0
+            width: 100%
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: center
+            position: absolute
+            top: 5.625rem
+            background-color: #227F5E
+            right: 0
+            padding: 0.625rem
+            transition: 0.5s ease-in-out
+            z-index: 999
+        
+        a
+            color: #fff
+            text-decoration: none
+            justify-content: flex-end
+            margin-right: 3rem
+            &:hover
+                color: #80FB93
+                border-bottom: 1px solid #fff
+                transition: 0.2s ease-in-out
+            
+            @media screen and (max-width: 600px)
+                margin-right: 10%
+                width: fit-content   
+
+        &-home,
+        &-blog,
+        &-about,
+        &-contact,
+        &-login,
+        &-register,
+        &-services
+            color: #fff
+            text-decoration: none
+            justify-content: flex-end
+            margin-right: 3rem
+            &:hover
+                color: #000
+
+    &-close 
+        @media screen and (max-width: 600px)
+            display: flex
+            flex-direction: column
+            position: absolute
+            justify-content: center
+            align-items: center
+            top: 5.625rem
+            background-color: #227F5E
+            right: 0
+            padding: 0.625rem
+            width: 100%
+            margin-top: -100%
+            transition: 0.5s ease-in-out
+            z-index: 999
+
+    &-hamburguer-menu 
+        margin-right: 1.875rem
+
+        &-icon
+            color: #fff
+            font-size: 2.5rem
+            cursor: pointer
+            display: none
+
+            @media screen and (max-width: 600px)
+                display: block
+                font-size: 1.5rem
