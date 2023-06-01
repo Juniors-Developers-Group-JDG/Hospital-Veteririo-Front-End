@@ -1,6 +1,7 @@
 .header{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1.875rem;
   background-color: #227F5E;
 }
@@ -14,11 +15,9 @@
   text-transform: uppercase;
 }
 .nav_link{
-
+  padding-inline: .2em;
 }
 .active{
   color: #80FB93;
   border-bottom: #fff 1px solid;
-  padding-inline: .2em;
-  
 }
