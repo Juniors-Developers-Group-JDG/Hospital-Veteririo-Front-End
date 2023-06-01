@@ -16,6 +16,7 @@
     "react-burger-menu": "^3.0.9",
     "react-dom": "18.2.0",
     "react-icons": "^4.9.0",
+    "react-imask": "^6.6.1",
     "sass": "^1.62.1"
   }
 }

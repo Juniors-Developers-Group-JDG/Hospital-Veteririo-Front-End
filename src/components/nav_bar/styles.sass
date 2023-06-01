@@ -13,10 +13,19 @@ body
     height: 5.625rem
     position: sticky
     top: 0
+    
     @media (max-width: 480px)
         justify-content: space-between
+        &-close
+            width: 100vw
+            opacity: 0
+            visibility: hidden
+            height: 0%
+            transition: opacity 0.75s, visibility 0.75s, height 0.75s
+            overflow: hidden
 
     
+
     &-h1
         font-style: normal
         font-weight: 400
@@ -33,8 +42,7 @@ body
         font-size: 20px
         line-height: 29px
         width: 100%
-        margin-right: 7.1875rem
-    
+
         @media (max-width: 480px)
             display: flex
             flex-direction: column
@@ -45,11 +53,8 @@ body
             width: 100%
             height: 100vh
             top: 5.625rem
-            right: 0
-            margin-right: 0
-            padding: 0.625rem
             background-color: variables.$primary-color
-            transition: 0.5s ease-in-out
+            transition: all 0.5s ease-in-out
             z-index: 999
         
         a
@@ -80,6 +85,10 @@ body
             &:hover
                 color: #000
                 transition: 0.2s
+            @media screen and (max-width: 480px)
+                position: relative
+                top: -12%
+                right: -5%
 
     &-close 
         @media (max-width: 480px)
