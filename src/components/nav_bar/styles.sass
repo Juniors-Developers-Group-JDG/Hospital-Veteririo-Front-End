@@ -23,8 +23,12 @@ body
             height: 0%
             transition: opacity 0.75s, visibility 0.75s, height 0.75s
             overflow: hidden
-
-    
+            line-height: 3rem
+            position: absolute
+            top: -12%
+            right: -5%
+            right: 0
+            transition: 0.6s ease-out
 
     &-h1
         font-style: normal
@@ -90,21 +94,7 @@ body
                 top: -12%
                 right: -5%
 
-    &-close 
-        @media (max-width: 480px)
-            display: flex
-            flex-direction: column
-            position: absolute
-            justify-content: center
-            align-items: center
-            top: 5.625rem
-            background-color: variables.$primary-color
-            right: 0
-            padding: 0.625rem
-            width: 100%
-            margin-top: -100%
-            transition: 0.5s ease-in-out
-            z-index: 999
+    
 
     &-hamburguer-menu 
         margin-right: 1.875rem
