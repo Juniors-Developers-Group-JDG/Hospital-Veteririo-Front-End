@@ -1,12 +1,12 @@
-import styles from './about.module.scss'
-import doutores from '../../assets/about/doutores.png';
 import Image from 'next/image';
+import doutores from '../../assets/about/doutores.png';
+import styles from './about.module.scss';
 
 export default function About(){
   return(
     <main className={styles.main} >
       <section className={styles.section_right}>
-        <Image alt='Casal de veterinários' src={doutores} width={347} height={521}/>
+      <Image alt='Casal de veterinários' src={doutores} width={348} height={338}/>
       </section>
       <div className={styles.divider}/>
       <section className={styles.section_left}>
