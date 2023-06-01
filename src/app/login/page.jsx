@@ -17,6 +17,15 @@ export default function Login() {
     setPassword("");
   };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+  };
+
   return (
     <>
       <NavBar />
