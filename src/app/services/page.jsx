@@ -1,6 +1,5 @@
 "use client";
 import Exams from "@/components/exams/page";
-import NavBar from "@/components/nav-bar/page";
 import NavUtilities from "@/components/nav-utilities/page";
 import Specialities from "@/components/specialities/page";
 import { useState } from "react";
@@ -13,7 +12,6 @@ export default function Services() {
 
   return (
     <div className="app">
-      <NavBar />
       <section id="container-services">
         <NavUtilities
           buttonClick={buttonClick}
