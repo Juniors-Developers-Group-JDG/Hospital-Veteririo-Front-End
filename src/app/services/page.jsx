@@ -11,8 +11,10 @@ export default function Services() {
   const [buttonClick, setButtonClick] = useState(false);
 
   return (
-    <div className="app">
-      <section id="container-services">
+    <div className={`${Styles.app_container} app-container`}>
+      <section
+        className={`${Styles.app_container_services} app-container-services`}
+      >
         <NavUtilities
           buttonClick={buttonClick}
           setButtonClick={setButtonClick}
