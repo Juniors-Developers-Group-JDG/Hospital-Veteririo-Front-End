@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import doutores from '../../assets/about/doutores.png';
-import styles from './about.module.scss';
+import styles from './about.module.sass';
 
 export default function About(){
   return(
