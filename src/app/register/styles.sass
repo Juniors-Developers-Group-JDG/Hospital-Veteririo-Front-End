@@ -1,0 +1,47 @@
+@use '../../styles/mixins'
+@use '../../styles/variables'
+    
+html
+    @media screen and (max-width: 480px )
+        background-color: variables.$bg-color
+        height: 100vh
+
+body
+    background: variables.$bg-image_dog no-repeat
+    background-size: 100vw
+    max-width: variables.$container-width
+    @media screen and (max-width: 480px)
+        background: none
+   
+
+.register-h1
+    color: variables.$primary-color
+    font-family: sans-serif
+    font-style: normal
+    font-weight: 600
+    font-size: 30px
+    line-height: 36px
+    width: 11.25rem
+    height: 2.25rem
+    margin-left: 4.25rem
+    margin-top: 2rem
+
+
+.container-register
+    color: variables.$primary-color
+    width: 100%
+    padding: 1.5rem
+
+    &-image
+        position: relative
+        margin-top: 8rem
+        margin-left: 3rem
+        color: variables.$primary-color
+        cursor: pointer
+
+    &-form
+        @include mixins.flex
+        right: 50%
+        height: 32.875rem
+        width: 15.625rem
+
