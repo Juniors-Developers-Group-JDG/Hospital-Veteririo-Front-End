@@ -4,7 +4,7 @@ import birdSvg from '../assets/home/bird-svg.svg';
 import catSvg from '../assets/home/cat-svg.svg';
 import dogSvg from '../assets/home/dog-svg.svg';
 import veterinariaHomeImage from '../assets/home/veterinaria-home.png';
-import styles from './page.module.scss';
+import styles from './page.module.sass';
 
 export default function Home() {
   return (
@@ -39,7 +39,7 @@ export default function Home() {
       </div>
 
       <section className={styles.right_home_section}>
-        <Image className={styles.image} alt='Veterinária segurando um cachorro' src={veterinariaHomeImage} width={714} height={700} />
+        <Image className={styles.image} alt='Veterinária segurando um cachorro' src={veterinariaHomeImage} width={671} height={671} />
       </section>
     </main>
   )
