@@ -57,14 +57,16 @@ body
             text-decoration: none
             justify-content: flex-end
             margin-right: 3rem
-            &:hover
-                color: #80FB93
-                border-bottom: 1px solid #fff
-                transition: 0.2s ease-in-out
             
             @media (max-width: 480px)
                 width: fit-content
                 margin: 0.625rem 0
+                
+             @media (min-width: 480px)
+                &:hover
+                    color: #80FB93
+                    border-bottom: 1px solid #fff
+                    transition: 0.2s ease-in-out
 
         &-home,
         &-blog,
