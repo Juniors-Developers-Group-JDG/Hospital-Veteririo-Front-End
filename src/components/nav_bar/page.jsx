@@ -50,12 +50,18 @@ export default function NavBar() {
           <Link
             className={`${Style.div_nav_bar_links_home} div-nav-bar-links-home`}
             href="#"
+            onClick={() => {
+              setMenuIsOpen(false);
+            }}
           >
             Home
           </Link>
           <Link
             className={`${Style.div_nav_bar_links_blog} div-nav-bar-links-blog`}
             href="/blog"
+            onClick={() => {
+              setMenuIsOpen(false);
+            }}
           >
             Blog
           </Link>
@@ -71,36 +77,54 @@ export default function NavBar() {
           <Link
             className={`${Style.div_nav_bar_links_home} div-nav-bar-links-home`}
             href="#"
+            onClick={() => {
+              setMenuIsOpen(false);
+            }}
           >
             Home
           </Link>
           <Link
             className={`${Style.div_nav_bar_links_about} div-nav-bar-links-about`}
             href="/about"
+            onClick={() => {
+              setMenuIsOpen(false);
+            }}
           >
             Sobre
           </Link>
           <Link
             className={`${Style.div_nav_bar_links_services} div-nav-bar-links-services`}
             href="/services"
+            onClick={() => {
+              setMenuIsOpen(false);
+            }}
           >
             Serviços
           </Link>
           <Link
             className={`${Style.div_nav_bar_links_blog} div-nav-bar-links-blog`}
             href="/blog"
+            onClick={() => {
+              setMenuIsOpen(false);
+            }}
           >
             Blog
           </Link>
           <Link
             className={`${Style.div_nav_bar_links_contact} div-nav-bar-links-contact`}
             href="/contact"
+            onClick={() => {
+              setMenuIsOpen(false);
+            }}
           >
             Contato
           </Link>
           <Link
             className={`${Style.div_nav_bar_links_login} div-nav-bar-links-login`}
             href="/login"
+            onClick={() => {
+              setMenuIsOpen(false);
+            }}
           >
             Login
           </Link>
