@@ -5,15 +5,25 @@
     justify-content: center
     width: 100%
     max-width: 1200px
-    /* Adjusted margin-top to -50px */
     margin: -30px auto 0
-
+    @media screen and (max-width: 480px)
+        flex-direction: column
+        align-items: center
+        
+        
     &-group
         width: 25%
         height: 62vh
         margin-top: 10px
         border-right: 1px solid variables.$green
-
+        @media screen and (max-width: 480px)
+            background-color: #000
+            width: 80%
+            height: 100%
+            overflow-x: scroll
+            padding: 0 10px
+            border-right: none
+            
         &-ul 
             display: flex
             flex-direction: column
@@ -22,6 +32,13 @@
             width: 90%
             margin: auto
             padding: 0
+            @media screen and (max-width: 480px)
+                flex-direction: row
+                justify-content: space-between
+                width: 100%
+                margin: 0%
+                padding: 0%
+
 
         &-li
             list-style: none
@@ -43,6 +60,15 @@
                 border: none
                 border-left: 2px solid #000
                 border-right: 2px solid #000
+                @media screen and (max-width: 480px)
+                    transform: none
+                    border: none
+            @media screen and (max-width: 480px)
+                box-shadow: none
+                border: none
+                margin-right: 1rem
+                font-size: 15px
+                
     &-about
         width: 80%
         height: 38vh

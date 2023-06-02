@@ -24,7 +24,11 @@ export default function Services() {
           alt="Imagem de gatinho"
           className={`${Styles.app_container_services_bg_image} app-container-services-bg-image`}
         />
-        {buttonClick ? <Exams /> : <Specialities />}
+        <div
+          className={`${Styles.app_container_services_info} app-container-services-info`}
+        >
+          {buttonClick ? <Exams /> : <Specialities />}
+        </div>
       </section>
     </div>
   );

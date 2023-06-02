@@ -1,9 +1,8 @@
 "use client";
-import { useState } from "react";
-import Style from "./styles.sass";
-import Image from "next/image";
 import Email from "@/components/form_components/email/page";
 import Password from "@/components/form_components/password/page";
+import { useState } from "react";
+import Style from "./styles.sass";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -56,7 +55,7 @@ export default function Login() {
             <p>ou</p>
             <div className={`${Style.container} container-or-line`} />
           </div>
-          <div className={`${Style.container_button} second-login-container`}>
+          <div className={`${Style.container_button} container-second-login `}>
             <button
               type="button"
               className={`${Style.container_button} second-login`}

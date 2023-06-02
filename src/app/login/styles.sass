@@ -1,11 +1,10 @@
 @use '../../styles/mixins'
 @use '../../styles/variables'
     
-body
-    max-width: variables.$container-width
-    overflow: hidden
-
 .container
+    justify-content: flex-start
+    overflow: hidden
+    max-width: 100vw
     background-size: cover
     background-repeat: no-repeat
     background-image: variables.$bg-image_dog
@@ -72,7 +71,7 @@ body
         line-height: 24px
         border-radius: 5px
         border: none
-        background-color: #227F5E
+        background-color: variables.$primary-color
         color: #fff
         outline: none
         width: 15.625rem
@@ -80,13 +79,17 @@ body
         margin-top: 1rem
         padding: 10px
         cursor: pointer
+        &:hover
+            background-color: #0f513a
+            transition: 0.2s
+
 
         @media screen and (max-width: 480px)
             width: 100%
             text-align: center
 
     
-    .second-login-container
+    .container-second-login
         display: flex
         flex-direction: column
         justify-content: center
@@ -108,6 +111,10 @@ body
         background-color: #227F5E
         color: #fff
         cursor: pointer
+        &:hover
+            background-color: #0f513a
+            transition: 0.2s
+
     
         @media screen and (max-width: 480px)
             width: 100%

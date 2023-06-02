@@ -20,13 +20,7 @@ export default function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email);
-    console.log(cep);
-    console.log(address);
-    console.log(number);
-    console.log(password);
-    console.log(confirmPassword);
-
+    
     setEmail("");
     setCep("");
     setAddress("");
