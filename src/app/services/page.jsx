@@ -11,8 +11,10 @@ export default function Services() {
   const [buttonClick, setButtonClick] = useState(false);
 
   return (
-    <div className="app">
-      <section id="container-services">
+    <div className={`${Styles.app_container} app-container`}>
+      <section
+        className={`${Styles.app_container_services} app-container-services`}
+      >
         <NavUtilities
           buttonClick={buttonClick}
           setButtonClick={setButtonClick}
@@ -22,7 +24,11 @@ export default function Services() {
           alt="Imagem de gatinho"
           className={`${Styles.app_container_services_bg_image} app-container-services-bg-image`}
         />
-        {buttonClick ? <Exams /> : <Specialities />}
+        <div
+          className={`${Styles.app_container_services_info} app-container-services-info`}
+        >
+          {buttonClick ? <Exams /> : <Specialities />}
+        </div>
       </section>
     </div>
   );
