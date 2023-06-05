@@ -85,7 +85,7 @@ export default function NavBar() {
           </Link>
           <Link
             className={`${Style.div_nav_bar_links_about} div-nav-bar-links-about`}
-            href="/about"
+            href="#about"
             onClick={() => {
               setMenuIsOpen(false);
             }}
@@ -94,7 +94,7 @@ export default function NavBar() {
           </Link>
           <Link
             className={`${Style.div_nav_bar_links_services} div-nav-bar-links-services`}
-            href="/services"
+            href="#services"
             onClick={() => {
               setMenuIsOpen(false);
             }}
@@ -112,7 +112,7 @@ export default function NavBar() {
           </Link>
           <Link
             className={`${Style.div_nav_bar_links_contact} div-nav-bar-links-contact`}
-            href="/contact"
+            href="#contact"
             onClick={() => {
               setMenuIsOpen(false);
             }}

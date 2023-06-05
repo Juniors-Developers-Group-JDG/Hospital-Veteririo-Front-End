@@ -11,7 +11,7 @@ export default function Services() {
   const [buttonClick, setButtonClick] = useState(false);
 
   return (
-    <div className={`${Styles.app_container} app-container`}>
+    <div className={`${Styles.app_container} app-container`} id='services'>
       <section
         className={`${Styles.app_container_services} app-container-services`}
       >

@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function About(){
   return(
-    <main className={styles.main} >
+    <main className={styles.main} id='about'>
       <section className={styles.section_right}>
         <Image alt='Casal de veterinários' src={doutores} width={347} height={521}/>
       </section>

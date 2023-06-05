@@ -6,9 +6,9 @@ import { FiMap } from 'react-icons/fi';
 import { LuMapPin } from 'react-icons/lu';
 import SimpleMap from '@/components/GoogleMap/page';
 
-export default function About(){
+export default function Contact(){
   return(
-    <main className={styles.main}>
+    <main className={styles.main} id='contact'>
       <section className={styles.section_right}>
         <SimpleMap />
       </section>
