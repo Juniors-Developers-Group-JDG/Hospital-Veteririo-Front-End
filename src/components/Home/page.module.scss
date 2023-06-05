@@ -1,11 +1,19 @@
+@use "../../styles/variables";
+
 .main {
   flex: 1;
   display: flex;
+  padding: 5.3rem;
+  background-color: variables.$bg-color;
+  border-bottom: 1px solid variables.$primary-color;
 }
 
 .image {
   object-fit: cover;
   object-position: center;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 }
 
 .right_home_section {
