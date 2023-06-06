@@ -3,6 +3,7 @@ import Services from "@/components/Services/page";
 import Contact from "@/components/Contact/page";
 import Home from "@/components/Home/page";
 import Styles from "./styles.sass";
+import Footer from '@/components/Footer/page';
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <About />
       <Services />
       <Contact />
+      <Footer />
     </main>
   );
 }

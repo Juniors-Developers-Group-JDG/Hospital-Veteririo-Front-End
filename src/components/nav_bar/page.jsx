@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdOutlineCancel } from "react-icons/md";
+import Image from 'next/image';
 
 export default function NavBar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -27,7 +28,12 @@ export default function NavBar() {
   const pathname = usePathname();
   return (
     <div className="div-nav-bar">
-      <h1 className={`${Style.div_nav_bar_h1} div-nav-bar-h1`}>LOGO</h1>
+      <Image
+        src="/../assets/jdg-logo.png"
+        alt="JDG Logo"
+        width={50}
+        height={50}
+      />
       <div onClick={clickMenu} className="div-nav-bar-hamburguer-menu">
         {mobile ? (
           menuIsOpen ? (

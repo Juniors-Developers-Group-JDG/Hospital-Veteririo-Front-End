@@ -17,15 +17,11 @@ export default function About() {
       <div className={styles.divider} />
       <section className={styles.section_left}>
         <div className={styles.section_left_text}>
-          <h1>Lorem ipsum dolor . Integer eleifend</h1>
+          <h1
+            className={styles.section_title}
+          >Sobre nós</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget
-            congue lacus. Mauris quis urna ultrices, convallis eros eget,
-            eleifend massa. Integer at leo erat. Etiam volutpat id tortor varius
-            suscipit. Phasellus et lacus nunc. Sed ac ultrices orci. Suspendisse
-            ac massa at arcu Praesent eget velit viverra, pulvinar urna id,
-            finibus lacus. Aliquam congue sit amet libero in rutrum. Nulla
-            bibendum rutrum bibendum. Integer eleifend dolor in finibus finibus.{" "}
+          Desde a nossa fundação em 1998, temos o compromisso de fornecer cuidados excepcionais aos animais de estimação e orientar os seus tutores sobre como promover uma vida saudável e feliz para eles. Aqui, você encontrará informações valiosas e conselhos especializados para todas as suas necessidades veterinárias. Nossa equipe altamente qualificada está pronta para ajudar você e seu amiguinho peludo. Conte conosco para oferecer os melhores cuidados veterinários possíveis!{" "}
           </p>
         </div>
       </section>

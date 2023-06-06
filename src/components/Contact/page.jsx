@@ -9,6 +9,7 @@ import SimpleMap from "@/components/GoogleMap/page";
 export default function Contact() {
   return (
     <main className={styles.main} id="contact">
+      <h1>Onde nos encontrar</h1>
       <section className={styles.section_right}>
         <SimpleMap />
       </section>

@@ -11,6 +11,9 @@ export default function Services() {
 
   return (
     <div className={`${Styles.app_container} app-container`} id='services'>
+      <h1 className={`${Styles.app_container_title} app-container-title`}>
+        Serviços
+      </h1>
       <section
         className={`${Styles.app_container_services} app-container-services`}
       >

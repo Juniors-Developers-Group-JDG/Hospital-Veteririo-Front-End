@@ -8,6 +8,13 @@
   border-bottom: 1px solid variables.$primary-color;
 }
 
+@media screen and (max-width: 480px) {
+  .main {
+    flex-direction: column;
+    padding: 2.5rem;
+  }
+}
+
 .image {
   object-fit: cover;
   object-position: center;
@@ -56,6 +63,15 @@
   width: 100%;
   margin-inline: 40px;
   max-width: 523px;
+}
+
+@media screen and (max-width: 480px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .paragraph {
