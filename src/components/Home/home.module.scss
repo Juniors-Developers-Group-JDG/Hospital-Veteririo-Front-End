@@ -1,0 +1,114 @@
+.main{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color:  #e4e2e0;
+  padding: 30px 0px;
+  padding-top: 60px;
+  width: 100%;
+
+  .left_text{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 45%;
+    min-width: 400px; 
+    max-width: 90%;
+
+    .title{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0px;
+      width: 80%;
+      box-sizing: border-box;
+
+      h2{
+        color: #227F5E;
+        font-weight: 500;
+        font-size: 40px;
+        text-align: center;
+
+        @media screen and (max-width: 768px) {
+          font-size: 30px;
+        }
+      }
+    }
+
+    .slogan{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0px;
+      border-top: 1px solid #227F5E;
+      border-bottom: 1px solid #227F5E;
+
+        @media screen and (max-width: 768px) {
+          width: 80%;
+        }
+
+      p{
+        color: #227F5E;
+        font-size: 20px;
+        text-align: center;
+
+        @media screen and (max-width: 768px) {
+          font-size: 16px;
+          box-sizing: border-box;
+          padding: 0px 50px;
+        }
+      }
+    }
+
+    .pets_icon{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
+      width: 60%;
+      padding: 20px 0px;
+
+      .animal{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+
+        .pet{
+          transition: all 0.3s;
+
+          &:hover{
+            opacity: 0.7;
+          }
+        }
+      }
+
+
+    }
+  }
+
+  .right_img{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 45%;
+    // height: 450px;
+    min-width: 400px;
+    max-width: 90%;
+
+    .box_img{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img{
+        width: 90%;
+        min-width: 300px;
+      }
+    }
+  }
+}
