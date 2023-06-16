@@ -134,7 +134,7 @@ export default function NavBar() {
               setMenuIsOpen(false);
             }}
           >
-            Login
+            Login Adm
           </Link>
               </div>
             )
@@ -229,7 +229,7 @@ export default function NavBar() {
                             setMenuIsOpen(false);
                           }}
                         >
-                          Login
+                          Login Adm
                         </Link>
                     </div>
                   )

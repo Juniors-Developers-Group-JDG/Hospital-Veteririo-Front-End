@@ -2,28 +2,30 @@
 import Email from "@/components/form_components/email/page";
 import Password from "@/components/form_components/password/page";
 import Link from "next/link";
-import { useState } from "react";
 import style from "./login.module.scss";
+import Image from 'next/image';
+
+import { useContext } from 'react';
+import AuthContext from '../auth_context/AuthContext';
+
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { email, password } = useContext(AuthContext);
+
+  const userAcess = {
+    email: 'admin@teste.com.br',
+    senha: '123456',
+   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email);
-    console.log(password);
-
-    setEmail("");
-    setPassword("");
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    if (name === "email") {
-      setEmail(value);
-    } else if (name === "password") {
-      setPassword(value);
+    if (userAcess.email === email && userAcess.senha === password) {
+      localStorage.setItem('isAuthenticated', true);
+      alert("Login efetuado com sucesso!");
+      return window.location.href = '/schedule';
+    } else {
+      alert("Email ou senha incorretos!");
+      window.location.href = '/login';
     }
   };
 
@@ -31,31 +33,45 @@ export default function Login() {
     <main className={style.main}>
       <div className={style.box_login}>
       <div className={style.title}>
-        <h2>Faça seu login</h2>
+        <h2>Login do Administrador</h2>
       </div>
 
-      <form onSubmit={handleSubmit} className={style.form}>
-      <Email email={email} setEmail={setEmail}/>
-      <Password password={password} setPassword={setPassword}/>
-      
-      <div className={style.option_user}>
-        <div className={style.option}>
-          <Link href="/forgotPassword">Esqueceu sua senha?</Link>
+      <form className={style.form}>
+        <Email
+          value = {email}
+          />
+        <Password
+          value = {password}
+        />
+        
+        <div className={style.option_user}>
+          <div className={style.option}>
+            <Link href="/forgotPassword">Esqueceu sua senha?</Link>
+          </div>
         </div>
-        <div className={style.option}>
-          <Link href="/register">Ainda não tem conta?</Link>
-        </div>
-      </div>
-        <button onClick={(event)=>handleSubmit(event)}>Entrar</button>
+          <button
+            type='button'
+            onClick={handleSubmit}
+            >Entrar
+          </button>
       </form>
 
       </div>
 
       <figure>
-        <img src="/assets/image4.png" alt="background animal"/>
-        <img src="/assets/image6.png" alt="background animal"/>
+        <Image
+          src="/assets/image4.png"
+          alt="background animal"
+          width={500}
+          height={500}
+        />
+        <Image
+          src="/assets/image6.png"
+          alt="background animal"
+          width={500}
+          height={500}
+        />
       </figure>
     </main>
   );
 }
-

@@ -1,6 +1,9 @@
+import AuthContext from '@/app/auth_context/AuthContext';
 import style from "./email.module.scss";
+import { useContext } from 'react';
 
-export default function Email({ email, setEmail }) {
+export default function Email() {
+  const { email, setEmail } = useContext(AuthContext);
   return (
     <div className={style.box}>
       
