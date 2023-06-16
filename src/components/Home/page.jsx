@@ -7,7 +7,7 @@ import styles from "./home.module.scss";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main className={styles.main} id="home">
         <div className={styles.left_text}>
             <div className={styles.title}>
               <h2>Boas vindas ao mundo de cuidados veterinários de qualidade!</h2>

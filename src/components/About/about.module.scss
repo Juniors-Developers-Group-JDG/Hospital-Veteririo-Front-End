@@ -86,4 +86,24 @@
         }
     }
 
+    .back_nav{
+        border-radius: 3px;
+        width: 30px;
+        position: fixed;
+        top: 600px;
+        right: 10px;
+        background-color:#227F5E ;
+        transition: all 0.3s;
+        cursor: pointer;
+        
+        &:hover{
+            opacity: 0.8;
+        }
+
+        img{
+            width: 100%;
+            color: #227F5E;
+        }
+    }
+
 }

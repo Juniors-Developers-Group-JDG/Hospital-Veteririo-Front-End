@@ -1,6 +1,15 @@
+"use client"
 import styles from "./about.module.scss";
+import { scroller } from "react-scroll";
+import Link from "next/link";
+
 
 export default function About() {
+
+  const scrollToSection = (sectionId)=>{
+    scroller.scrollTo(sectionId, {smooth: true, duration: 500})
+  }
+
   return (
       <section className={styles.section_about} id="about">
         <div className={styles.title}>
@@ -23,6 +32,12 @@ export default function About() {
                 </div>
             </div>
         </div>
+
+        <figure className={styles.back_nav}>
+          <Link href="#" onClick={()=> scrollToSection('navbar')}>
+            <img src="/icons/arrow.svg" alt="" />
+          </Link>
+        </figure>
       </section> 
   ); 
 }

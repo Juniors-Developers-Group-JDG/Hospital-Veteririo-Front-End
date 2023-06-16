@@ -47,7 +47,7 @@ export default function NavBar() {
   const pathname = usePathname();
 
   return (
-    <div className={style.nav_bar}>
+    <div className={style.nav_bar} id="navbar">
       
       <div className={style.logo}>
         <Image
