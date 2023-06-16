@@ -14,7 +14,7 @@ export default function Home() {
             </div>
             <div className={styles.slogan}>
               <p>Oferecemos todos os serviços para o seu animalzinho de estimação, buscando
-                sempre unir qualdiade no atendimento.
+                sempre unir qualidade no atendimento.
               </p>
             </div>
             <div className={styles.pets_icon}>
