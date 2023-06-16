@@ -37,7 +37,7 @@ export default function About() {
           <Link href="#" onClick={()=> scrollToSection('navbar')}>
             <img src="/icons/arrow.svg" alt="" />
           </Link>
-        </figure>
+        </figure> 
       </section> 
   ); 
 }

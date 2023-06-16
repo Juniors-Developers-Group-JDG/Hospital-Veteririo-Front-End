@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import style from './forgotPassword.module.scss'
+import style from './forgotPassword.module.scss';
+import Link from "next/link";
 import Email from "@/components/form_components/email/page";
 
 export default function ForgotPassword() {
@@ -11,7 +12,7 @@ export default function ForgotPassword() {
     console.log("formulário enviado");
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event) => { 
     const { value } = event.target;
     setEmail(value);
   };
@@ -35,8 +36,13 @@ export default function ForgotPassword() {
               <Email email={email} setEmail={setEmail}r/>
             </div>
             <button onClick={(event) => handleSubmit(event)}>
-              Próximo
+              Próximo 
             </button>
+            <Link href="/">
+            <button>
+              Voltar para home 
+            </button>
+            </Link>
           </form>
        </div>
     </main>
