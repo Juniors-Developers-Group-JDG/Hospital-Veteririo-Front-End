@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-export default function Schedule() {
+export default function Admin() {
   const [ auth, setAuth ] = useState(
     localStorage.getItem('isAuthenticated') || false
   );
