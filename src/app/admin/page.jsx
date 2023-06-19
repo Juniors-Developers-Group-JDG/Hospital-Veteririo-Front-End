@@ -1,8 +1,11 @@
 'use client';
+import ScheduleList from '@/components/ScheduleList/page.jsx';
 import { useState } from 'react';
+import style from './page.module.scss';
+import NewSchedule from '@/components/NewSchedule/page';
 
 export default function Admin() {
-  const [ auth, setAuth ] = useState(
+  const [ auth, _setAuth ] = useState(
     localStorage.getItem('isAuthenticated') || false
   );
   return (
@@ -10,17 +13,9 @@ export default function Admin() {
       {
         auth
         ? 
-        <div>
-          <h1>Agenda</h1>
-          <button
-            onClick={() => {
-              localStorage.removeItem('isAuthenticated');
-              setAuth(false);
-              window.location.href = '/login';
-            }}
-              > Sair
-          </button>
-              
+        <div className={style.adminPage}>
+          <ScheduleList />
+          <NewSchedule />
         </div>
         :
           window.location.href = '/login'
