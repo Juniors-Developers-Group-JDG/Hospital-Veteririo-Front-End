@@ -1,13 +1,22 @@
 import scheduleMock from '../../utils/scheduleMock';
-import React from 'react';
+import { React, useContext, useEffect, useState } from 'react';
 import { GiSittingDog } from 'react-icons/gi';
 import { FaCat } from 'react-icons/fa';
 import style from './ScheduleList.module.scss'
+import ScheduleContext from '../../app/contexts/schedule_context/Schedule_context';
+import ScheduleDetails from '../ScheduleDetails/page';
+
 
 const ScheduleList = () => {
-
-  const [schedule, setSchedule] = React.useState(scheduleMock);
-
+  const [schedule, setSchedule] = useState(scheduleMock);
+  
+  const {
+      showScheduleDetails,
+      setShowScheduleDetails,
+      setSelectedSchedule,
+      selectedSchedule
+    } = useContext(ScheduleContext);
+  
   const filterDate = (event) => {
     const date = event.target.value;
     const filteredSchedule = scheduleMock.filter((schedule) => {
@@ -16,7 +25,11 @@ const ScheduleList = () => {
     setSchedule(filteredSchedule);
   };
 
-  
+  const handleScheduleDetails = (schedule) => {
+    setShowScheduleDetails(true);
+    setSelectedSchedule(schedule);
+  };
+ 
   return (
    <section className={style.fullComponent}>
     <div className={style.topDiv}>
@@ -35,24 +48,31 @@ const ScheduleList = () => {
     </div>
     <ul className={style.scheduleList}>
        {
-         schedule.map((schedule, index) => {
-          const date = schedule.date.split('-').reverse().join('/');
+         schedule.map((eachSchedule, index) => {
+          const date = eachSchedule.date.split('-').reverse().join('/');
            return (
-             <li key={index} className={ style.scheduleItem}>
+             <li
+              key={index} 
+              className={ style.scheduleItem}
+              onClick={() => handleScheduleDetails(eachSchedule)}
+            >
                <div className={ style.scheduleInfoLeft}>
-                  { schedule.specie === 'Cachorro' ? <GiSittingDog className={ style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
-                <p>{schedule.pet}</p>
-                <p>{schedule.clientName}</p>
+                  { eachSchedule.specie === 'Cachorro' ? <GiSittingDog className={ style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
+                <p>{eachSchedule.pet}</p>
+                <p>{eachSchedule.clientName}</p>
                </div>
                <div className={ style.scheduleInfoRight}>
                 <p>{date}</p>
-                <p>{schedule.time}h</p>
+                <p>{eachSchedule.time}h</p>
                </div>
              </li>
            )
          })
        }
-      </ul>
+    </ul>
+    {
+      showScheduleDetails  && <ScheduleDetails schedule={schedule } setSchedule={setSchedule}/>
+    }
     </section>
   );
 }

@@ -6,7 +6,7 @@ import style from "./login.module.scss";
 import Image from 'next/image';
 
 import { useContext } from 'react';
-import AuthContext from '../auth_context/AuthContext';
+import AuthContext from '../contexts/auth_context/AuthContext';
 
 
 export default function Login() {

@@ -1,8 +1,8 @@
-import Script from "next/script";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import NavBar from "../components/nav_bar/page"
-import { AuthProvider } from './auth_context/AuthContext';
+import { AuthProvider } from './contexts/auth_context/AuthContext';
+
 
 const inter = Inter({ subsets: ["latin"] });
 

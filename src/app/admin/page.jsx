@@ -3,6 +3,7 @@ import ScheduleList from '@/components/ScheduleList/page.jsx';
 import { useState } from 'react';
 import style from './page.module.scss';
 import NewSchedule from '@/components/NewSchedule/page';
+import { ScheduleProvider } from '../contexts/schedule_context/Schedule_context';
 
 export default function Admin() {
   const [ auth, _setAuth ] = useState(
@@ -14,8 +15,10 @@ export default function Admin() {
         auth
         ? 
         <div className={style.adminPage}>
-          <ScheduleList />
-          <NewSchedule />
+          <ScheduleProvider>
+            <ScheduleList />
+            <NewSchedule />
+          </ScheduleProvider>
         </div>
         :
           window.location.href = '/login'

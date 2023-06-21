@@ -1,4 +1,4 @@
-import AuthContext from '@/app/auth_context/AuthContext';
+import AuthContext from '../../../app/contexts/auth_context/AuthContext';
 import style from "./email.module.scss";
 import { useContext } from 'react';
 

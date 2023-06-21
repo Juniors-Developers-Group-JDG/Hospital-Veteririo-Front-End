@@ -1,5 +1,6 @@
 const scheduleMock = [
  {
+  id:1,
   date: '2023-06-19',
   time: '10:00',
   clientName: 'John Doe',
@@ -8,9 +9,13 @@ const scheduleMock = [
   service: 'Consulta',
   pet: 'Jonny',
   specie: 'Cachorro',
-  breed: 'Vira-lata'
+  breed: 'Vira-lata',
+  speciality: 'Clinico Geral',
+  status: 'Agendado',
+  notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+ id:2,
  date: '2023-06-20',
  time: '10:00',
  clientName: 'John Doe',
@@ -19,9 +24,13 @@ const scheduleMock = [
  service: 'Consulta',
  pet: 'Jonny',
  specie: 'Gato',
- breed: 'Vira-lata'
+ breed: 'Vira-lata',
+ speciality: 'Clinico Geral',
+ status: 'Agendado',
+ notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+  id:3,
  date: '2023-06-20',
  time: '10:00',
  clientName: 'John Doe',
@@ -30,9 +39,13 @@ const scheduleMock = [
  service: 'Consulta',
  pet: 'Jonny',
  specie: 'Gato',
- breed: 'Vira-lata'
+ breed: 'Vira-lata',
+ speciality: 'Clinico Geral',
+ status: 'Agendado',
+ notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+  id:4,
  date: '2023-06-21',
  time: '10:00',
  clientName: 'John Doe',
@@ -41,9 +54,13 @@ const scheduleMock = [
  service: 'Consulta',
  pet: 'Jonny',
  specie: 'Cachorro',
- breed: 'Vira-lata'
+ breed: 'Vira-lata',
+ speciality: 'Clinico Geral',
+ status: 'Agendado',
+ notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+  id:5,
  date: '2023-06-21',
  time: '10:00',
  clientName: 'John Doe',
@@ -52,9 +69,13 @@ const scheduleMock = [
  service: 'Consulta',
  pet: 'Jonny',
  specie: 'Cachorro',
- breed: 'Vira-lata'
+ breed: 'Vira-lata',
+ speciality: 'Clinico Geral',
+ status: 'Agendado',
+ notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+  id:6,
  date: '2023-06-23',
  time: '10:00',
  clientName: 'John Doe',
@@ -63,9 +84,13 @@ const scheduleMock = [
  service: 'Consulta',
  pet: 'Jonny',
  specie: 'Cachorro',
- breed: 'Vira-lata'
+ breed: 'Vira-lata',
+ speciality: 'Clinico Geral',
+ status: 'Agendado',
+ notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+  id:7,
   date: '2023-06-19',
   time: '10:00',
   clientName: 'John Doe',
@@ -74,9 +99,13 @@ const scheduleMock = [
   service: 'Consulta',
   pet: 'Jonny',
   specie: 'Cachorro',
-  breed: 'Vira-lata'
+  breed: 'Vira-lata',
+  speciality: 'Clinico Geral',
+  status: 'Agendado',
+  notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+  id:8,
  date: '2023-06-20',
  time: '10:00',
  clientName: 'John Doe',
@@ -85,9 +114,13 @@ const scheduleMock = [
  service: 'Consulta',
  pet: 'Jonny',
  specie: 'Gato',
- breed: 'Vira-lata'
+ breed: 'Vira-lata',
+ speciality: 'Clinico Geral',
+ status: 'Agendado',
+ notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+  id:9,
  date: '2023-06-20',
  time: '10:00',
  clientName: 'John Doe',
@@ -96,9 +129,13 @@ const scheduleMock = [
  service: 'Consulta',
  pet: 'Jonny',
  specie: 'Gato',
- breed: 'Vira-lata'
+ breed: 'Vira-lata',
+ speciality: 'Clinico Geral',
+ status: 'Agendado',
+ notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+  id:10,
  date: '2023-06-21',
  time: '10:00',
  clientName: 'John Doe',
@@ -107,9 +144,13 @@ const scheduleMock = [
  service: 'Consulta',
  pet: 'Jonny',
  specie: 'Cachorro',
- breed: 'Vira-lata'
+ breed: 'Vira-lata',
+ speciality: 'Clinico Geral',
+ status: 'Agendado',
+ notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+  id:11,
  date: '2023-06-21',
  time: '10:00',
  clientName: 'John Doe',
@@ -118,9 +159,13 @@ const scheduleMock = [
  service: 'Consulta',
  pet: 'Jonny',
  specie: 'Cachorro',
- breed: 'Vira-lata'
+ breed: 'Vira-lata',
+ speciality: 'Clinico Geral',
+ status: 'Agendado',
+ notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 },
 {
+  id:12,
  date: '2023-06-23',
  time: '10:00',
  clientName: 'John Doe',
@@ -129,7 +174,10 @@ const scheduleMock = [
  service: 'Consulta',
  pet: 'Jonn ultimo',
  specie: 'Cachorro',
- breed: 'Vira-lata'
+ breed: 'Vira-lata',
+ speciality: 'Clinico Geral',
+ status: 'Agendado',
+ notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
 }
 ];
 
