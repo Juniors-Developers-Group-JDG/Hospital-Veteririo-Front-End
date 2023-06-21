@@ -22,7 +22,7 @@ export default function Login() {
     if (userAcess.email === email && userAcess.senha === password) {
       localStorage.setItem('isAuthenticated', true);
       alert("Login efetuado com sucesso!");
-      return window.location.href = '/schedule';
+      return window.location.href = '/admin';
     } else {
       alert("Email ou senha incorretos!");
       window.location.href = '/login';

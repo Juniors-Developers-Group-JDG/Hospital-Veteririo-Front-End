@@ -39,13 +39,15 @@ const ScheduleList = () => {
           const date = schedule.date.split('-').reverse().join('/');
            return (
              <li key={index} className={ style.scheduleItem}>
-               <div className={ style.scheduleIcon}>
-                { schedule.specie === 'Cachorro' ? <GiSittingDog /> : <FaCat />}
+               <div className={ style.scheduleInfoLeft}>
+                  { schedule.specie === 'Cachorro' ? <GiSittingDog className={ style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
+                <p>{schedule.pet}</p>
+                <p>{schedule.clientName}</p>
                </div>
-               <p>{schedule.pet}</p>
-               <p>{schedule.name}</p>
-               <p>{date}</p>
-               <p>{schedule.time}h</p>
+               <div className={ style.scheduleInfoRight}>
+                <p>{date}</p>
+                <p>{schedule.time}h</p>
+               </div>
              </li>
            )
          })

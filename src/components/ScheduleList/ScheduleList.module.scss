@@ -5,6 +5,7 @@
   justify-content: center;
   width: 50%;
   height: 100%;
+
 }
 
 .topDiv {
@@ -20,20 +21,43 @@
  width: 80%;
  background-color: rgb(170, 174, 170);
  align-items: center;
- justify-content: center;
+ justify-content: flex-start;
  height: 70%;
- padding: 5% 1% 1% 1%;
+ padding: 2% 1% 1% 1%;
 }
 
 .scheduleItem {
  display: flex;
  background-color: rgb(177, 199, 152);
- width: 80%;
- justify-content: space-evenly;
+ width: 90%;
+ justify-content: space-between;
  align-items: center;
+ gap: 5%;
  margin-bottom: 1%;
  padding: 2% 1%;
  overflow: hidden;
+ border-radius: 10px;
+ transform: scale(0.95);
+ transition: transform 0.2s ease-in-out;
+}
+
+
+.scheduleItem:hover {
+ background-color: rgb(177, 199, 152, 0.5);
+  transform: scale(1);
+}
+
+.scheduleInfoLeft {
+  display: flex;
+  gap: 5%;
+  width: 50%;
+}
+
+.scheduleInfoRight {
+  display: flex;
+  gap: 5%;
+  width: 50%;
+  justify-content: flex-end;
 }
 
 .scheduleIcon {

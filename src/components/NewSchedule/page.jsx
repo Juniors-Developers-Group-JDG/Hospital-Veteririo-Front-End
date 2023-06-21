@@ -19,11 +19,6 @@ const NewSchedule = () => {
 
   return (
    <section className={style.fullComponent}>
-      <div >
-        {
-          selectedSpecie === undefined ? <AiOutlineQuestionCircle className={style.petIcon}/> : selectedSpecie === 'Cão' ? <GiSittingDog className={style.petIcon}/> : <FaCat className={style.petIcon}/>
-        }
-      </div>
       <div className={style.topDiv}>
         <label for="GET-name">Tutor:</label>
         <input id="GET-name" type="text" name="name"/>
@@ -32,38 +27,16 @@ const NewSchedule = () => {
         <input id="GET-petName" type="text" name="petName"/>
       </div>
       <div className={style.topDiv}>
-        <label for="GET-PetSpecie">Espécie:</label>
-        <select
-          id="specie"
-          onChange={getSpecie}
-        >
-          <option id="" value="">Selecionar</option>
-          <option id="Cão" value="Cão">Cão</option>
-          <option id="Gato" value="Gato">Gato</option>
-        </select>
-        <label for="GET-breed">Sexo:</label>
-            <select id="breed">
-            <option id="Selecionar" value="Selecionar">Selecionar</option>
-              <option id="Macho" value="Macho">Macho</option>
-              <option id="Fêmea" value="Fêmea">Fêmea</option>
-            </select>
-      </div>
-      <div className={style.topDiv}>
-        <label for="GET-breed">Raça:</label>
-            <select id="breed">
+        <label for="GET-especialidade">Especialidade:</label>
+        {/* Depois pegar da api de especialidades */}
+        <select id="especialidade">
               <option id="" value="">Selecionar</option>
-              <option id="SRD" value="SRD">SRD</option>
-              <option id="Pastor Alemão" value="Pastor Alemão">Pastor Alemão</option>
-              <option id="Pinscher" value="Pinscher">Pinscher</option>
-              <option id="Poodle" value="Poodle">Poodle</option>
-              <option id="Dalmata" value="Dalmata">Dalmata</option>
+              <option id="Clínica Médica Geral" value="Clínica Médica Geral">Clínica Médica Geral</option>
+              <option id="Dermatologia" value="Dermatologia">Dermatologia</option>
+              <option id="Endocrinologia" value="Endocrinologia">Endocrinologia</option>
+              <option id="Cirurgia Geral" value="Cirurgia Geral">Cirurgia Geral</option>
+              <option id="Cirurgia Ortopédica" value="Cirurgia Ortopédica">Cirurgia Ortopédica</option>
             </select>
-            <label for="GET-PetAge">Idade:</label>
-        <input id="GET-age" type="number" name="age"/>
-      </div>
-      <div className={style.topDiv}>
-        <label for="GET-peso">Peso (kg):</label>
-        <input id="GET-peso" type="number" name="peso"/>
       </div>
       <div className={style.topDiv}>
         <label for="GET-date">Data:</label>
