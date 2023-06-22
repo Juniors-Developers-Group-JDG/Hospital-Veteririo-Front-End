@@ -1,8 +1,5 @@
 import React from 'react';
-import { GiSittingDog } from 'react-icons/gi';
-import { FaCat } from 'react-icons/fa';
 import style from './NewSchedule.module.scss'
-import { AiOutlineQuestionCircle } from 'react-icons/ai';
 
 const NewSchedule = () => { 
 

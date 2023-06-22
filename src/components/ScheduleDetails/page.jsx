@@ -32,11 +32,27 @@ const saveEditedSchedule = () => {
   setSelectedSchedule({});
 }
 
+const cancelSchedule = () => {
+  const newSchedule = schedule.filter((eachSchedule) => {
+    if (eachSchedule.id !== selectedSchedule.id) {
+      return eachSchedule;
+    }
+  });
+  setSchedule(newSchedule);
+  setShowScheduleDetails(false);
+  setSelectedSchedule({});
+};
+
+const confirmCancelSchedule = () => {
+  const confirm = window.confirm('Tem certeza que deseja cancelar o agendamento?');
+  if (confirm) {
+    cancelSchedule();
+  }
+};
+
  return (
-  <section className={style.fullComponent}>
-    <form
-    className={style.form}
-   >
+  <section className={style.scheduleDetailContainer}>
+    <form className={style.form}>
     <div>
       <input
         type="text"
@@ -70,7 +86,10 @@ const saveEditedSchedule = () => {
     >
      Salvar
     </button>
-    <button>
+    <button
+      type='button'
+      onClick={confirmCancelSchedule}
+    >
      Cancelar agendamento
     </button>
    </div>

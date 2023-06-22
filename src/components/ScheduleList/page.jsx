@@ -69,10 +69,10 @@ const ScheduleList = () => {
            )
          })
        }
-    </ul>
     {
       showScheduleDetails  && <ScheduleDetails schedule={schedule } setSchedule={setSchedule}/>
     }
+    </ul>
     </section>
   );
 }
