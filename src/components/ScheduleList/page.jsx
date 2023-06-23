@@ -48,7 +48,17 @@ const ScheduleList = () => {
     </div>
     <ul className={style.scheduleList}>
        {
-         schedule.map((eachSchedule, index) => {
+         schedule
+         .sort((a, b) => {
+            if (a.date < b.date) {
+              return 1;
+            }
+            if (a.date > b.date) {
+              return -1;
+            }
+            return 0;
+          })
+         .map((eachSchedule, index) => {
           const date = eachSchedule.date.split('-').reverse().join('/');
            return (
              <li
