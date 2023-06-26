@@ -41,18 +41,24 @@ const ScheduleList = () => {
   return (
    <section className={style.fullComponent}>
     <div className={style.topDiv}>
-      <h1>Agendamentos</h1>
-      <input
-       type="date" 
-       name="filtrar"
-       id="filtrar"
-       placeholder="Selecione uma data"
-       onChange={filterDate}
-       />
-       <button
-        type='button'
-        onClick={() => setSchedule(scheduleMock)}
-       >Limpar filtros</button>
+      <div className={ style.containerTitle}>
+        <h1>Agendamentos</h1>
+      </div>
+      <div 
+        className={ style.containerFilter}
+      >
+        <input
+        type="date" 
+        name="filtrar"
+        id="filtrar"
+        placeholder="Selecione uma data"
+        onChange={filterDate}
+        />
+        <button
+          type='button'
+          onClick={() => setSchedule(scheduleMock)}
+        >Limpar filtros</button>
+      </div>
     </div>
     <ul className={style.scheduleList}>
        {
@@ -76,8 +82,12 @@ const ScheduleList = () => {
             >
                <div className={ style.scheduleInfoLeft}>
                   { eachSchedule.specie === 'Cachorro' ? <GiSittingDog className={ style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
-                <p>{eachSchedule.pet}</p>
-                <p>{eachSchedule.clientName}</p>
+                <p
+                  className={ style.petName}
+                >{eachSchedule.pet}</p>
+                <p
+                  className={ style.clientName}
+                >{eachSchedule.clientName}</p>
                </div>
                <div className={ style.scheduleInfoRight}>
                 <p>{date}</p>

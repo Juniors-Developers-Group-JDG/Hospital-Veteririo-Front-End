@@ -1,4 +1,14 @@
 .adminPage {
-  height: 80vh;
+  height: 90vh;
   display: flex;
+  background-color: #e1eff0;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .adminPage {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
 }

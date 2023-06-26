@@ -2,49 +2,87 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 20px;
   width: 50%;
   height: 100%;
-
 }
 
 .topDiv {
- display: flex;
- width: 80%;
- justify-content: space-around;
- padding: 1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  justify-content: flex-start;
+  padding: 2% 1%;
+  height: fit-content;
+}
+.containerTitle {
+  margin-bottom: 10px;
+}
+
+.containerFilter {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.containerFilter input {
+  height: 30px;
+  border-radius: 5px;
+  border: 0.5px solid #5d5c5c;
+  padding: 0 5px;
+}
+
+.containerFilter button {
+  cursor: pointer;
+  height: 30px;
+  border-radius: 5px;
+  padding: 0 5px;
+  background-color: #f4efef;
+  color: #373636;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.containerFilter button:hover {
+  background-color: #396429;
+  color: #FFFFFF;
 }
 
 .scheduleList {
- position: relative;
- display: flex;
- flex-direction: column;
- width: 80%;
- background-color: rgb(170, 174, 170);
- align-items: center;
- justify-content: flex-start;
- height: 70%;
- padding: 2% 1% 1% 1%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  background-color: #9dbeb6;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80%;
+  padding: 2% 1% 1% 1%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-radius: 10px;
 }
 
 .scheduleItem {
- display: flex;
- background-color: rgb(177, 199, 152);
- width: 90%;
- justify-content: space-between;
- align-items: center;
- gap: 5%;
- margin-bottom: 1%;
- padding: 2% 1%;
- overflow: hidden;
- border-radius: 10px;
- transform: scale(0.95);
- transition: transform 0.2s ease-in-out;
+  display: flex;
+  width: 100%;
+  border: 1px solid #FFFFFF;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1%;
+  padding: 20px 5px;
+  overflow: hidden;
+  border-radius: 10px;
+  transform: scale(0.95);
+  transition: transform 0.3s ease-in-out;
 }
 
-
 .scheduleItem:hover {
- background-color: rgb(177, 199, 152, 0.5);
+  background-color: rgba(143, 214, 217, 0.5);
   transform: scale(1);
 }
 
@@ -62,7 +100,75 @@
 }
 
 .scheduleIcon {
-  background-color: white;
+  background-color: #FFFFFF;
   border-radius: 50%;
-  padding: 1%;
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+}
+
+.scheduleList::-webkit-scrollbar {
+  width: 20px;
+}
+
+.scheduleList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scheduleList::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.scheduleList::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 768px) {
+  .fullComponent {
+    width: 90%;
+  }
+
+  .scheduleList {
+    width: 100%;
+    overflow-y: scroll;
+  }
+
+  .scheduleItem {
+    flex-direction: column;
+    height: 100px;
+    justify-content: space-between;
+  }
+
+  .scheduleItem p {
+    font-size: 1.3rem;
+  }
+
+  .scheduleItem:hover {
+    transform: scale(0.95);
+  }
+
+  .scheduleInfoLeft {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .clientName {
+    width: 110%;
+    text-align: end;
+  }
+
+  .petName {
+    width: 100%;
+    text-align: start;
+  }
+
+  .scheduleInfoRight {
+    width: 100%;
+  }
+
+  .scheduleIcon {
+    display: none;
+  }
+
 }

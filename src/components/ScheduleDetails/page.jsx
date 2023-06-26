@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import style from './ScheduleDetails.module.scss';
-import ScheduleContext from '../../app/contexts/schedule_context/Schedule_context';
+import { CgCloseO } from 'react-icons/cg';
+import ScheduleContext from '@/app/contexts/schedule_context/Schedule_context';
 
 const ScheduleDetails = ({schedule, setSchedule}) => {
 
@@ -53,23 +54,41 @@ const confirmCancelSchedule = () => {
  return (
   <section className={style.scheduleDetailContainer}>
     <form className={style.form}>
-    <div>
-      <input
-        type="text"
-        name="clientName"
-        id="clientName"
-        value={ selectedSchedule.clientName }
-        onChange={handleChangeInput}
-      /> 
-      <input type="text" value={selectedSchedule.pet} name='pet' id='pet' onChange={handleChangeInput}/>
+    <div className={ style.boxLine}>
+      <div className={style.boxInput}>
+        <label htmlFor="clientName">Nome do cliente</label>
+        <input
+          type="text"
+          name="clientName"
+          id="clientName"
+          value={ selectedSchedule.clientName }
+          onChange={handleChangeInput}
+        />
+      </div>
+      <div className={style.boxInput}>
+        <label htmlFor="petName">Nome do Pet</label>
+        <input type="text" value={selectedSchedule.pet} name='pet' id='pet' onChange={handleChangeInput}/>
+      </div>
      </div>
-     <div>
-      <input type="date" value={selectedSchedule.date} name='date' id='date'onChange={handleChangeInput}/>
-      <input type="time" value={selectedSchedule.time} name='time' id='time'onChange={handleChangeInput}/>
+     <div className={ style.boxLine}>
+     <div className={style.boxInput}>
+        <label htmlFor="date">Data</label>
+        <input type="date" value={selectedSchedule.date} name='date' id='date'onChange={handleChangeInput}/>
+      </div>
+      <div className={style.boxInput}>
+        <label htmlFor="time">Horário</label>
+        <input type="time" value={selectedSchedule.time} name='time' id='time'onChange={handleChangeInput}/>
+      </div>
      </div>
-     <div>
-      <input type="text" value={selectedSchedule.speciality} name='speciality' id='speciality'onChange={handleChangeInput}/>
-      <textarea name="notes" id="notes" cols="30" rows="5" value={selectedSchedule.notes} onChange={handleChangeInput}></textarea>
+     <div className={ style.boxLine}>
+      <div className={style.boxInput}>
+        <label htmlFor="speciality">Especialidade</label>
+        <input type="text" value={selectedSchedule.speciality} name='speciality' id='speciality'onChange={handleChangeInput}/>
+      </div>
+      <div className={style.boxInput}>
+        <label htmlFor="status">Resumo</label>
+        <textarea name="notes" id="notes" cols="30" rows="5" value={selectedSchedule.notes} onChange={handleChangeInput}></textarea>
+      </div>
      </div>
      <p
       className={style.close}
@@ -77,7 +96,9 @@ const confirmCancelSchedule = () => {
        setShowScheduleDetails(false);
        setSelectedSchedule({});
       }}
-     >X</p>
+     >
+      <CgCloseO />
+     </p>
    </form>
    <div className={style.buttons}>
     <button

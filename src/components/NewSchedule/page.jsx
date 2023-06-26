@@ -70,6 +70,9 @@ const handleConfirmSchedule = () => {
 
   return (
     <section className={style.fullComponent}>
+      <div className={ style.containerTitle}>
+        <h1>Novo agendamento</h1>
+      </div>
       <div className={style.topDiv}>
         <label htmlFor="userName">Tutor:</label>
         <input
