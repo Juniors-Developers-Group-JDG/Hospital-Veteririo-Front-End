@@ -8,13 +8,21 @@ import ScheduleDetails from '../ScheduleDetails/page';
 
 
 const ScheduleList = () => {
-  const [schedule, setSchedule] = useState(scheduleMock);
-  
   const {
       showScheduleDetails,
       setShowScheduleDetails,
       setSelectedSchedule,
-      selectedSchedule
+      selectedUserName,
+      setSelectedUserName,
+      selectedPetName,
+      setSelectedPetName,
+      selectedSpecialty,
+      setSelectedSpecialty,
+      selectedDateTime,
+      setSelectedDateTime,
+      NewSchedule,
+      schedule,
+      setSchedule,
     } = useContext(ScheduleContext);
   
   const filterDate = (event) => {

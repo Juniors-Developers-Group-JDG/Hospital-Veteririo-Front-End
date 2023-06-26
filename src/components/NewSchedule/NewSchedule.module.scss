@@ -36,7 +36,7 @@
  right: 2%
 }
 
-.button {
+.enabledButton {
  width: fit-content; 
  background-color: rgb(177, 199, 152);
  border: none;
@@ -47,6 +47,26 @@
  margin-top: 1%;
  margin-left: 2%;
  padding: 2% 1%;
+ cursor: pointer;
+}
+
+.enabledButton:hover {
+ background-color: rgb(177, 199, 152);
+ cursor: pointer;
+}
+
+.disabledButton {
+ width: fit-content; 
+ background-color: rgb(177, 199, 152);
+ border: none;
+ border-radius: 5px;
+ color: white;
+ font-size: 1rem;
+ font-weight: bold;
+ margin-top: 1%;
+ margin-left: 2%;
+ padding: 2% 1%;
+ cursor: not-allowed;
 }
 
 .userNames {
