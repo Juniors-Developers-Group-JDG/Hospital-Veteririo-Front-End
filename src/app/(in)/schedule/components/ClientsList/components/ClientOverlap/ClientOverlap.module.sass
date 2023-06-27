@@ -1,0 +1,90 @@
+.ClientOverlapContainer
+  position: absolute
+  z-index: 10
+  inset: 0
+  background-color: #227f5e
+  padding-inline: 2rem
+  padding-block:  1.5rem
+  color: white
+  overflow-y: auto
+  display: flex
+  flex-direction: column
+
+  &>header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-bottom: 2rem 
+    overflow: visible
+  
+  &>main 
+    display: flex
+    flex-direction: column
+    row-gap: 1.5rem
+    margin-bottom: 2.5rem
+
+  &>footer
+    margin-top: auto
+    display: flex
+    justify-content: flex-end
+    column-gap: 1rem
+    overflow: visible
+
+
+.AvatarWrapper
+  position: relative
+  width: fit-content
+  overflow: visible
+  border-radius: 99999px
+  box-shadow: 2px 4px 15px 0px #16513cb6
+
+.DeleteClientButton
+  position: absolute
+  top: -10%
+  right: -10%
+  width: 1.75rem
+  height: 1.75rem
+  color: #d52323
+  cursor: pointer
+  transition: color 200ms 0ms ease-in-out
+
+  &:hover
+    color: #be1a1a
+
+.CloseOverlapButton
+  width: 1.75rem
+  height: 1.75rem
+  cursor: pointer
+  transition: all 200ms 0ms ease-in-out
+
+  &:hover 
+    color: #e0e0e0
+
+.Button
+  border: 2px solid transparent
+  border-radius: 6px
+  padding-inline: 1rem
+  padding-block: 0.5rem
+  font-size: 1.5rem
+  display: flex
+  align-items: center
+  background-color: white
+  color: #227f5e
+  cursor: pointer
+  box-shadow: 2px 4px 15px 0px #16513c
+  overflow: visible
+  transition: all 200ms 0ms ease-in-out
+
+  &:hover 
+    background-color: #e0e0e0
+
+  &[data-color="danger"]
+    border-color: #d52323
+    color: #d52323
+    
+    &:hover
+      color: white
+      background-color: #d52323
+
+    &>svg
+      margin-right: 0.5rem
