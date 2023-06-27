@@ -1,0 +1,95 @@
+@use '../styles/variables'
+    
+.container 
+    display: flex
+    justify-content: center
+    width: 100%
+    max-width: 1200px
+    margin: -30px auto 0
+    @media screen and (max-width: 480px)
+        flex-direction: column
+        align-items: center
+        
+        
+    &-group
+        width: 25%
+        height: 62vh
+        margin-top: 10px
+        border-right: 1px solid variables.$green
+        @media screen and (max-width: 480px)
+            width: 80%
+            height: 100%
+            overflow-x: scroll
+            padding: 0 10px
+            border-right: none
+            
+        &-ul 
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            width: 90%
+            margin: auto
+            padding: 0
+
+            @media screen and (max-width: 480px)
+                flex-direction: row
+                justify-content: space-between
+                width: 100%
+                margin: 0%
+                padding: 0%
+
+
+        &-li
+            list-style: none
+            height: 60px
+            width: 100%
+            margin-top: 20px
+            border: 2px solid #D3CAC2
+            box-shadow: 0 0 1px 0 #756D6D
+            color: #888383
+            display: flex
+            justify-content: center
+            align-items: center
+            font-size: 24px
+            cursor: pointer
+            transition: all 0.3s
+            &:hover
+                color: #000
+                transform: scale(1.1)
+                border: none
+                border-left: 2px solid #000
+                border-right: 2px solid #000
+                @media screen and (max-width: 480px)
+                    transform: none
+                    border: none             
+
+            @media screen and (max-width: 480px)
+                box-shadow: none
+                border: none
+                color: #585757
+                margin-right: 1rem
+                font-size: 15px
+                
+    &-about
+        width: 80%
+        height: 38vh
+        position: relative
+        margin-left: 2.5%
+    
+        &-h2
+            text-align: left
+            font-size: 24px
+            margin-bottom: 30px
+            color: variables.$green
+
+            @media screen and (max-width: 480px)
+                margin: 15px
+                font-size: 20px
+        
+        &-p
+            text-align: left
+            font-size: 16px
+               
+            @media screen and (max-width: 480px)
+                text-align: justify

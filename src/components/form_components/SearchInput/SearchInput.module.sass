@@ -1,0 +1,30 @@
+.SearchInputWrapper
+  display: flex
+  justify-content: space-between
+  align-items: center
+  column-gap: 0.5rem
+  width: 14rem
+  padding-inline: 0.75rem
+  padding-block: 0.5rem
+  font-size: 1.25rem
+  border: 2px solid #298665
+  border-radius: 6px
+  transition: all 100ms 0ms ease-out
+
+  &:focus-within
+    border-color: #6bbea1
+
+  &>input
+    flex: 1
+    border: none
+    font-size: inherit
+    font-weight: 500
+
+    &:focus
+      outline: none
+
+
+.SearchInputIcon
+  line-height: 0
+  width: 1.5rem
+  height: 1.5rem
