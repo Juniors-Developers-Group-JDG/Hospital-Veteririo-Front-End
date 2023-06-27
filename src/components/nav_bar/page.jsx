@@ -63,7 +63,8 @@ export default function NavBar() {
 
       {pathname === "/login" ||
       pathname === "/register" ||
-      pathname === "/forgotPassword" ? (
+      pathname === "/forgotPassword" ||
+      pathname === "/forgotPassword/changePassword" ? (
         <div className={style.list_lrf}>
           <Link href="#" onClick={() => {
               setMenuIsOpen(false);
