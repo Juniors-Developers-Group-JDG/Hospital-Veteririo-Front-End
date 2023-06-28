@@ -1,0 +1,52 @@
+.AvatarContainer
+  border-radius: 99999px
+  overflow: hidden
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: #e4e2e0
+  border: 2px solid transparent
+
+  &[data-outlined="true"]
+    border-color: white
+
+  &[data-size="sm"]
+    width: 2.5rem
+    height: 2.5rem
+
+    .AvatarImage 
+      width: 2.5rem
+      height: 2.5rem
+
+    .AvatarPlaceholder
+       font-size: 1rem
+
+  &[data-size="md"]
+    width: 3rem
+    height: 3rem
+
+    .AvatarImage
+      width: 3rem
+      height: 3rem
+
+    .AvatarPlaceholder
+       font-size: 1.25rem
+
+  &[data-size="lg"]
+    width: 4rem
+    height: 4rem
+
+    .AvatarImage
+      width: 4rem
+      height: 4rem
+
+    .AvatarPlaceholder
+       font-size: 2.25rem
+
+.AvatarImage
+  object-fit: cover
+  object-position: center
+
+.AvatarPlaceholder
+  font-weight: 500
+  color: #272829
