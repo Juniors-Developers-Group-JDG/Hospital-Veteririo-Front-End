@@ -1,0 +1,13 @@
+.map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    iframe{
+        min-width: 300px;
+        width: 500px;
+        max-width: 90%;
+        height: 350px;
+        border-radius: 5px;
+        border: none;
+    }
+}

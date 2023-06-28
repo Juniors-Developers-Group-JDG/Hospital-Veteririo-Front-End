@@ -1,0 +1,35 @@
+.services{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #e4e2e0;
+  padding-bottom: 20px;
+
+  .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+
+    h2{
+      color: #227F5E;
+      padding: 5px 0px;
+    }
+  }
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .info{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 95%;
+    }
+  }
+}
+
