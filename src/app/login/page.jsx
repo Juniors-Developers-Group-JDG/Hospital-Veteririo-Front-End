@@ -10,9 +10,10 @@ import AuthContext from '../auth_context/AuthContext';
 
 
 export default function Login() {
-  const { email, password } = useContext(AuthContext);
+  const { name, email, password } = useContext(AuthContext);
 
   const userAcess = {
+    name: 'Admin',
     email: 'admin@teste.com.br',
     senha: '123456',
    }
@@ -21,6 +22,7 @@ export default function Login() {
     event.preventDefault();
     if (userAcess.email === email && userAcess.senha === password) {
       localStorage.setItem('isAuthenticated', true);
+      localStorage.setItem('username', userAcess.name);
       alert("Login efetuado com sucesso!");
       return window.location.href = '/admin';
     } else {

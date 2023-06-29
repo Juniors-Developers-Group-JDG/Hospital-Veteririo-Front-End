@@ -56,7 +56,13 @@
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
-        
+
+            .username{
+                color: #000;
+                font-weight: bold;
+                font-family: Arial, sans-serif;
+            }
+            
             .nav_list{
             display: flex;
             flex-direction: column;
@@ -75,7 +81,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border: 1px solid #227F5E;
             transition: all 0.3s ease;
-
+        
             .link{
                 text-align: center;
                 padding: 10px 0px;
@@ -91,7 +97,7 @@
                     color: #e4e2e0;
                 }
             }
-
+            
             }
         }
 
