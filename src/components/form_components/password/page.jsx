@@ -10,9 +10,10 @@ export default function Password() {
           type="password"
           placeholder='Senha'
           value={password}
+          required
           onChange={(event) => setPassword(event.target.value)}
         />
       </div>
-    
+
   );
 }

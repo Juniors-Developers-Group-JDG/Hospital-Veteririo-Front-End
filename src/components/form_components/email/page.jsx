@@ -6,14 +6,15 @@ export default function Email() {
   const { email, setEmail } = useContext(AuthContext);
   return (
     <div className={style.box}>
-      
+
       <input
         value={email}
         type="email"
         placeholder="E-mail"
+        required
         onChange={(event) => setEmail(event.target.value)}
       />
     </div>
-  
+
   );
 }
