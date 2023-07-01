@@ -1,16 +1,16 @@
 "use client";
 import Email from "@/components/form_components/email/page";
 import Password from "@/components/form_components/password/page";
+import Name from "@/components/form_components/username/page";
 import Link from "next/link";
 import style from "./login.module.scss";
 import Image from 'next/image';
-
 import { useContext } from 'react';
 import AuthContext from '../auth_context/AuthContext';
 
 
 export default function Login() {
-  const { name, email, password } = useContext(AuthContext);
+  const { username, email, password } = useContext(AuthContext);
 
   const userAcess = {
     name: 'Admin',
@@ -22,7 +22,7 @@ export default function Login() {
     event.preventDefault();
     if (userAcess.email === email && userAcess.senha === password) {
       localStorage.setItem('isAuthenticated', true);
-      localStorage.setItem('username', userAcess.name);
+      localStorage.setItem('username', {username});
       alert("Login efetuado com sucesso!");
       return window.location.href = '/admin';
     } else {
@@ -39,6 +39,9 @@ export default function Login() {
       </div>
 
       <form className={style.form}>
+        <Name
+          value = {username}
+        />
         <Email
           value = {email}
           />
