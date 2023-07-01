@@ -20,9 +20,9 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (userAcess.email === email && userAcess.senha === password) {
+    if (userAcess.name === username && userAcess.email === email && userAcess.senha === password) {
       localStorage.setItem('isAuthenticated', true);
-      localStorage.setItem('username', {username});
+      localStorage.setItem('username', userAcess.name);
       alert("Login efetuado com sucesso!");
       return window.location.href = '/admin';
     } else {
