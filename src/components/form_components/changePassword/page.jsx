@@ -7,6 +7,10 @@ export default function AlteredPassword({
                                             confirmNewPassword,
                                             setConfirmNewPassword,
                                         }) {
+    const userPassword = {
+        senha: '1Bruno12!',
+    };
+
     const validatePassword = (password) => {
         const minLength = 8;
         const hasUppercase = /[A-Z]/.test(password);
@@ -30,6 +34,12 @@ export default function AlteredPassword({
         const error = validatePassword(password);
         setNewPassword(password);
         setNewPasswordError(error);
+
+        if (password === userPassword.senha) {
+            setFormError('Essa é a mesma senha da anterior, tem certeza que quer mantê-la?');
+        } else {
+            setFormError('');
+        }
     };
 
     const handleConfirmNewPasswordChange = (event) => {
@@ -40,6 +50,7 @@ export default function AlteredPassword({
 
     const [newPasswordError, setNewPasswordError] = useState('');
     const [passwordsMatch, setPasswordsMatch] = useState(true);
+    const [formError, setFormError] = useState('');
 
     return (
         <div className={style.box}>
@@ -49,8 +60,10 @@ export default function AlteredPassword({
                 placeholder="Digite sua nova senha"
                 onChange={handleNewPasswordChange}
             />
-            {newPasswordError && (
-                <p className={style.error}>{newPasswordError}</p>
+            {(newPasswordError || formError) && (
+                <p className={style.error}>
+                    {newPasswordError || formError}
+                </p>
             )}
             <input
                 value={confirmNewPassword}
