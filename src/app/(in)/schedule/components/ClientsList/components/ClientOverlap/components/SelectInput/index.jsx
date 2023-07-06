@@ -2,7 +2,7 @@ import Styles from './SelectInput.module.sass'
 
 import { CaretDown } from '../../../../../../../../../components/PhosphorIcons'
 
-export function SelectInput({ label, id, children }) {
+export function SelectInput({ label, id, children, ...props }) {
   return (
     <div className={Styles.SelectInputContainer}>
       {
@@ -13,7 +13,7 @@ export function SelectInput({ label, id, children }) {
       }
 
       <div className={Styles.SelectInputWrapper}>
-        <select className={Styles.SelectInput} id={id}>
+        <select {...props} className={Styles.SelectInput} id={id}>
           {children}
         </select>
 
