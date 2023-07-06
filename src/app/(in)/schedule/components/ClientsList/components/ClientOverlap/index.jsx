@@ -34,10 +34,10 @@ export function ClientOverlap({ isOpen, onClose, userId }) {
           
           <TextInput placeholder="Email" label="Email:" id='email' />
 
-          <SelectInput label="Gênero:" id='gender'>
+          <SelectInput defaultValue='' label="Gênero:" id='gender'>
             <option value='Male'>Masculino</option>
             <option value='Female'>Feminino</option>
-            <option value='' selected>Selecione seu gênero</option>
+            <option value=''>Selecione seu gênero</option>
           </SelectInput>
         </main>
 
