@@ -1,0 +1,54 @@
+.InnerHeaderNavListButtonContainer
+  position: absolute
+  left: 50%
+  transform: translateX(-50%)
+  width: fit-content
+
+  &>button
+    background-color: transparent
+    border: none
+    padding: 0.5rem
+
+    &>svg 
+      color: #e4e2e0
+      width: 1.75rem
+      height: 1.75rem
+      transition: transform 200ms ease-in
+
+      &[data-show="true"]
+        transform: rotate(180deg)
+
+
+  @media (min-width: 768px) 
+    display: none
+
+.InnerHeaderNavListContainer
+  display: flex
+  flex-direction: column
+  align-items: center
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  border-top: 2px black solid
+  background-color: #227F5E
+  color: #e4e2e0
+  transition: transform 200ms ease-in
+
+  &>li
+    padding-block: 0.75rem
+
+    &>svg
+      width: 2.5rem
+      height: 2.5rem
+
+  &[data-show="false"]
+    transform: translateY(-100%) 
+
+  &[data-show="true"]
+    top: auto
+    bottom: 0
+    transform: translateY(100%) 
+
+  @media (min-width: 768px) 
+    display: none
