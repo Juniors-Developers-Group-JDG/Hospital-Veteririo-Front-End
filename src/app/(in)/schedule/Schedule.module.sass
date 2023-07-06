@@ -1,24 +1,42 @@
 .ScheduleContainer
-  flex: 1 
   display: flex
-  justify-content: space-between
+  min-height: fit-content
+  height: fit-content
+  width: 100%
+  align-items: stretch
+  flex-direction: column
   overflow: visible
+  column-gap: 1.5rem
+  row-gap: 1rem
+
+  @media (min-width: 1024px) 
+    flex: 1 
+    width: auto
+    justify-content: space-between
+    align-items: flex-start
+    height: auto
+    flex-direction: row
+  
 
 .LeftSection
-  flex: 1
   display: flex
   gap: 1.5rem 2rem
-  flex-wrap: wrap
-  align-items: flex-start
   overflow: visible
+  flex-direction: column
   height: fit-content
+
+  @media (min-width: 1024px) 
+    justify-content: flex-start
+    flex-wrap: wrap
+    flex: 1 
+    height: auto
+    flex-direction: row
 
 .LeftSectionCardsContainer
   background-color: white
   padding-inline: 1rem
   padding-block: 0.75rem
   border-radius: 8px
-  width: 18rem
   height: fit-content
   box-shadow: 3px 3px 8px 0px #26262640
   color: #227f5e
@@ -34,6 +52,9 @@
     &>svg
       width: 2.75rem
       height: 2.75rem
+
+  @media (min-width: 1024px)
+    width: 18rem
 
   &>span
     font-size: 1rem
