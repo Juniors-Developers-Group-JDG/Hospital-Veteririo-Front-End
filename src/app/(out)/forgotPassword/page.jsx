@@ -1,14 +1,18 @@
 "use client";
+
 import Email from "@/components/form_components/email";
 import Token from "@/components/form_components/token";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import style from './forgotPassword.module.scss';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [inputToken, setInputToken] = useState(false)
-  const [token , setToken]= useState("")
+  const [inputToken, setInputToken] = useState(false);
+  const [token , setToken]= useState("");
+
+  const { push } = useRouter();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,7 +25,7 @@ export default function ForgotPassword() {
     console.log("formulário enviado");
 
     // Fazer a logica de validação do token aqui
-    window.location.href = '/forgotPassword/changePassword'
+    push('/forgotPassword/changePassword')
 
   };
 
@@ -31,7 +35,7 @@ export default function ForgotPassword() {
   };
 
   const getBack = () => {
-    window.location.href = "/login";
+    push("/login");
   };
 
   return (

@@ -1,12 +1,15 @@
 "use client";
 import Password from "@/components/form_components/password";
 import Image from 'next/image';
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import style from "./changePassword.module.scss";
 
 export default function ChangePassword() {
    const [newPassword, setNewPassword] = useState('')
    const [confirmNewPassword, setConfirmNewPassword] = useState('')
+
+   const { push } = useRouter();
 
   const handleNewPasswordChange = (event) => {
     setNewPassword(event.target.value)
@@ -20,7 +23,7 @@ export default function ChangePassword() {
     event.preventDefault();
 
     if(newPassword == confirmNewPassword){
-      window.location.href = '/login';
+      push('/login');
     }
     
   }

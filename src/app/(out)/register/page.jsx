@@ -5,6 +5,7 @@ import Email from "@/components/form_components/email/page";
 import ConfirmPassword from "@/components/form_components/password/confirm_password/page";
 import Password from "@/components/form_components/password/page";
 import PhoneNumber from "@/components/form_components/phone_number/page";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import style from "./register.module.scss";
 
@@ -15,6 +16,8 @@ export default function Register() {
   const [number, setNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const { push } = useRouter();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,7 +32,7 @@ export default function Register() {
   };
 
   const getBack = () => {
-    window.location.href = "/login";
+    push("/login");
   };
 
   return (

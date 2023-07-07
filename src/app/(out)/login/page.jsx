@@ -3,6 +3,7 @@ import Email from "@/components/form_components/email";
 import Password from "@/components/form_components/password";
 import Image from 'next/image';
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import style from "./login.module.scss";
 
 import { useState } from 'react';
@@ -18,7 +19,9 @@ export default function Login() {
   
   const [password, setPassword] = useState("");
 
-  const handleEmailChange = (event) => {
+   const { push } = useRouter();
+
+   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   }
 
@@ -31,11 +34,13 @@ export default function Login() {
     if (userAccess.email === email && userAccess.senha === password) {
       createCookie('authenticated', true)
       alert("Login efetuado com sucesso!");
-      return window.location.href = '/admin';
-    } else {
-      alert("Email ou senha incorretos!");
-      window.location.href = '/login';
+      push('/admin');
+
+      return;
     }
+
+    alert("Email ou senha incorretos!");
+    push('/login');
   };
 
   return (

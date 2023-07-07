@@ -1,16 +1,16 @@
 "use client";
-import Link from "next/link";
-import { scroller } from "react-scroll";
-import style from './NavBar.module.scss' 
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import Image from 'next/image';
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { scroller } from "react-scroll";
+import style from './NavBar.module.scss';
 
 export default function NavBar() {
-  
-
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [mobile, setMobile] = useState(null);
+
+  const { push } = useRouter();
 
   const scrollToSection = (sectionId)=>{
     scroller.scrollTo(sectionId, {smooth: true, duration: 500})
@@ -20,8 +20,8 @@ export default function NavBar() {
     setMenuIsOpen(!menuIsOpen);
   };
 
-  const reload = () => {
-    window.location.href = '/'
+  const goHome = () => {
+    push('/home')
   }
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function NavBar() {
           width={70}
           height={70}
           className="logo"
-          onClick={reload}
+          onClick={goHome}
         />
       </div> 
 
