@@ -6,7 +6,7 @@ import Link from "next/link";
 import style from "./login.module.scss";
 
 import { useState } from 'react';
-import { createCookie } from "../actions";
+import { createCookie } from "../../actions";
 
 const userAccess = {
   email: 'admin@teste.com.br',
