@@ -1,7 +1,7 @@
 "use client";
+import Password from "@/components/form_components/password";
 import Image from 'next/image';
 import { useState } from "react";
-import Password from "../../../components/form_components/password";
 import style from "./changePassword.module.scss";
 
 export default function ChangePassword() {
