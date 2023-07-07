@@ -1,4 +1,3 @@
-import { AuthProvider } from '@/contexts/auth_context';
 import { Inter } from "next/font/google";
 import NavBar from "../components/nav_bar/page";
 import "./globals.css";
@@ -15,9 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="pt-br">
       <body className={inter.className}>
         <NavBar />
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        {children}
       </body>
     </html>
   );
