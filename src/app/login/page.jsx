@@ -15,10 +15,17 @@ export default function Login() {
   
   const [password, setPassword] = useState("");
 
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  }
+
+  const handlePasswordChange = (event) => {
+    setEmail(event.target.value);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (userAcess.email === email && userAcess.senha === password) {
+    if (userAccess.email === email && userAccess.senha === password) {
       localStorage.setItem('isAuthenticated', true);
       alert("Login efetuado com sucesso!");
       return window.location.href = '/admin';
@@ -38,9 +45,11 @@ export default function Login() {
       <form className={style.form}>
         <Email
           value = {email}
-          />
+          onChange={handleEmailChange}
+        />
         <Password
           value = {password}
+          onChange={handlePasswordChange}
         />
         
         <div className={style.option_user}>
