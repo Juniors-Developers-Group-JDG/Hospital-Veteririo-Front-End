@@ -5,11 +5,11 @@ import Image from 'next/image';
 import Link from "next/link";
 import style from "./login.module.scss";
 
-import AuthContext from '@/contexts/auth_context';
-import { useContext } from 'react';
 
 export default function Login() {
-  const { email, password } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  
+  const [password, setPassword] = useState("");
 
   const userAcess = {
     email: 'admin@teste.com.br',
