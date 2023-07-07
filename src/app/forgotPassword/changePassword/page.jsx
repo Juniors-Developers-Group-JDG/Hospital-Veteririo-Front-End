@@ -1,14 +1,11 @@
 "use client";
-import AlteredPassword from "@/components/form_components/changePassword/page";
-import style from "./changePassword.module.scss";
 import Image from 'next/image';
 import { useState } from "react";
+import Password from "../../../components/form_components/password";
+import style from "./changePassword.module.scss";
 
 
 export default function ChangePassword() {
-
-  
-
    const [newPassword, setNewPassword] = useState('')
    const [confirmNewPassword, setConfirmNewPassword] = useState('')
 
@@ -30,7 +27,19 @@ export default function ChangePassword() {
       </div>
 
       <form className={style.form}>
-          <AlteredPassword newPassword={newPassword} setNewPassword={setNewPassword} confirmNewPassword={confirmNewPassword} setConfirmNewPassword={setConfirmNewPassword}/>
+        <div className={style.form_inputs_container}>
+          <Password
+            value={newPassword}
+            placeholder="Digite sua nova senha"
+            onChange={(event) => setNewPassword(event.target.value)}
+          />
+          
+          <Password
+            value={confirmNewPassword}
+            placeholder="Confirme sua nova senha"
+            onChange={(event) => setConfirmNewPassword(event.target.value)}
+          />
+        </div>
 
           <button
             type='button'
