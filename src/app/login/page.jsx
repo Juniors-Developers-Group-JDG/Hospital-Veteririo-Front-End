@@ -1,13 +1,12 @@
 "use client";
-import Email from "@/components/form_components/email/page";
-import Password from "@/components/form_components/password/page";
+import Email from "@/components/form_components/email";
+import Password from "@/components/form_components/password";
 import Image from 'next/image';
 import Link from "next/link";
 import style from "./login.module.scss";
 
+import AuthContext from '@/contexts/auth_context';
 import { useContext } from 'react';
-import AuthContext from '../contexts/auth_context/AuthContext';
-
 
 export default function Login() {
   const { email, password } = useContext(AuthContext);

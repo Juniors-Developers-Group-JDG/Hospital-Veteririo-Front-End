@@ -1,6 +1,7 @@
 'use client';
-import NewSchedule from '@/components/NewSchedule/page';
-import ScheduleList from '@/components/ScheduleList/page.jsx';
+// import NewSchedule from '@/';
+import NewSchedule from '@/components/NewSchedule';
+import ScheduleList from '@/components/ScheduleList';
 import { ScheduleProvider } from '@/contexts/schedule_context';
 import { useState } from 'react';
 import style from './page.module.scss';

@@ -1,9 +1,9 @@
 "use client";
+import Email from "@/components/form_components/email";
+import Token from "@/components/form_components/token";
+import Link from "next/link";
 import { useState } from "react";
 import style from './forgotPassword.module.scss';
-import Link from "next/link";
-import Email from "@/components/form_components/email/page";
-import Token from "@/components/form_components/token/page";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
