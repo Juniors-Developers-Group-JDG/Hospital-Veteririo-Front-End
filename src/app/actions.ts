@@ -13,7 +13,7 @@ export const createCookie: CreateCookie = async (
   value,
   maxAgeInMs = 60 * 60 * 12, // 12 hour
 ) => {
-  cookies().set(`safe-pass.${key}`, value, {
+  cookies().set(`vet.${key}`, value, {
     maxAge: maxAgeInMs,
   });
 };
@@ -22,7 +22,7 @@ type DeleteCookie = (key: string) => Promise<void>;
 
 export const deleteCookie: DeleteCookie = async key => {
   // @ts-ignore
-  cookies().set(`safe-pass.${key}`, '', {
+  cookies().set(`vet.${key}`, '', {
     maxAge: 0,
   });
 };
@@ -30,4 +30,4 @@ export const deleteCookie: DeleteCookie = async key => {
 type GetCookie = (key: string) => Promise<string | undefined>;
 
 export const getCookie: GetCookie = async key =>
-  cookies().get(`safe-pass.${key}`)?.value;
+  cookies().get(`vet.${key}`)?.value;
