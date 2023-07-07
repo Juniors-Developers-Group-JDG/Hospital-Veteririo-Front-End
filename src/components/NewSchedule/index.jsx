@@ -1,6 +1,8 @@
+'use client'
+
 import ScheduleContext from '@/contexts/schedule_context';
 import userAndPetRegisterMock from '@/utils/userAndPetRegisterMock.jsx';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import style from './NewSchedule.module.scss';
 
 const NewSchedule = () => {

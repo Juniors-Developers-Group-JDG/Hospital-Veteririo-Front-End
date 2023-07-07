@@ -1,3 +1,5 @@
+'use client'
+
 import ScheduleContext from '@/contexts/schedule_context';
 import scheduleMock from '@/utils/scheduleMock';
 import { useContext } from 'react';
