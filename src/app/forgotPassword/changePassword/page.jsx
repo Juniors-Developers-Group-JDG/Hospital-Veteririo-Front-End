@@ -9,6 +9,14 @@ export default function ChangePassword() {
    const [newPassword, setNewPassword] = useState('')
    const [confirmNewPassword, setConfirmNewPassword] = useState('')
 
+  const handleNewPasswordChange = (event) => {
+    setNewPassword(event.target.value)
+  }
+
+  const handleConfirmNewPasswordChange = (event) => {
+    setConfirmNewPassword(event.target.value)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -16,9 +24,8 @@ export default function ChangePassword() {
       window.location.href = '/login';
     }
     
-    }
+  }
   
-
   return (
     <main className={style.main}>
       <div className={style.box_login}>
@@ -31,13 +38,13 @@ export default function ChangePassword() {
           <Password
             value={newPassword}
             placeholder="Digite sua nova senha"
-            onChange={(event) => setNewPassword(event.target.value)}
+            onChange={handleNewPasswordChange}
           />
           
           <Password
             value={confirmNewPassword}
             placeholder="Confirme sua nova senha"
-            onChange={(event) => setConfirmNewPassword(event.target.value)}
+            onChange={handleConfirmNewPasswordChange}
           />
         </div>
 
