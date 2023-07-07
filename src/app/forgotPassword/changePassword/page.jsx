@@ -4,7 +4,6 @@ import { useState } from "react";
 import Password from "../../../components/form_components/password";
 import style from "./changePassword.module.scss";
 
-
 export default function ChangePassword() {
    const [newPassword, setNewPassword] = useState('')
    const [confirmNewPassword, setConfirmNewPassword] = useState('')
@@ -48,13 +47,12 @@ export default function ChangePassword() {
           />
         </div>
 
-          <button
-            type='button'
-            onClick={handleSubmit}
-            >Alterar senha
-          </button>
+        <button
+          type='button'
+          onClick={handleSubmit}
+          >Alterar senha
+        </button>
       </form>
-
       </div>
 
       <figure>
