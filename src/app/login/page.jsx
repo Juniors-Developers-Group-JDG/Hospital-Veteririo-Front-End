@@ -5,16 +5,16 @@ import Image from 'next/image';
 import Link from "next/link";
 import style from "./login.module.scss";
 
+const userAccess = {
+  email: 'admin@teste.com.br',
+  senha: '123456',
+ }
 
 export default function Login() {
   const [email, setEmail] = useState("");
   
   const [password, setPassword] = useState("");
 
-  const userAcess = {
-    email: 'admin@teste.com.br',
-    senha: '123456',
-   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
