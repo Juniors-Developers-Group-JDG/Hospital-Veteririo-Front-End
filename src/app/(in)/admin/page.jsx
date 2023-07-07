@@ -1,29 +1,22 @@
-'use client';
-// import NewSchedule from '@/';
 import NewSchedule from '@/components/NewSchedule';
 import ScheduleList from '@/components/ScheduleList';
 import { ScheduleProvider } from '@/contexts/schedule_context';
-import { useState } from 'react';
 import style from './page.module.scss';
 
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
 export default function Admin() {
-  const [ auth, _setAuth ] = useState(
-    localStorage.getItem('isAuthenticated') || false
-  );
+  const isAuthenticated = cookies().get('vet.authenticated')?.value;
+
+  if (!isAuthenticated) redirect('/login')
+
   return (
-    <div>
-      {
-        auth
-        ? 
-        <div className={style.adminPage}>
-          <ScheduleProvider>
-            <ScheduleList />
-            <NewSchedule />
-          </ScheduleProvider>
-        </div>
-        :
-          window.location.href = '/login'
-      } 
+    <div className={style.adminPage}>
+      <ScheduleProvider>
+        <ScheduleList />
+        <NewSchedule />
+      </ScheduleProvider>
     </div>
   )
 }
