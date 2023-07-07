@@ -6,6 +6,7 @@ import Link from "next/link";
 import style from "./login.module.scss";
 
 import { useState } from 'react';
+import { createCookie } from "../actions";
 
 const userAccess = {
   email: 'admin@teste.com.br',
@@ -28,7 +29,7 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (userAccess.email === email && userAccess.senha === password) {
-      localStorage.setItem('isAuthenticated', true);
+      createCookie('authenticated', true)
       alert("Login efetuado com sucesso!");
       return window.location.href = '/admin';
     } else {
