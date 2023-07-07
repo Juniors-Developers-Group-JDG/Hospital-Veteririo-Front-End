@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
-import style from './ScheduleDetails.module.scss';
+import ScheduleContext from '@/contexts/schedule_context';
+import React, { useContext } from 'react';
 import { CgCloseO } from 'react-icons/cg';
-import ScheduleContext from '@/app/contexts/schedule_context/Schedule_context';
+import style from './ScheduleDetails.module.scss';
 
 const ScheduleDetails = ({schedule, setSchedule}) => {
 

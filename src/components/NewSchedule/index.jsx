@@ -1,7 +1,7 @@
+import ScheduleContext from '@/contexts/schedule_context';
+import userAndPetRegisterMock from '@/utils/userAndPetRegisterMock.jsx';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import style from './NewSchedule.module.scss';
-import userAndPetRegisterMock from '../../utils/userAndPetRegisterMock.jsx';
-import ScheduleContext from '@/app/contexts/schedule_context/Schedule_context';
 
 const NewSchedule = () => {
   const [userNamesArray, setUserNamesArray] = useState([]);

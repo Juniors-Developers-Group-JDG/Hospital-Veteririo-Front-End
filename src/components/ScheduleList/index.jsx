@@ -1,10 +1,10 @@
-import scheduleMock from '../../utils/scheduleMock';
-import { React, useContext, useEffect, useState } from 'react';
-import { GiSittingDog } from 'react-icons/gi';
+import ScheduleContext from '@/contexts/schedule_context';
+import scheduleMock from '@/utils/scheduleMock';
+import { useContext } from 'react';
 import { FaCat } from 'react-icons/fa';
-import style from './ScheduleList.module.scss'
-import ScheduleContext from '../../app/contexts/schedule_context/Schedule_context';
-import ScheduleDetails from '../ScheduleDetails/page';
+import { GiSittingDog } from 'react-icons/gi';
+import ScheduleDetails from '../ScheduleDetails';
+import style from './ScheduleList.module.scss';
 
 
 const ScheduleList = () => {
