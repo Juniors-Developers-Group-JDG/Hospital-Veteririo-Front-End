@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from "next/link";
 import style from "./login.module.scss";
 
+import { useState } from 'react';
+
 const userAccess = {
   email: 'admin@teste.com.br',
   senha: '123456',
@@ -20,7 +22,7 @@ export default function Login() {
   }
 
   const handlePasswordChange = (event) => {
-    setEmail(event.target.value);
+    setPassword(event.target.value);
   }
 
   const handleSubmit = (event) => {
@@ -50,6 +52,7 @@ export default function Login() {
         <Password
           value = {password}
           onChange={handlePasswordChange}
+          placeholder='Senha'
         />
         
         <div className={style.option_user}>
