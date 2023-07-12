@@ -51,13 +51,13 @@ const handleConfirmSchedule = () => {
   setTimeout(() => {
   setSchedule((prevSchedule) => [...prevSchedule, newSchedule]);
   setLoading(false);
-  alert('Agendamento confirmado!');
-  }, 3000);
   setSelectedUserName('');
   setSelectedPetName('');
   setSelectedSpecialty('');
   setSelectedDate('');
   setSelectedTime('');
+  alert('Agendamento confirmado!');
+}, 2000);
 
 };
 
