@@ -22,5 +22,9 @@
     "react-imask": "^6.6.1",
     "react-scroll": "^1.8.9",
     "sass": "^1.62.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.4.1",
+    "@types/react": "18.2.14"
   }
 }
