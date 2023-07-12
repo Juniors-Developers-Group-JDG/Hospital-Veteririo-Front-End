@@ -4,12 +4,14 @@ import ScheduleContext from '@/contexts/schedule_context';
 import userAndPetRegisterMock from '@/utils/userAndPetRegisterMock.jsx';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import style from './NewSchedule.module.scss';
+import Loading from '../Loading/page';
 
 const NewSchedule = () => {
   const [userNamesArray, setUserNamesArray] = useState([]);
   const [showUserNames, setShowUserNames] = useState(false);
   const [userName, setUserName] = useState('');
   const [ isBtnDisabled, setIsBtnDisabled ] = useState(true);
+  const [ loading , setLoading ] = useState(false);
 
   const { selectedUserName, setSelectedUserName, petNamesArray, setPetNamesArray, selectedSpecialty, setSelectedSpecialty, setSelectedDate, selectedDate, selectedTime, setSelectedTime, selectedPetName, setSelectedPetName,setSchedule} = useContext(ScheduleContext);
 
@@ -37,6 +39,7 @@ const NewSchedule = () => {
 }, [selectedUserName, setPetNamesArray]);
 
 const handleConfirmSchedule = () => {
+  setLoading(true);
   const newSchedule = {
     clientName: selectedUserName,
     pet: selectedPetName,
@@ -44,14 +47,18 @@ const handleConfirmSchedule = () => {
     date: selectedDate,
     time: selectedTime,
   };
+
+  setTimeout(() => {
   setSchedule((prevSchedule) => [...prevSchedule, newSchedule]);
+  setLoading(false);
+  alert('Agendamento confirmado!');
+  }, 3000);
   setSelectedUserName('');
   setSelectedPetName('');
   setSelectedSpecialty('');
   setSelectedDate('');
   setSelectedTime('');
 
-  alert('Agendamento confirmado!');
 };
 
   const handleDisableButton = useCallback(() => {
@@ -165,7 +172,7 @@ const handleConfirmSchedule = () => {
           onClick={handleConfirmSchedule}
           disabled={isBtnDisabled}
         >
-          Confirmar agendamento
+          {loading ? <Loading /> : 'Confirmar agendamento'}
         </button>
       </div>
     </section>
