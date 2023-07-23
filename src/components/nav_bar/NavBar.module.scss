@@ -1,4 +1,8 @@
-.nav_bar{
+.navbar_scroll {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.navbar, .navbar_scroll{
     display: flex;
     background-color: #227F5E;
     width: 100%;
@@ -7,6 +11,10 @@
     flex-wrap: nowrap;
     height: 80px;
     z-index: 50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     
     .logo{
         width: 70px;
