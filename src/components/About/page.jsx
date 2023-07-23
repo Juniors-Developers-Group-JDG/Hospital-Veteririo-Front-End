@@ -2,13 +2,28 @@
 import styles from "./about.module.scss";
 import { scroller } from "react-scroll";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 
 export default function About() {
 
+  const [scroll, setScroll] = useState(0);
+
   const scrollToSection = (sectionId)=>{
     scroller.scrollTo(sectionId, {smooth: true, duration: 500})
   }
+
+  const detectarScroll = () => {
+    setScroll(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", detectarScroll);
+    return () => {
+      window.removeEventListener("scroll", detectarScroll);
+    };
+  }, []);
+
 
   return (
       <section className={styles.section_about} id="about">
@@ -32,12 +47,15 @@ export default function About() {
                 </div>
             </div>
         </div>
-
-        <figure className={styles.back_nav}>
+        {
+          scroll > 100 ? (
+            <figure className={styles.back_nav}>
           <Link href="#" onClick={()=> scrollToSection('navbar')}>
             <img src="/icons/arrow.svg" alt="" />
           </Link>
         </figure> 
+          ) : null
+        }
       </section> 
   ); 
 }
