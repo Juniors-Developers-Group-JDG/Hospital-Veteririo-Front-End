@@ -3,6 +3,7 @@ import Email from "@/components/form_components/email";
 import Password from "@/components/form_components/password";
 import Image from 'next/image';
 import Link from "next/link";
+import Loading from "../../../components/Loading/page";
 import { useRouter } from "next/navigation";
 import style from "./login.module.scss";
 
@@ -19,6 +20,8 @@ export default function Login() {
   
   const [password, setPassword] = useState("");
 
+  const [showLoading, setShowLoading] = useState(false);
+
    const { push } = useRouter();
 
    const handleEmailChange = (event) => {
@@ -31,16 +34,20 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setShowLoading(true);
+    setTimeout(() => {
     if (userAccess.email === email && userAccess.senha === password) {
       createCookie('authenticated', true)
-      alert("Login efetuado com sucesso!");
       push('/admin');
+      setShowLoading(false);
 
       return;
+    } else {
+      setShowLoading(false);
+      alert("Email ou senha incorretos!");
+      push('/login');
     }
-
-    alert("Email ou senha incorretos!");
-    push('/login');
+  },3000);
   };
 
   return (
@@ -69,7 +76,7 @@ export default function Login() {
           <button
             type='button'
             onClick={handleSubmit}
-            >Entrar
+            > {showLoading ? <Loading /> : 'Entrar'}
           </button>
       </form>
 
