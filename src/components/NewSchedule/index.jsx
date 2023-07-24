@@ -3,8 +3,8 @@
 import ScheduleContext from '@/contexts/schedule_context';
 import userAndPetRegisterMock from '@/utils/userAndPetRegisterMock.jsx';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import style from './NewSchedule.module.scss';
 import Loading from '../Loading/page';
+import style from './NewSchedule.module.scss';
 
 const NewSchedule = () => {
   const [userNamesArray, setUserNamesArray] = useState([]);
@@ -84,31 +84,33 @@ const handleConfirmSchedule = () => {
       </div>
       <div className={style.topDiv}>
         <label htmlFor="userName">Tutor:</label>
-        <input
-          type="text"
-          id="userName"
-          name="userName"
-          onChange={getRegisteredUsers}
-          value={userName}
-        />
-        {showUserNames && (
-          <ul className={style.userNames}>
-            {userNamesArray.map((userName) => (
-              <li
-                key={userName}
-                className={style.userName}
-                onClick={() => {
-                  setSelectedUserName(userName);
-                  setUserName(userName);
-                  setShowUserNames(false);
-                  getRegisteredPets();
-                }}
-              >
-                {userName}
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className={style.tutorInputWrapper}>
+          <input
+            type="text"
+            id="userName"
+            name="userName"
+            onChange={getRegisteredUsers}
+            value={userName}
+          />
+          {showUserNames && (
+            <ul className={style.userNames}>
+              {userNamesArray.map((userName) => (
+                <li
+                  key={userName}
+                  className={style.userName}
+                  onClick={() => {
+                    setSelectedUserName(userName);
+                    setUserName(userName);
+                    setShowUserNames(false);
+                    getRegisteredPets();
+                  }}
+                >
+                  {userName}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
         <label htmlFor="petName">Pet:</label>
         <select
