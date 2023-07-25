@@ -2,13 +2,14 @@
 import Image from 'next/image';
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { scroller } from "react-scroll";
 import style from './NavBar.module.scss';
 
 export default function NavBar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [mobile, setMobile] = useState(null);
+  const [scroll, setScroll] = useState(false);
 
   const { push } = useRouter();
 
@@ -23,6 +24,16 @@ export default function NavBar() {
   const goHome = () => {
     push('/home')
   }
+
+  const detectarScroll = () => {
+    if (typeof window !== 'undefined') {
+      if (window.scrollY > 100) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,10 +55,19 @@ export default function NavBar() {
     };
   }, [])
 
+  useEffect(() => {
+    window.addEventListener('scroll', detectarScroll);
+    return () => {
+      window.removeEventListener('scroll', detectarScroll);
+    };
+  }, [
+    
+  ]);
+
   const pathname = usePathname();
 
   return (
-    <div className={style.nav_bar} id="navbar">
+    <div className={ scroll ? style.navbar_scroll : style.navbar } id="navbar">
       
       <div className={style.logo}>
         <Image
