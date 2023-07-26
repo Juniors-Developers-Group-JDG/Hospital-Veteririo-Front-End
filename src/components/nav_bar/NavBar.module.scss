@@ -1,4 +1,8 @@
-.nav_bar{
+.navbar_scroll {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.navbar, .navbar_scroll{
     display: flex;
     background-color: #227F5E;
     width: 100%;
@@ -7,6 +11,10 @@
     flex-wrap: nowrap;
     height: 80px;
     z-index: 50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     
     .logo{
         width: 70px;
@@ -69,7 +77,7 @@
             position:absolute;
             margin: auto;
             border-radius: 5px;
-            top:100px;
+            top:70px;
             margin-top: 10px;
             left: 0;
             right: 0;
@@ -78,8 +86,8 @@
             padding: 1rem 0px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border: 1px solid #227F5E;
-            transition: all 0.3s ease;
             z-index: 1;
+            animation: showMenuAnimation 0.3s ease-in-out forwards;
 
             .link{
                 text-align: center;
@@ -97,6 +105,17 @@
                 }
             }
             
+            }
+            @keyframes showMenuAnimation {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-90%);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                
             }
         }
 
