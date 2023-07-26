@@ -4,7 +4,9 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { scroller } from "react-scroll";
-import style from './NavBar.module.scss';
+import style from "./NavBar.module.scss";
+import LoginButton from "./loginButton/page";
+import Username from "./username/page";
 
 export default function NavBar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -129,14 +131,12 @@ export default function NavBar() {
           >
             Contato
           </Link>
-          <Link className={style.login}
-            href="/login"
+          <Username/>
+          <LoginButton 
             onClick={() => {
               setMenuIsOpen(false);
             }}
-          >
-            Login Adm
-          </Link>
+          />
               </div>
             )
           }
@@ -224,14 +224,10 @@ export default function NavBar() {
                         >
                           Contato
                         </Link>
-                        <Link className={style.link}
-                          href="/login"
-                          onClick={() => {
-                            setMenuIsOpen(false);
-                          }}
-                        >
-                          Login Adm
-                        </Link>
+                        <span className="username">
+                          {username}
+                        </span>
+                        <LoginButton />
                     </div>
                   )
                 }

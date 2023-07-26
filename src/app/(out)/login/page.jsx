@@ -3,8 +3,8 @@ import Email from "@/components/form_components/email";
 import Password from "@/components/form_components/password";
 import Image from 'next/image';
 import Link from "next/link";
-import Loading from "../../../components/Loading/page";
 import { useRouter } from "next/navigation";
+import Loading from "../../../components/Loading/page";
 import style from "./login.module.scss";
 
 import { useState } from 'react';

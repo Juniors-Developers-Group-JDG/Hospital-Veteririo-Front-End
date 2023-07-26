@@ -54,7 +54,13 @@
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
-        
+
+            .username{
+                color: #000;
+                font-weight: bold;
+                font-family: Arial, sans-serif;
+            }
+            
             .nav_list{
             display: flex;
             flex-direction: column;
@@ -90,7 +96,7 @@
                     color: #e4e2e0;
                 }
             }
-
+            
             }
         }
 
