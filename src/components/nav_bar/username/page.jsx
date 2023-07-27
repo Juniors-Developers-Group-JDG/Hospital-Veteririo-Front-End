@@ -1,12 +1,14 @@
-import Name from "@/components/form_components/username/page";
+"use client";
+
+import { getCookie, createCookie } from "@/app/actions";
 import style from "../NavBar.module.scss"
 
 
 export default function Username(){
-  const username = localStorage.getItem('username');
-  if (username) {
+  
+  if (true) {
     return (
-    <span className={style.username}>{username}</span>
+    <span className={style.username}>{localStorage.getItem('username')}</span>
     )
   }
   return

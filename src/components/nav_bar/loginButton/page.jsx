@@ -20,7 +20,7 @@ export default function LoginButton(){
     <Link className={style.login}
       href="#"
       onClick={() => {
-      localStorage.removeItem('isAuthenticated');
+  
       localStorage.removeItem('username');
     }}
       > 

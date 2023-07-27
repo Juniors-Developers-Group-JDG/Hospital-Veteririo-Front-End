@@ -12,7 +12,6 @@ export default function NavBar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [mobile, setMobile] = useState(null);
   const [scroll, setScroll] = useState(false);
-
   const { push } = useRouter();
 
   const scrollToSection = (sectionId)=>{
@@ -99,6 +98,10 @@ export default function NavBar() {
             }}>
             Blog
           </Link>
+
+          <Username
+          
+          />
         </div>
       ) : (
         <div className={style.list_home}>
