@@ -48,7 +48,7 @@ export default function Login() {
       createCookie('authenticated', true)
       push('/admin');
       setShowLoading(false);
-      localStorage.setItem("username", {username});
+      localStorage.setItem('username', userAccess.username);
       return;
     } else {
       setShowLoading(false);

@@ -1,14 +1,14 @@
 "use client";
 
-import { getCookie, createCookie } from "@/app/actions";
+
 import style from "../NavBar.module.scss"
 
 
 export default function Username(){
-  
-  if (true) {
+  const username = localStorage.getItem('username')
+  if (username) {
     return (
-    <span className={style.username}>{localStorage.getItem('username')}</span>
+    <span className={style.username}>{username}</span>
     )
   }
   return
