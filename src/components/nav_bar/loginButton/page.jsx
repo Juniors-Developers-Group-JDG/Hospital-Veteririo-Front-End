@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import style from "../NavBar.module.scss"
+import { getCookie } from "@/app/actions";
 
 export default function LoginButton(){
-  if(!localStorage.getItem('isAuthenticated')) {
+  const isauth = getCookie('authenticated')
+  if(isauth) {
     return (
       <Link className={style.login}
             href="/login"
@@ -20,7 +22,6 @@ export default function LoginButton(){
     <Link className={style.login}
       href="#"
       onClick={() => {
-  
       localStorage.removeItem('username');
     }}
       > 
