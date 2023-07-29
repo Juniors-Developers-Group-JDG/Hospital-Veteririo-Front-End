@@ -6,22 +6,21 @@ import Styles from './InnerHeader.module.sass';
 
 import { InnerHeaderNavList } from './components/navList';
 
+import LoginButton from '@/components/nav_bar/loginButton/page.jsx';
+
+import Username from '@/components/nav_bar/username/page.jsx';
+
 export function InnerHeader() {
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    window.location.href = '/login';
-  }
-  
   return (
     <header className={Styles.HeaderContainer}>
       <InnerHeaderNavList />
       <Avatar UserName='John Doe' />
-      <button
-        onClick={logout}
-      >
-        <span>Logout</span>
-      </button>
+      <Username/>
+      <LoginButton className={Styles.login}
+      
+      />
+
     </header>
   )
 } 

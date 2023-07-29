@@ -6,13 +6,11 @@ import { use, useEffect, useState } from "react";
 import { scroller } from "react-scroll";
 import style from "./NavBar.module.scss";
 import LoginButton from "./loginButton/page";
-import Username from "./username/page";
 
 export default function NavBar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [mobile, setMobile] = useState(null);
   const [scroll, setScroll] = useState(false);
-
   const { push } = useRouter();
 
   const scrollToSection = (sectionId)=>{
@@ -99,6 +97,7 @@ export default function NavBar() {
             }}>
             Blog
           </Link>
+
         </div>
       ) : (
         <div className={style.list_home}>
@@ -151,7 +150,6 @@ export default function NavBar() {
           >
             Contato
           </Link>
-          <Username/>
           <LoginButton 
             onClick={() => {
               setMenuIsOpen(false);

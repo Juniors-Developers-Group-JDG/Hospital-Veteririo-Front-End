@@ -1,6 +1,7 @@
 "use client";
 import Email from "@/components/form_components/email";
 import Password from "@/components/form_components/password";
+import Username from "@/components/form_components/username";
 import Image from 'next/image';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,11 +12,14 @@ import { useState } from 'react';
 import { createCookie } from "../../actions";
 
 const userAccess = {
+  username: "Admin",
   email: 'admin@teste.com.br',
   senha: '123456',
  }
 
 export default function Login() {
+  const [username, setUsername] = useState("");
+
   const [email, setEmail] = useState("");
   
   const [password, setPassword] = useState("");
@@ -23,6 +27,10 @@ export default function Login() {
   const [showLoading, setShowLoading] = useState(false);
 
    const { push } = useRouter();
+
+   const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  }
 
    const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -36,11 +44,11 @@ export default function Login() {
     event.preventDefault();
     setShowLoading(true);
     setTimeout(() => {
-    if (userAccess.email === email && userAccess.senha === password) {
+    if (userAccess.username === username && userAccess.email === email && userAccess.senha === password) {
       createCookie('authenticated', true)
       push('/admin');
       setShowLoading(false);
-
+      localStorage.setItem('username', userAccess.username);
       return;
     } else {
       setShowLoading(false);
@@ -58,6 +66,10 @@ export default function Login() {
       </div>
 
       <form className={style.form}>
+        <Username
+        value={username}
+        onChange={handleUsernameChange}
+        />
         <Email
           value = {email}
           onChange={handleEmailChange}
