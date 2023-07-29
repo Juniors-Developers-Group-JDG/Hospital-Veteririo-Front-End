@@ -1,12 +1,10 @@
-"use client"
 
 import Link from "next/link";
-import style from "../NavBar.module.scss"
-import { getCookie } from "@/app/actions";
+import style from "./loginButton.module.scss"
 
 export default function LoginButton(){
-  const isauth = getCookie('authenticated')
-  if(isauth) {
+  const isauth = localStorage.getItem('username');// Verificando se tem algum usuario logado para alternar entre login ou loggoff
+  if(!isauth) {
     return (
       <Link className={style.login}
             href="/login"

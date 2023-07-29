@@ -6,7 +6,6 @@ import { use, useEffect, useState } from "react";
 import { scroller } from "react-scroll";
 import style from "./NavBar.module.scss";
 import LoginButton from "./loginButton/page";
-import Username from "./username/page";
 
 export default function NavBar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -99,9 +98,6 @@ export default function NavBar() {
             Blog
           </Link>
 
-          <Username
-          
-          />
         </div>
       ) : (
         <div className={style.list_home}>
@@ -154,7 +150,6 @@ export default function NavBar() {
           >
             Contato
           </Link>
-          <Username/>
           <LoginButton 
             onClick={() => {
               setMenuIsOpen(false);
