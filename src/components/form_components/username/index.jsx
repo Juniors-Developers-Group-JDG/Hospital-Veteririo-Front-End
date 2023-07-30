@@ -10,7 +10,7 @@ export default function Username({...props}) {
       <input
         {...props}
         type="text"
-        placeholder="username"
+        placeholder="Username"
       />
     </div>
   
