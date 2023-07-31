@@ -59,7 +59,7 @@ export default function Login() {
         event.preventDefault();
         setShowLoading(true);
         setTimeout(() => {
-            if (userAccess.username === username && userAccess.email === email && userAccess.senha === password) {
+            if (userAccess.email === email && userAccess.senha === password) {
                 createCookie('authenticated', true);
                 push('/admin');
                 setShowLoading(false);
@@ -87,11 +87,6 @@ export default function Login() {
                 </div>
 
                 <form className={style.form}>
-                    <Username
-                        value={username}
-                        onChange={handleUsernameChange}
-                        onBlur={handleUsernameBlur}
-                    />
                     {isUsernameInvalid && <p className={style.error}>Nome inválido</p>}
                     <Email
                         value={email}
