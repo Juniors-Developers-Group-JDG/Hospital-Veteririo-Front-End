@@ -76,7 +76,7 @@ export default function Login() {
                     push('/login')
                 }
             }
-        }, 3000);
+        }, 1000);
     };
 
     return (

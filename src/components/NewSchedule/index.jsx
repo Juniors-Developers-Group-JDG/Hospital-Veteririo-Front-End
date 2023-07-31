@@ -57,7 +57,7 @@ const handleConfirmSchedule = () => {
   setSelectedDate('');
   setSelectedTime('');
   alert('Agendamento confirmado!');
-}, 2000);
+}, 1000);
 
 };
 
