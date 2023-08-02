@@ -6,7 +6,6 @@ import Link from "next/link";
 import {useRouter} from "next/navigation";
 import Loading from "../../../components/Loading/page";
 import style from "./login.module.scss";
-
 import {useState} from 'react';
 import {createCookie} from "../../actions";
 
@@ -54,10 +53,6 @@ export default function Login() {
             console.log('data:', data);
             // armazenando o token de autenticação no localStorage
             localStorage.setItem('token', data.token);
-            //armazenando o token no cookie
-            createCookie('token', data.token);
-            //armazenando o nome do usuario no localStorage
-            localStorage.setItem('username', data.username);
             setLoginOk(true);
             return data;
         } catch (error) {
