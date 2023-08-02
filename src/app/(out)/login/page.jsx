@@ -1,7 +1,6 @@
-"use client";
+'use client';
 import Email from "@/components/form_components/email";
 import Password from "@/components/form_components/password";
-import Username from "@/components/form_components/username";
 import Image from 'next/image';
 import Link from "next/link";
 import {useRouter} from "next/navigation";
@@ -11,72 +10,73 @@ import style from "./login.module.scss";
 import {useState} from 'react';
 import {createCookie} from "../../actions";
 
-const userAccess = {
-    username: "Admin",
-    email: 'admin@teste.com.br',
-    senha: '123456',
-}
+
 
 export default function Login() {
-    const [username, setUsername] = useState("");
-    const [isUsernameInvalid, setIsUsernameInvalid] = useState(false)
-
     const [email, setEmail] = useState("");
     const [isEmailInvalid, setIsEmailInvalid] = useState(false)
-
     const [password, setPassword] = useState("");
     const [isPasswordInvalid, setIsPasswordInvalid] = useState(false)
-
     const [showLoading, setShowLoading] = useState(false);
+    const [loginOk, setLoginOk] = useState(true);
 
     const {push} = useRouter();
 
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-    }
-
-    const handleEmailChange = (event) => {
+    const handleEmail = (event) => {
         setEmail(event.target.value);
-    }
+        setLoginOk(true);
+    };
 
-    const handlePasswordChange = (event) => {
+    const handlePassword = (event) => {
         setPassword(event.target.value);
-    }
+        setLoginOk(true);
+    };
 
-    const handleUsernameBlur = () => {
-        setIsUsernameInvalid(false)
-    }
+    const userLogin = async (email, password) => {
+        const URL = 'https://jdg-site-vet.onrender.com/login';
+    
+        try {
+            const response = await fetch(URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email,
+                    password
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao fazer login');
+            }
+    
+            const data = await response.json();
+            console.log('data:', data);
+            // armazenando o token de autenticação no localStorage
+            localStorage.setItem('token', data.token);
+            //armazenando o token no cookie
+            createCookie('token', data.token);
+            //armazenando o nome do usuario no localStorage
+            localStorage.setItem('username', data.username);
+            setLoginOk(true);
+            return data;
+        } catch (error) {
+            setLoginOk(false);
+            throw error;
+        }
+    };
 
-    const handleEmailBlur = () => {
-        setIsEmailInvalid(false)
-    }
-
-    const handlePasswordBlur = () => {
-        setIsEmailInvalid(false)
-    }
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         setShowLoading(true);
-        setTimeout(() => {
-            if (userAccess.email === email && userAccess.senha === password) {
-                createCookie('authenticated', true);
-                push('/admin');
-                setShowLoading(false);
-                localStorage.setItem('username', userAccess.username);
-            } else {
-                setShowLoading(false);
-                if (username !== userAccess.username) {
-                    setIsUsernameInvalid(true);
-                } else if (email !== userAccess.email) {
-                    setIsEmailInvalid(true);
-                } else if (password !== userAccess.senha) {
-                    setIsPasswordInvalid(true);
-                } else {
-                    push('/login')
-                }
-            }
-        }, 1000);
+       try {
+        await userLogin(email, password);
+        setShowLoading(false);
+        push('/admin');
+       } catch (error) {
+           console.error('Erro ao fazer login', error.message);
+           setShowLoading(false);
+       }
     };
 
     return (
@@ -87,20 +87,22 @@ export default function Login() {
                 </div>
 
                 <form className={style.form}>
-                    {isUsernameInvalid && <p className={style.error}>Nome inválido</p>}
                     <Email
                         value={email}
-                        onChange={handleEmailChange}
-                        onFocus={handleEmailBlur}
+                        onChange={handleEmail}
+                        onFocus={() => setIsEmailInvalid(false)}
                     />
                     {isEmailInvalid && <p className={style.error}>E-mail inváido</p>}
                     <Password
                         value={password}
-                        onChange={handlePasswordChange}
-                        onFocus={handlePasswordBlur}
+                        onChange={handlePassword}
+                        onFocus={() => setIsPasswordInvalid(false)}
                         placeholder='Senha'
                     />
                     {isPasswordInvalid && <p className={style.error}>Senha inválida</p>}
+                    {
+                        !loginOk && <p className={style.error}>E-mail ou senha inválidos</p>
+                    }
 
                     <div className={style.option_user}>
                         <div className={style.option}>
