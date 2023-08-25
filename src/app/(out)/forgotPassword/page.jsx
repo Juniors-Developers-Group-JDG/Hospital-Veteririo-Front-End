@@ -1,19 +1,15 @@
 "use client";
 import Email from "@/components/form_components/email";
-import Token from "@/components/form_components/token";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import style from './forgotPassword.module.scss';
 import axios from "axios";
 
-
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [inputToken, setInputToken] = useState(false);
-  const [token, setToken] = useState("");
   const [emailExists, setEmailExists] = useState(true);
-  const [validToken, setValidToken] = useState(true);
 
   const { push } = useRouter();
 
@@ -21,20 +17,16 @@ export default function ForgotPassword() {
     event.preventDefault();
 
     try {
-      const response = await fetch("https://jdg-site-vet.onrender.com/user", {
-        method: "GET",
-      });
+      const response = await axios.get("https://jdg-site-vet.onrender.com/user");
 
-      if (response.ok) {
-        const users = await response.json();
+      if (response.status === 200) {
+        const users = response.data;
         const existingUser = users.find(user => user.email === email);
 
         if (existingUser) {
-          console.log("chamei")
           const user = await axios.post('https://jdg-site-vet.onrender.com/recoverPassword', {
             email
-          })
-          console.log(user)
+          });
           setInputToken(true);
           setEmailExists(true);
         } else {
@@ -47,21 +39,6 @@ export default function ForgotPassword() {
     } catch (error) {
       console.error("Ocorreu um erro:", error);
     }
-  };
-
-  const handleCheckToken = (event) => {
-    event.preventDefault();
-
-    // Handle token validation as you originally intended
-    // This part is not affected by the backend integration
-
-    // Example:
-    // if (token === userRecovering.code) {
-    //   setValidToken(true);
-    //   push('/forgotPassword/changePassword');
-    // } else {
-    //   setValidToken(false);
-    // }
   };
 
   const handleChange = (event) => {
@@ -79,8 +56,7 @@ export default function ForgotPassword() {
         <h2>Recuperar senha</h2>
       </div>
 
-      {/* input-email */}
-      {!inputToken && (
+      {!inputToken ? (
         <div className={style.group}>
           <div className={style.title}>
             <p>Para redefinir sua senha, informe o e-mail cadastrado na sua conta e lhe enviaremos um link com as instruções.</p>
@@ -99,6 +75,17 @@ export default function ForgotPassword() {
               </button>
             </Link>
           </form>
+        </div>
+      ) : (
+        <div className={style.group}>
+          <div className={style.title}>
+            <p>Um link de recuperação foi enviado para o seu e-mail.</p>
+          </div>
+          <Link href="/">
+            <button className={style.recoverbutton}>
+              Voltar para home
+            </button>
+          </Link>
         </div>
       )}
     </main>
