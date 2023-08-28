@@ -1,9 +1,10 @@
 
+import { deleteCookie, getCookie } from '@/app/actions';
 import Link from "next/link";
-import style from "./loginButton.module.scss"
+import style from "./loginButton.module.scss";
 
 export default function LoginButton(){
-  const isauth = localStorage.getItem('username');// Verificando se tem algum usuario logado para alternar entre login ou loggoff
+  const isauth = getCookie('username');
   if(!isauth) {
     return (
       <Link className={style.login}
@@ -20,7 +21,7 @@ export default function LoginButton(){
     <Link className={style.login}
       href="#"
       onClick={() => {
-      localStorage.removeItem('username');
+        deleteCookie('username');
     }}
       > 
       Logout

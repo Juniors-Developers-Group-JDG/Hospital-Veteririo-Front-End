@@ -4,12 +4,12 @@ import Password from "@/components/form_components/password";
 import Username from "@/components/form_components/username";
 import Image from 'next/image';
 import Link from "next/link";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import Loading from "../../../components/Loading/page";
 import style from "./login.module.scss";
 
-import {useState} from 'react';
-import {createCookie} from "../../actions";
+import { useState } from 'react';
+import { createCookie } from "../../actions";
 
 const userAccess = {
     username: "Admin",
@@ -63,7 +63,6 @@ export default function Login() {
                 createCookie('authenticated', true);
                 push('/admin');
                 setShowLoading(false);
-                localStorage.setItem('username', userAccess.username);
             } else {
                 setShowLoading(false);
                 if (username !== userAccess.username) {

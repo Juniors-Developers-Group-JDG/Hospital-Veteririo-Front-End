@@ -1,10 +1,10 @@
 "use client";
-import Cep from "@/components/form_components/CEP/page";
-import Address from "@/components/form_components/address/page";
-import Email from "@/components/form_components/email/page";
-import ConfirmPassword from "@/components/form_components/password/confirm_password/page";
-import Password from "@/components/form_components/password/page";
-import PhoneNumber from "@/components/form_components/phone_number/page";
+import Cep from "@/components/form_components/CEP";
+import Address from "@/components/form_components/address";
+import Email from "@/components/form_components/email";
+import Password from "@/components/form_components/password";
+// import ConfirmPassword from "@/components/form_components/password/confirm_password";
+import PhoneNumber from "@/components/form_components/phone_number";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import style from "./register.module.scss";
@@ -47,7 +47,7 @@ export default function Register() {
             <Address address={address} setAddress={setAddress}/>
             <PhoneNumber number={number} setNumber={setNumber}/>
             <Password password={password} setPassword={setPassword}/>
-            <ConfirmPassword confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword}/>
+            {/* <ConfirmPassword confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword}/> */}
             <button onClick={handleSubmit}>Cadastrar</button>
           </form>
           
