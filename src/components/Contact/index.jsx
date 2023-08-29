@@ -1,9 +1,8 @@
-import styles from "./contact.module.scss";
-import { BsFillTelephoneFill } from "react-icons/bs";
-import { BsWhatsapp } from "react-icons/bs";
+import SimpleMap from "@/components/GoogleMap";
+import { BsFillTelephoneFill, BsWhatsapp } from "react-icons/bs";
 import { FiMap } from "react-icons/fi";
 import { LuMapPin } from "react-icons/lu";
-import SimpleMap from "@/components/GoogleMap/page";
+import styles from "./contact.module.scss";
 
 export default function Contact() {
   return (

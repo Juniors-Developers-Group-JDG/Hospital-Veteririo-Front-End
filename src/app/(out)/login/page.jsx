@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from 'react';
-import Loading from "../../../components/Loading/page";
+import Loading from "../../../components/Loading";
 import style from "./login.module.scss";
 
 
@@ -51,6 +51,7 @@ export default function Login() {
             const data = await response.json();
             console.log('data:', data);
             createCookie('token', data.token);
+            createCookie('username', data.name);
             setLoginOk(true);
             return data;
         } catch (error) {

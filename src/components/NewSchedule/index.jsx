@@ -3,7 +3,7 @@
 import ScheduleContext from '@/contexts/schedule_context';
 import userAndPetRegisterMock from '@/utils/userAndPetRegisterMock.jsx';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import Loading from '../Loading/page';
+import Loading from '../Loading';
 import style from './NewSchedule.module.scss';
 
 const NewSchedule = () => {

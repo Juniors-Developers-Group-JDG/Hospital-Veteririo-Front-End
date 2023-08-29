@@ -6,9 +6,9 @@ import Styles from './InnerHeader.module.sass';
 
 import { InnerHeaderNavList } from './components/navList';
 
-import LoginButton from '@/components/nav_bar/loginButton/page.jsx';
+import LoginButton from '@/components/nav_bar/loginButton';
 
-import Username from '@/components/nav_bar/username/page.jsx';
+import Username from '@/components/nav_bar/username';
 
 export function InnerHeader() {
 
