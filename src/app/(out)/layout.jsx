@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import NavBar from "../../components/nav_bar";
 import { getCookie } from "../actions";
+import { OuterNavBar } from "./components/NavBar";
 
 export default function RootLayout({ children }) {
   const isAuthenticated = getCookie('username');
@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
 
   return (
     <>
-      <NavBar />
+      <OuterNavBar />
       {children}
     </>
   );

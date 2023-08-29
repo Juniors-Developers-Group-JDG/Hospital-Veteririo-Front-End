@@ -3,8 +3,8 @@ import { deleteCookie, getCookie } from '@/app/actions';
 import Link from "next/link";
 import style from "./loginButton.module.scss";
 
-export default async function LoginButton(){
-  const isAuth = await getCookie('username');
+export default function LoginButton(){
+  const isAuth = getCookie('username');
   if(!isAuth) {
     return (
       <Link className={style.login}
