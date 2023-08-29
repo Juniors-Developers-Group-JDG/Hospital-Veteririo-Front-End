@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import NavBar from "../../components/nav_bar/page";
+import NavBar from "../../components/nav_bar";
 import { getCookie } from "../actions";
 
 export default function RootLayout({ children }) {
