@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers';
 
-export const createCookie = async (
+export const createCookie = (
   key,
   value,
   maxAgeInMs = 60 * 60 * 12, // 12 hour
@@ -12,12 +12,12 @@ export const createCookie = async (
   });
 };
 
-export const deleteCookie = async key => {
+export const deleteCookie = key => {
   // @ts-ignore
   cookies().set(`vet.${key}`, '', {
     maxAge: 0,
   });
 };
 
-export const getCookie = async key =>
+export const getCookie = key =>
   cookies().get(`vet.${key}`)?.value;
