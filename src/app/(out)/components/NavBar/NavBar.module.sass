@@ -1,26 +1,30 @@
-.NavBarContainer 
+.NavBarWrapper
   position: sticky
   top: 0
+
+.NavBarContainer 
   display: flex
   align-items: center
+  justify-content: space-between
   background-color: #227F5E
-  padding-inline: 1rem
-  padding-block: 0.25rem
-  column-gap: 10rem
+  padding-inline: 2rem
+  padding-block: 0.5rem
+  column-gap: 8rem
+  box-shadow: 0px 10px 20px 0px #0000003b
 
 .NavBarLogo
-  width: 5rem
-  height: 5rem
+  width: 6rem
+  height: 6rem
   border-radius: 1000000px
 
-.NavBarContentContainer
-  display: flex
+.DesktopNavBarContentContainer
+  display: none
   flex: 1
   align-items: center
   justify-content: flex-end
   column-gap: 3rem
 
-.NavBarNavigation
+.DesktopNavBarNavigation
   max-width: 40rem
   width: 100%
   display: flex
@@ -34,4 +38,57 @@
     cursor: pointer
     &:hover
       opacity: 0.8
-    
+  
+
+.MobileNavBarTrigger
+  background-color: transparent
+  border: none
+  width: fit-content
+  height: fit-content
+  color: #e4e2e0
+  &>*
+    width: 3rem
+    height: 3rem
+
+.MobileNavBarNavigation
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  z-index: -10
+  transform: translateY(-100%)
+  display: flex
+  flex-direction: column
+  align-items: center
+  row-gap: 1rem
+  padding-block: 2rem
+  background-color: #147553
+  font-size: 1.5rem
+  transition: transform 200ms 0ms ease-in-out
+  &>a
+    color: #e4e2e0
+    text-transform: capitalize
+    font-weight: 600
+  &[data-show="true"]
+    top: 100%
+    transform: translateY(0)
+
+@media (min-width: 768px) 
+  .NavBarContainer 
+    justify-content: flex-start
+    padding-inline: 1rem
+    padding-block: 0.25rem
+    box-shadow: none
+
+  .NavBarLogo
+    width: 5rem
+    height: 5rem
+
+  .DesktopNavBarContentContainer
+    display: flex
+
+  .MobileNavBarTrigger
+    display: none
+
+  .MobileNavBarNavigation
+    display: none

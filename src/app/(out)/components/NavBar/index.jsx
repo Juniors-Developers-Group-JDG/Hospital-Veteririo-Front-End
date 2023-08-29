@@ -1,7 +1,9 @@
 'use client';
 
+import { List, X } from '@/components/PhosphorIcons';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import Styles from './NavBar.module.sass';
 import LoginButton from './loginButton';
 
@@ -16,25 +18,53 @@ const navigation = {
 const navigationKeys = Object.keys(navigation)
 
 export function OuterNavBar() {
-  return (
-    <header className={Styles.NavBarContainer}>
-      <Link href='/'>
-        <Image width={100} height={100} alt='Hospital Veterinário Logo' src='/assets/logo.png' className={Styles.NavBarLogo} />
-      </Link>
+  const [isNavBarOpen, setIsNavBarOpen] = useState(false);
 
-      <div className={Styles.NavBarContentContainer}>
-        <nav className={Styles.NavBarNavigation}>
+  function toggleIsNavBarOpen() {
+    setIsNavBarOpen(state => !state)
+  }
+
+  return (
+    <div className={Styles.NavBarWrapper}>
+      <header className={Styles.NavBarContainer}>
+        <Link href='/'>
+          <Image width={100} height={100} alt='Hospital Veterinário Logo' src='/assets/logo.png' className={Styles.NavBarLogo} />
+        </Link>
+
+        <div className={Styles.DesktopNavBarContentContainer}>
+          <nav className={Styles.DesktopNavBarNavigation}>
+            {
+              navigationKeys.map(key => (
+                <Link key={key} href={navigation[key]}>
+                  {key}
+                </Link>
+              ))
+            }
+          </nav>
+          
+          <LoginButton />
+        </div>
+
+        <button onClick={toggleIsNavBarOpen} className={Styles.MobileNavBarTrigger}>
           {
-            navigationKeys.map(key => (
-              <Link key={key} href={navigation[key]}>
-                {key}
-              </Link>
-            ))
+            isNavBarOpen ? 
+              <X />
+            :
+              <List />
           }
-        </nav>
-        
-        <LoginButton />
-      </div>
-    </header>
+        </button>
+
+      </header>
+
+      <nav data-show={isNavBarOpen} onClick={toggleIsNavBarOpen} className={Styles.MobileNavBarNavigation}>
+        {
+          navigationKeys.map(key => (
+            <Link key={key} href={navigation[key]}>
+              {key}
+            </Link>
+          ))
+        }
+      </nav>
+    </div>
   )
 }
