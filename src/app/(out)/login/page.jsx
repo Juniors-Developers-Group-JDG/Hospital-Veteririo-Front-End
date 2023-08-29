@@ -1,4 +1,5 @@
 'use client';
+import { createCookie } from '@/app/actions';
 import Email from "@/components/form_components/email";
 import Password from "@/components/form_components/password";
 import Image from 'next/image';
@@ -7,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { useState } from 'react';
 import Loading from "../../../components/Loading/page";
 import style from "./login.module.scss";
-
 
 
 export default function Login() {
@@ -50,8 +50,7 @@ export default function Login() {
     
             const data = await response.json();
             console.log('data:', data);
-            // armazenando o token de autenticação no localStorage
-            localStorage.setItem('token', data.token);
+            createCookie('token', data.token);
             setLoginOk(true);
             return data;
         } catch (error) {
