@@ -10,9 +10,12 @@ const { createContext } = require("react");
 export const scheduleContext = createContext({});
 
 export function ScheduleProvider({ children }) {
-  const [schedules, setSchedules] = useState();
+  const [schedules, setSchedules] = useState([]);
+  const [selectedScheduleId, setSelectedScheduleId] = useState('');
 
   const [token, setToken] = useState('');
+
+  const selectedSchedule = useMemo(() => selectedScheduleId ? schedules.find(schedule => schedule.id === selectedScheduleId) : undefined , [schedules, selectedScheduleId])
 
   const monthTotalSchedules = useMemo(() => schedules 
     ? 
@@ -57,12 +60,13 @@ export function ScheduleProvider({ children }) {
           return 1;
         }
         return 0;
-      })));
+      })))
+      .catch(err => console.error(err))
     }
   }, [token])
   
   return (
-    <scheduleContext.Provider value={{schedules, monthTotalSchedules, todayTotalSchedules}}>
+    <scheduleContext.Provider value={{schedules, monthTotalSchedules, todayTotalSchedules, selectScheduleById: setSelectedScheduleId, selectedSchedule}}>
       {children}
     </scheduleContext.Provider>
   )
