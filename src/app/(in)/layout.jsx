@@ -1,13 +1,15 @@
+import { redirect } from "next/navigation";
+import { getCookie } from "../actions";
 import { InnerHeader } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 
 
 import Styles from './layout.module.sass';
 
-export default function InnerLayout({ children }) {
-  // const isAuthenticated = await getCookie('username');
+export default async function InnerLayout({ children }) {
+  const isAuthenticated = await getCookie('username');
 
-  // if (!isAuthenticated) redirect('/login');
+  if (!isAuthenticated) redirect('/login');
 
   return ( 
     <div className={Styles.LayoutContainer}>
