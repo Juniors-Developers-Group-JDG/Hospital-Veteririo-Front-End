@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import Styles from './NavBar.module.sass';
-import LoginButton from './loginButton';
+import { LoginButton } from './loginButton';
 
 const navigation = {
   home: '/landing',

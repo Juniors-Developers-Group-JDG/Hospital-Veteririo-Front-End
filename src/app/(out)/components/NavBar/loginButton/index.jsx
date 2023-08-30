@@ -1,31 +1,31 @@
+'use client'
 
-import { deleteCookie, getCookie } from '@/app/actions';
 import Link from "next/link";
+import { useEffect, useState } from 'react';
+import { deleteCookie, getCookie } from '../../../../actions';
 import style from "./loginButton.module.scss";
 
-export default function LoginButton(){
-  const isAuth = getCookie('username');
-  if(!isAuth) {
-    return (
-      <Link className={style.login}
-            href="/login"
-            onClick={() => {
-              window.location.href = '/login'
-            }}
-          >
-            Login
-      </Link>
-    )
-  }
+
+export function LoginButton(){
+  const [isAuth, setIsAuth] = useState(false)
+
+  console.log({isAuth})
+
+  useEffect(() => {
+    getCookie('username').then(cookie => setIsAuth(!!cookie));
+  }, [])
+  
   return (
     <Link className={style.login}
-      href="#"
+      href={isAuth ? '#' : '/login'}
       onClick={() => {
-        deleteCookie('username');
-        deleteCookie('token');
+        if(isAuth)
+          deleteCookie('username');
+          deleteCookie('token');
+          return;
     }}
       > 
-      Logout
+      {isAuth ? 'Logout' : 'Login'}
       </Link>
   )
 }
