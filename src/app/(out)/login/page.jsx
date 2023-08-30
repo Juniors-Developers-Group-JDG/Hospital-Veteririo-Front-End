@@ -50,8 +50,8 @@ export default function Login() {
     
             const data = await response.json();
             console.log('data:', data);
-            createCookie('token', data.token);
-            createCookie('username', data.name);
+            await createCookie('token', data.token);
+            await createCookie('username', data.name);
             setLoginOk(true);
             return data;
         } catch (error) {
