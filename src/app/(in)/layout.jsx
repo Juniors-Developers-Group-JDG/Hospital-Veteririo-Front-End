@@ -4,6 +4,7 @@ import { InnerHeader } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 
 
+import { ScheduleProvider } from "@/contexts/schedule";
 import Styles from './layout.module.sass';
 
 export default async function InnerLayout({ children }) {
@@ -11,17 +12,19 @@ export default async function InnerLayout({ children }) {
 
   if (!isAuthenticated) redirect('/login');
 
-  return ( 
-    <div className={Styles.LayoutContainer}>
-      <Sidebar />
+  return (
+    <ScheduleProvider>
+      <div className={Styles.LayoutContainer}>
+        <Sidebar />
 
-      <div className={Styles.ContentContainer}>
-        <InnerHeader />
+        <div className={Styles.ContentContainer}>
+          <InnerHeader />
 
-        <main className={Styles.Main}>
-          {children}
-        </main>
+          <main className={Styles.Main}>
+            {children}
+          </main>
+        </div>
       </div>
-    </div>
+    </ScheduleProvider>
   )
 }
