@@ -1,15 +1,8 @@
-import ScheduleContext from '@/contexts/schedule_context';
-import React, { useContext } from 'react';
+import React from 'react';
 import { CgCloseO } from 'react-icons/cg';
 import style from './ScheduleDetails.module.scss';
 
 const ScheduleDetails = ({schedule, setSchedule}) => {
-
- const {
-  setShowScheduleDetails,
-  setSelectedSchedule,    
-  selectedSchedule
-} = useContext(ScheduleContext);
 
 const handleChangeInput = (event) => {
   const { name, value } = event.target;
@@ -18,8 +11,6 @@ const handleChangeInput = (event) => {
     [name]: value,
   });
 };
-
-//criando uma função para salvar o agendamento editado dentro do estado schedule recebido como props
 
 const saveEditedSchedule = () => {
   const newSchedule = schedule.map((eachSchedule) => {

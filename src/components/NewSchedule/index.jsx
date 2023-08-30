@@ -1,8 +1,7 @@
 'use client'
 
-import ScheduleContext from '@/contexts/schedule_context';
 import userAndPetRegisterMock from '@/utils/userAndPetRegisterMock.jsx';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Loading from '../Loading';
 import style from './NewSchedule.module.scss';
 
@@ -12,8 +11,6 @@ const NewSchedule = () => {
   const [userName, setUserName] = useState('');
   const [ isBtnDisabled, setIsBtnDisabled ] = useState(true);
   const [ loading , setLoading ] = useState(false);
-
-  const { selectedUserName, setSelectedUserName, petNamesArray, setPetNamesArray, selectedSpecialty, setSelectedSpecialty, setSelectedDate, selectedDate, selectedTime, setSelectedTime, selectedPetName, setSelectedPetName,setSchedule} = useContext(ScheduleContext);
 
   const getRegisteredUsers = (event) => {
     const userData = event.target.value;

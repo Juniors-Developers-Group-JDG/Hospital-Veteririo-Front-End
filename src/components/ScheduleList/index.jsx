@@ -1,8 +1,6 @@
 'use client'
 
-import ScheduleContext from '@/contexts/schedule_context';
 import scheduleMock from '@/utils/scheduleMock';
-import { useContext } from 'react';
 import { FaCat } from 'react-icons/fa';
 import { GiSittingDog } from 'react-icons/gi';
 import ScheduleDetails from '../ScheduleDetails';
@@ -10,22 +8,6 @@ import style from './ScheduleList.module.scss';
 
 
 const ScheduleList = () => {
-  const {
-      showScheduleDetails,
-      setShowScheduleDetails,
-      setSelectedSchedule,
-      selectedUserName,
-      setSelectedUserName,
-      selectedPetName,
-      setSelectedPetName,
-      selectedSpecialty,
-      setSelectedSpecialty,
-      selectedDateTime,
-      setSelectedDateTime,
-      NewSchedule,
-      schedule,
-      setSchedule,
-    } = useContext(ScheduleContext);
   
   const filterDate = (event) => {
     const date = event.target.value;
