@@ -4,23 +4,38 @@ import { Avatar } from '@/components/Avatar';
 
 import Styles from './InnerHeader.module.sass';
 
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { deleteCookie, getCookie } from '../../../actions';
 import { InnerHeaderNavList } from './components/navList';
 
-import LoginButton from '@/components/nav_bar/loginButton';
-
-import Username from '@/components/nav_bar/username';
-
 export function InnerHeader() {
+  const [userName, setUserName] = useState('');
+
+  const { push } = useRouter()
+
+  async function handleLogout() {
+    await deleteCookie('username')
+    await deleteCookie('token')
+
+    push('/login');
+  }
+
+  useEffect(() => {
+    getCookie('username').then(cookie => setUserName(cookie))
+  }, [])
 
   return (
     <header className={Styles.HeaderContainer}>
       <InnerHeaderNavList />
-      <Avatar UserName='John Doe' />
-      <Username/>
-      <LoginButton className={Styles.login}
-      
-      />
+      <div className={Styles.HeaderUserContainer}>
+        <p>{userName}</p>
 
+        <Avatar userName={userName} />
+      </div>
+      <button className={Styles.HeaderLogoutButton} onClick={handleLogout}>
+        Logout
+      </button>
     </header>
   )
 } 
