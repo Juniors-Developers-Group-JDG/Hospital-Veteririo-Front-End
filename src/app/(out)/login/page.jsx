@@ -1,11 +1,11 @@
 'use client';
-import { createCookie } from '@/app/actions';
+import { createCookie, getCookie } from '@/app/actions';
 import Email from "@/components/form_components/email";
 import Password from "@/components/form_components/password";
 import Image from 'next/image';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Loading from "../../../components/Loading";
 import style from "./login.module.scss";
 
@@ -17,6 +17,8 @@ export default function Login() {
     const [isPasswordInvalid, setIsPasswordInvalid] = useState(false)
     const [showLoading, setShowLoading] = useState(false);
     const [loginOk, setLoginOk] = useState(true);
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const {push} = useRouter();
 
@@ -72,6 +74,15 @@ export default function Login() {
            setShowLoading(false);
        }
     };
+
+    useEffect(() => {
+      getCookie('username').then(cookie => setIsAuthenticated(!!cookie));
+    }, [])
+
+    useEffect(() => {
+      if(isAuthenticated)
+        push('/admin')
+    }, [isAuthenticated, push])
 
     return (
         <main className={style.main}>
