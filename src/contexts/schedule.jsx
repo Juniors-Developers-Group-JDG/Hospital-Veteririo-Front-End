@@ -49,7 +49,15 @@ export function ScheduleProvider({ children }) {
         } 
       })
       .then(res => res.json())
-      .then(data => setSchedules(data));
+      .then(data => setSchedules(data.sort((a, b) => {
+        if (a.date < b.date) {
+          return -1;
+        }
+        if (a.date > b.date) {
+          return 1;
+        }
+        return 0;
+      })));
     }
   }, [token])
   
