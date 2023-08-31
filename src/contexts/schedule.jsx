@@ -28,6 +28,17 @@ export function ScheduleProvider({ children }) {
     [schedules],
   )
 
+  const monthTotalCanceledSchedules = useMemo(() => schedules 
+    ? 
+      schedules.filter(schedule => {
+        const utcToday = zonedTimeToUtc(new Date()); 
+        return schedule.closed && isSameMonth(schedule.scheduleDate, utcToday)
+      }).length
+    : 
+      0, 
+    [schedules],
+  )
+
   const todayTotalSchedules = useMemo(() => schedules 
     ? 
       schedules.filter(schedule => {
@@ -66,7 +77,7 @@ export function ScheduleProvider({ children }) {
   }, [token])
   
   return (
-    <scheduleContext.Provider value={{schedules, monthTotalSchedules, todayTotalSchedules, selectScheduleById: setSelectedScheduleId, selectedSchedule}}>
+    <scheduleContext.Provider value={{schedules, monthTotalSchedules, monthTotalCanceledSchedules, todayTotalSchedules, selectScheduleById: setSelectedScheduleId, selectedSchedule}}>
       {children}
     </scheduleContext.Provider>
   )
