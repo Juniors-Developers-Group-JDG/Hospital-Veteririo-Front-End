@@ -17,6 +17,8 @@ export function ScheduleProvider({ children }) {
 
   const selectedSchedule = useMemo(() => selectedScheduleId ? schedules.find(schedule => schedule.id === selectedScheduleId) : undefined , [schedules, selectedScheduleId])
 
+  const scheduledDates = useMemo(() => schedules.map(schedule => zonedTimeToUtc(schedule.startTime)), [schedules]);
+
   const monthTotalSchedules = useMemo(() => schedules 
     ? 
       schedules.filter(schedule => {
@@ -77,7 +79,7 @@ export function ScheduleProvider({ children }) {
   }, [token])
   
   return (
-    <scheduleContext.Provider value={{schedules, monthTotalSchedules, monthTotalCanceledSchedules, todayTotalSchedules, selectScheduleById: setSelectedScheduleId, selectedSchedule}}>
+    <scheduleContext.Provider value={{schedules, monthTotalSchedules, monthTotalCanceledSchedules, todayTotalSchedules, selectScheduleById: setSelectedScheduleId, selectedSchedule, scheduledDates}}>
       {children}
     </scheduleContext.Provider>
   )
