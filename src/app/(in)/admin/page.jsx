@@ -1,5 +1,6 @@
 import NewSchedule from '@/components/NewSchedule';
-import ScheduleList from '@/components/ScheduleList';
+import { ScheduleList } from '@/components/ScheduleList';
+import { UserProvider } from '@/contexts/user';
 import style from './page.module.scss';
 
 
@@ -7,7 +8,10 @@ export default function Admin() {
   return (
     <div className={style.adminPage}>
       <ScheduleList />
-      <NewSchedule />
+      
+      <UserProvider>
+        <NewSchedule />
+      </UserProvider>
     </div>
   )
 }
