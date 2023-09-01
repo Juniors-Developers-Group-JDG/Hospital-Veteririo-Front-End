@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Style from './SearchListInput.module.sass';
 
-export function SearchListInput({ list }) {
+export function SearchListInput({ list, onSelect, ...props }) {
   const wrapper = useRef(null);
 
   const [isActive, setIsActive] = useState(false);
@@ -12,8 +12,10 @@ export function SearchListInput({ list }) {
 
   const searchedList = useMemo(() => list.filter(item => item.includes(inputValue)) , [list, inputValue])
 
-  function handleItemSelect(userName) {
-    setInputValue(userName)
+  function handleItemSelect(value) {
+    setInputValue(value)
+
+    onSelect && onSelect(value)
   }
 
   function handleChange(event) {
@@ -41,7 +43,11 @@ export function SearchListInput({ list }) {
 
           if(list.filter(item => item === inputValue).length === 0) {
             setInputValue('');
+
+            return
           }
+
+          onSelect && onSelect(inputValue)
         }
     }
 
@@ -52,7 +58,7 @@ export function SearchListInput({ list }) {
         currentWrapper.removeEventListener("focusout", blurFunction)
       }
     }
-  }, [wrapper, list, inputValue])
+  }, [wrapper, list, inputValue, onSelect])
 
   return (
     <div ref={wrapper} className={Style.SearchListInputWrapper}>
@@ -61,6 +67,8 @@ export function SearchListInput({ list }) {
         value={inputValue}
         onChange={handleChange}
         onFocus={handleFocus}
+        autocomplete="off"
+        {...props}
       />
       {isActive && (
         <ul className={Style.List}>
