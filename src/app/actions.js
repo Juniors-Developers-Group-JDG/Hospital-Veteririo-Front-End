@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 export const createCookie = async (
   key,
   value,
-  maxAgeInMs = 60 * 60 * 12, // 12 hour
+  maxAgeInMs = 60 * 60 * 1, // 1 hour
 ) => {
   cookies().set(`vet.${key}`, value, {
     maxAge: maxAgeInMs,
