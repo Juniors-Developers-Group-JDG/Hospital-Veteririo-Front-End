@@ -54,7 +54,7 @@ export const ScheduleList = () => {
           ?
             schedules
             .map((schedule, index) => {
-              const date = schedule.date.split('-').reverse().join('/');
+              const date = schedule.date?.split('-').reverse().join('/');
               return (
                 <li
                   key={index} 
