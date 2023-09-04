@@ -68,7 +68,7 @@ const NewSchedule = () => {
       })
       .then(res => res.json())
       .then(data => {
-        const userPets = data.filter(pet => pet.owner.find(owner => owner.id === selectedUser.id));
+        const userPets = data.filter(pet => pet.owner.id === selectedUser.id);
 
         setSelectedUserPets(userPets);
       })
