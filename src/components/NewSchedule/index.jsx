@@ -1,180 +1,154 @@
 'use client'
 
-import userAndPetRegisterMock from '@/utils/userAndPetRegisterMock.jsx';
-import { useCallback, useEffect, useState } from 'react';
+import { getCookie } from '@/app/actions';
+import { useSchedule } from '@/hooks/useSchedule';
+import { useUser } from '@/hooks/useUser';
+import { zonedTimeToUtc } from 'date-fns-tz';
+import pt from 'date-fns/locale/pt-BR';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import Loading from '../Loading';
+import { SearchListInput } from '../SearchListInput';
 import style from './NewSchedule.module.scss';
 
 const NewSchedule = () => {
-  const [userNamesArray, setUserNamesArray] = useState([]);
-  const [showUserNames, setShowUserNames] = useState(false);
-  const [userName, setUserName] = useState('');
-  const [ isBtnDisabled, setIsBtnDisabled ] = useState(true);
-  const [ loading , setLoading ] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [token, setToken] = useState('');
+  const [selectedUserPets, setSelectedUserPets] = useState([]);
+  const [selectedDatetime, setSelectedDatetime] = useState(new Date())
+
+  const { scheduledDates } = useSchedule();
+
+  const { selectedUser, selectUserByName, users } = useUser();
+  
+  const usersName = useMemo(() => users.map(user => user.name), [users])
 
   const getRegisteredUsers = (event) => {
-    const userData = event.target.value;
-    setUserName(userData);
-    setShowUserNames(true);
-    const foundUserNames = userAndPetRegisterMock.filter((user) =>
-      user.clientName.toLowerCase().includes(userData.toLowerCase())
-    );
-    setUserNamesArray(foundUserNames.map((user) => user.clientName));
-    if (userData === '') {
-      setShowUserNames(false);
-    }
   };
 
-  const getRegisteredPets = useCallback(() => { // o useCallback aqui é para evitar que a função seja recriada a cada renderização
-    const foundUser = userAndPetRegisterMock.find(
-      (user) => user.clientName === selectedUserName
-    );
-    if (foundUser) {
-      const foundPetNames = foundUser.pets.map((pet) => pet.name);
-      setPetNamesArray(foundPetNames);
-    }
-}, [selectedUserName, setPetNamesArray]);
+  const getRegisteredPets = useCallback(() => {}, []);
 
-const handleConfirmSchedule = () => {
-  setLoading(true);
-  const newSchedule = {
-    clientName: selectedUserName,
-    pet: selectedPetName,
-    specialty: selectedSpecialty,
-    date: selectedDate,
-    time: selectedTime,
+  const handleConfirmSchedule = async (event) => {
+    event.preventDefault();
+
+    setIsSubmitting(true);
+
+    try {
+      const scheduleDate = zonedTimeToUtc(selectedDatetime).toISOString();
+  
+      const formData = new FormData(event.target)
+  
+      let formDataObject = { startTime: scheduleDate, scheduleDate }
+  
+      formData.forEach((value, key) => (formDataObject[key] = value));
+
+      const formDataJSON = JSON.stringify(formDataObject);
+
+      await fetch('https://jdg-site-vet.onrender.com/schedules/create', {
+        method: 'POST', 
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        body: formDataJSON
+      })
+    } catch(err) {
+      console.error({err})
+    }
+    setIsSubmitting(false)
   };
 
-  setTimeout(() => {
-  setSchedule((prevSchedule) => [...prevSchedule, newSchedule]);
-  setLoading(false);
-  setSelectedUserName('');
-  setSelectedPetName('');
-  setSelectedSpecialty('');
-  setSelectedDate('');
-  setSelectedTime('');
-  alert('Agendamento confirmado!');
-}, 1000);
+  useEffect(() => {
+    if(selectedUser && token) {
+      fetch('https://jdg-site-vet.onrender.com/pets', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        } 
+      })
+      .then(res => res.json())
+      .then(data => {
+        const userPets = data.filter(pet => pet.owner.find(owner => owner.id === selectedUser.id));
 
-};
-
-  const handleDisableButton = useCallback(() => {
-    if (selectedUserName === '' || selectedPetName === '' || selectedSpecialty === '' || selectedDate === '' || selectedTime === '') {
-      setIsBtnDisabled(true);
-    } else {
-      setIsBtnDisabled(false);
+        setSelectedUserPets(userPets);
+      })
+      .catch(err => console.error({err}))
     }
-  }, [selectedUserName, selectedPetName, selectedSpecialty, selectedDate, selectedTime]);
+  }, [selectedUser, token])
 
   useEffect(() => {
-    getRegisteredPets();
-  }, [getRegisteredPets]);
-
-  useEffect(() => {
-    handleDisableButton();
-  }, [selectedUserName, selectedPetName, selectedSpecialty, selectedDate, selectedTime, handleDisableButton]);
+    getCookie('token')
+    .then(cookie => setToken(cookie));
+  }, [])
 
   return (
-    <section className={style.fullComponent}>
+    <form onSubmit={handleConfirmSchedule} className={style.fullComponent}>
       <div className={ style.containerTitle}>
         <h1>Novo agendamento</h1>
       </div>
       <div className={style.topDiv}>
         <label htmlFor="userName">Tutor:</label>
-        <div className={style.tutorInputWrapper}>
-          <input
-            type="text"
-            id="userName"
-            name="userName"
-            onChange={getRegisteredUsers}
-            value={userName}
-          />
-          {showUserNames && (
-            <ul className={style.userNames}>
-              {userNamesArray.map((userName) => (
-                <li
-                  key={userName}
-                  className={style.userName}
-                  onClick={() => {
-                    setSelectedUserName(userName);
-                    setUserName(userName);
-                    setShowUserNames(false);
-                    getRegisteredPets();
-                  }}
-                >
-                  {userName}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <SearchListInput 
+          placeholder='Selecione um Usuário' 
+          id="userName" 
+          required 
+          name="name"
+          list={usersName} 
+          onSelect={selectUserByName}
+        />
 
         <label htmlFor="petName">Pet:</label>
-        <select
-          id="petName"
-          type="text"
-          name="petName"
-          onChange={(e) => setSelectedPetName(e.target.value)}
-          value={selectedPetName}
-        >
+        <select id='petName' name='petName' required>
           <option id="" value="">
             Selecionar
           </option>
-          {petNamesArray.map((petName) => (
+          {selectedUserPets.map(({ name, id }) => (
             <option
-              key={petName}
-              id={petName} 
-              onClick={() => setSelectedPetName(petName)}
+              key={id}
+              value={name} 
             >
-              {petName}
+              {name}
             </option>
           ))}
         </select>
       </div>
       <div className={style.topDiv}>
-        <label htmlFor="GET-especialidade">Especialidade:</label>
-        {/* Depois pegar da api de especialidades */}
-        <select
-          id="especialidade"
-          onChange={(e) => setSelectedSpecialty(e.target.value)}
-          value={selectedSpecialty}
-        >
-              <option id="" value="">Selecionar</option>
-              <option id="Clínica Médica Geral" value="Clínica Médica Geral">Clínica Médica Geral</option>
-              <option id="Dermatologia" value="Dermatologia">Dermatologia</option>
-              <option id="Endocrinologia" value="Endocrinologia">Endocrinologia</option>
-              <option id="Cirurgia Geral" value="Cirurgia Geral">Cirurgia Geral</option>
-              <option id="Cirurgia Ortopédica" value="Cirurgia Ortopédica">Cirurgia Ortopédica</option>
+        <label htmlFor="specialty">Especialidade:</label>
+        <select id='specialty' name='specialty' required>
+          <option id="" value="">Selecionar</option>
+          <option id="Clínica Médica Geral" value="Clínica Médica Geral">Clínica Médica Geral</option>
+          <option id="Dermatologia" value="Dermatologia">Dermatologia</option>
+          <option id="Endocrinologia" value="Endocrinologia">Endocrinologia</option>
+          <option id="Cirurgia Geral" value="Cirurgia Geral">Cirurgia Geral</option>
+          <option id="Cirurgia Ortopédica" value="Cirurgia Ortopédica">Cirurgia Ortopédica</option>
         </select>
       </div>
       <div className={style.topDiv}>
-        <label htmlFor="dateTime">Quando:</label>
-        <input
-          id="date" 
-          type="date"
-          name="date"
-          onChange={(e) => setSelectedDate((e.target.value).split('-').reverse().join('/'))}
-        />
-        <input
-          id="time"
-          type="time"
-          name="time"
-          onChange={(e) => setSelectedTime(e.target.value)}
+        <label htmlFor="datetime">Quando:</label>
+        <DatePicker 
+          id="datetime"
+          locale={pt} 
+          timeCaption='Horário' 
+          selected={selectedDatetime}
+          onChange={(date) => setSelectedDatetime(date)}
+          dateFormat="Pp"
+          timeFormat="p"
+          excludeDates={scheduledDates}
+          showIcon 
+          showTimeSelect 
+          required
         />
       </div>
       <div>
         <button
-          type='button'
-          className={
-            isBtnDisabled ? style.disabledButton : style.enabledButton
-          }
-          onClick={handleConfirmSchedule}
-          disabled={isBtnDisabled}
+          type='submit'
+          className={style.ConfirmButton}
+          disabled={isSubmitting}
         >
-          {loading ? <Loading /> : 'Confirmar agendamento'}
+          {isSubmitting ? <Loading /> : 'Confirmar agendamento'}
         </button>
       </div>
-    </section>
+    </form>
   );
 }
 
