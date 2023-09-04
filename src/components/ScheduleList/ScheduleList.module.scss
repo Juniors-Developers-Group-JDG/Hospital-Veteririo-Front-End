@@ -6,6 +6,7 @@
   padding-top: 20px;
   width: 50%;
   height: 100%;
+  overflow: hidden;
 }
 
 .topDiv {
@@ -62,7 +63,7 @@
   justify-content: flex-start;
   height: 80%;
   padding: 2% 1% 1% 1%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   border-radius: 10px;
 }
