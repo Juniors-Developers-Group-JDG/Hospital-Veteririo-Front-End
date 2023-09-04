@@ -58,7 +58,7 @@
  right: 2%;
 }
 
-.enabledButton {
+.ConfirmButton {
   width: 250px;
   background-color: rgb(95, 158, 160);
   border: none;
@@ -69,26 +69,14 @@
   margin-top: 1%;
   margin-left: 2%;
   padding: 2% 1%;
-  
   &:hover {
     background-color: rgb(70, 132, 133);
     cursor: pointer;
   }
-}
-
-.disabledButton {
-  width: 250px;
-  background-color: rgb(95, 158, 160);
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  margin-top: 1%;
-  margin-left: 2%;
-  padding: 2% 1%;
-  opacity: 0.5;
-  cursor: not-allowed;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 
@@ -140,34 +128,3 @@
   }
 }
 
-.tutorInputWrapper {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  position: relative;
-  overflow: visible;
-
-  &>input {
-    width: 100%;
-  }
-}
-
-.userNames {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: rgb(95, 158, 160);
-  z-index: 2;
-  width: 200px;
- 
-  .userName {
-    cursor: pointer;
-    padding: 2px;
- 
-    &:hover {
-      background-color: rgb(70, 132, 133);
-    }
-  }
- }
