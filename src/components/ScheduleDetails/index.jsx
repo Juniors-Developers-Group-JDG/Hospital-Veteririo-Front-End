@@ -1,5 +1,6 @@
 'use client'
 
+import { useSchedule } from '@/hooks/useSchedule';
 import { CgCloseO } from 'react-icons/cg';
 import style from './ScheduleDetails.module.scss';
 
