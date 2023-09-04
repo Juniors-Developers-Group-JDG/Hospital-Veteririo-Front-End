@@ -1,14 +1,18 @@
 'use client'
 
+import { useSchedule } from '@/hooks/useSchedule';
 import scheduleMock from '@/utils/scheduleMock';
+import { useState } from 'react';
 import { FaCat } from 'react-icons/fa';
 import { GiSittingDog } from 'react-icons/gi';
-import ScheduleDetails from '../ScheduleDetails';
+import { ScheduleDetails } from '../ScheduleDetails';
 import style from './ScheduleList.module.scss';
 
+export const ScheduleList = () => {
+  const [showScheduleDetails, setShowScheduleDetails] = useState(false);
 
-const ScheduleList = () => {
-  
+  const { schedules, selectScheduleById } = useSchedule();
+
   const filterDate = (event) => {
     const date = event.target.value;
     const filteredSchedule = scheduleMock.filter((schedule) => {
@@ -17,9 +21,9 @@ const ScheduleList = () => {
     setSchedule(filteredSchedule);
   };
 
-  const handleScheduleDetails = (schedule) => {
+  const handleScheduleItemClick = (scheduleId) => {
     setShowScheduleDetails(true);
-    setSelectedSchedule(schedule);
+    selectScheduleById(scheduleId);
   };
  
   return (
@@ -46,47 +50,40 @@ const ScheduleList = () => {
     </div>
     <ul className={style.scheduleList}>
        {
-         schedule
-         .sort((a, b) => {
-            if (a.date < b.date) {
-              return -1;
-            }
-            if (a.date > b.date) {
-              return 1;
-            }
-            return 0;
-          })
-         .map((eachSchedule, index) => {
-          const date = eachSchedule.date.split('-').reverse().join('/');
-           return (
-             <li
-              key={index} 
-              className={ style.scheduleItem}
-              onClick={() => handleScheduleDetails(eachSchedule)}
-            >
-               <div className={ style.scheduleInfoLeft}>
-                  { eachSchedule.specie === 'Cachorro' ? <GiSittingDog className={ style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
-                <p
-                  className={ style.petName}
-                >{eachSchedule.pet}</p>
-                <p
-                  className={ style.clientName}
-                >{eachSchedule.clientName}</p>
-               </div>
-               <div className={ style.scheduleInfoRight}>
-                <p>{date}</p>
-                <p>{eachSchedule.time}h</p>
-               </div>
-             </li>
-           )
-         })
+        schedules.length > 0 
+          ?
+            schedules
+            .map((schedule, index) => {
+              const date = schedule.date.split('-').reverse().join('/');
+              return (
+                <li
+                  key={index} 
+                  className={style.scheduleItem}
+                  onClick={() => handleScheduleItemClick(schedule.id)}
+                >
+                  <div className={ style.scheduleInfoLeft}>
+                      { schedule.specie === 'Cachorro' ? <GiSittingDog className={style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
+                    <p
+                      className={ style.petName}
+                    >{schedule.pet}</p>
+                    <p
+                      className={ style.clientName}
+                    >{schedule.clientName}</p>
+                  </div>
+                  <div className={ style.scheduleInfoRight}>
+                    <p>{date}</p>
+                    <p>{schedule.time}h</p>
+                  </div>
+                </li>
+              )
+            })
+          :
+            <li>Nenhum agendamento encontrado!</li>
        }
     {
-      showScheduleDetails  && <ScheduleDetails schedule={schedule } setSchedule={setSchedule}/>
+      showScheduleDetails  && <ScheduleDetails />
     }
     </ul>
     </section>
   );
 }
-
-export default ScheduleList;
