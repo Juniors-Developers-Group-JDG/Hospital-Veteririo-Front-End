@@ -41,7 +41,7 @@
 
  select {
     width: 200px;
-    margin-right: 5%;
+    margin-right: 2%;
     border-radius: 5px;
     border: 0.5px solid #5d5c5c;
     padding: 0 5px;
@@ -76,6 +76,28 @@
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+}
+
+.newPetInputContainer {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+
+  &>button {
+    background-color: rgb(93, 170, 172);
+    color: white;
+    border-radius: 4px;
+    height: 2rem;
+    width: 2rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: rgb(70, 142, 145);
+    border-style: solid;
+    cursor: pointer;
   }
 }
 

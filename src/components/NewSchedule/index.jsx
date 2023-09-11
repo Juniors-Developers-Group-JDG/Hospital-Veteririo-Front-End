@@ -3,9 +3,10 @@
 import { getCookie } from '@/app/actions';
 import { useSchedule } from '@/hooks/useSchedule';
 import { useUser } from '@/hooks/useUser';
+import axios from 'axios';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt-BR';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Loading from '../Loading';
@@ -16,7 +17,13 @@ const NewSchedule = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [token, setToken] = useState('');
   const [selectedUserPets, setSelectedUserPets] = useState([]);
-  const [selectedDatetime, setSelectedDatetime] = useState(new Date())
+  const [selectedDatetime, setSelectedDatetime] = useState(new Date());
+
+  const [refetchPets, setRefetchPets] = useState(false);
+
+  const [watchedSelectPetNameInputData, setWatchedSelectPetNameInputData] = useState('')
+
+  const newPetInputRef = useRef(null);
 
   const { scheduledDates } = useSchedule();
 
@@ -24,10 +31,45 @@ const NewSchedule = () => {
   
   const usersName = useMemo(() => users.map(user => user.name), [users])
 
+  const isCreatingPet = useMemo(() => watchedSelectPetNameInputData === "addNewPet", [watchedSelectPetNameInputData])
+
   const getRegisteredUsers = (event) => {
   };
 
   const getRegisteredPets = useCallback(() => {}, []);
+
+  async function handleCreateNewPet() {
+    setIsSubmitting(true);
+    
+    try {
+      if(!newPetInputRef.current?.value || newPetInputRef.current.value === "") {
+        window.alert('Pet não pode estar vazio!!');
+        
+        return;
+      }
+      const body = {
+        name: newPetInputRef.current.value,
+        age: 0,
+        breed: "",
+        weight: 0,
+        owner: selectedUser.name,
+        species: ""
+      };
+
+      await axios.post('https://jdg-site-vet.onrender.com/pets', body);
+      
+      setRefetchPets(true);
+    } catch(err) {
+      console.error({err});
+    }
+
+    setIsSubmitting(false)
+  }
+
+  async function handleCancelCreateNewPet() {
+    setWatchedSelectPetNameInputData("")
+  }
+
 
   const handleConfirmSchedule = async (event) => {
     event.preventDefault();
@@ -52,6 +94,8 @@ const NewSchedule = () => {
         },
         body: formDataJSON
       })
+
+      setWatchedSelectPetNameInputData('')
     } catch(err) {
       console.error({err})
     }
@@ -71,10 +115,24 @@ const NewSchedule = () => {
         const userPets = data.filter(pet => pet.owner.id === selectedUser.id);
 
         setSelectedUserPets(userPets);
+
+        if(refetchPets) {
+          setWatchedSelectPetNameInputData("")
+
+          setRefetchPets(false)
+        }
       })
-      .catch(err => console.error({err}))
+      .catch(err => {
+        console.error({err});
+
+        if(refetchPets) {
+          setWatchedSelectPetNameInputData("")
+
+          setRefetchPets(false)
+        }
+      })
     }
-  }, [selectedUser, token])
+  }, [selectedUser, token, refetchPets, setRefetchPets, setWatchedSelectPetNameInputData])
 
   useEffect(() => {
     getCookie('token')
@@ -98,19 +156,40 @@ const NewSchedule = () => {
         />
 
         <label htmlFor="petName">Pet:</label>
-        <select id='petName' name='petName' required>
-          <option id="" value="">
-            Selecionar
-          </option>
-          {selectedUserPets.map(({ name, id }) => (
-            <option
-              key={id}
-              value={name} 
-            >
-              {name}
+        {
+          isCreatingPet && selectedUser ? (
+            <div className={style.newPetInputContainer}>
+              <input id='petName' name='petName' required ref={newPetInputRef} placeholder='Nome do novo pet' disabled={isSubmitting} />
+
+              <button type='button' onClick={handleCreateNewPet} >
+                +
+              </button>
+
+              <button type='button' onClick={handleCancelCreateNewPet} >
+                x
+              </button>
+            </div>
+          ) :(
+          <select id='petName' name='petName' required value={watchedSelectPetNameInputData} onChange={e => setWatchedSelectPetNameInputData(e.target.value)}>
+            <option id="" value="">
+              Selecionar
             </option>
-          ))}
-        </select>
+            {selectedUserPets.map(({ name, id }) => (
+              <option
+                key={id}
+                value={name} 
+              >
+                {name}
+              </option>
+            ))}
+            {
+              selectedUser &&
+                <option value="addNewPet">
+                  Adicionar +
+                </option>
+            }
+          </select>)
+        }
       </div>
       <div className={style.topDiv}>
         <label htmlFor="specialty">Especialidade:</label>
@@ -143,7 +222,7 @@ const NewSchedule = () => {
         <button
           type='submit'
           className={style.ConfirmButton}
-          disabled={isSubmitting}
+          disabled={isSubmitting || isCreatingPet}
         >
           {isSubmitting ? <Loading /> : 'Confirmar agendamento'}
         </button>
