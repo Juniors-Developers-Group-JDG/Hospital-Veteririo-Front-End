@@ -1,20 +1,30 @@
+import { redirect } from "next/navigation";
+import { getCookie } from "../actions";
 import { InnerHeader } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 
+
+import { ScheduleProvider } from "@/contexts/schedule";
 import Styles from './layout.module.sass';
 
-export default function InnerLayout({ children }) {
-  return ( 
-    <div className={Styles.LayoutContainer}>
-      <Sidebar />
+export default async function InnerLayout({ children }) {
+  const isAuthenticated = await getCookie('username');
 
-      <div className={Styles.ContentContainer}>
-        <InnerHeader />
+  if (!isAuthenticated) redirect('/login');
 
-        <main className={Styles.Main}>
-          {children}
-        </main>
+  return (
+    <ScheduleProvider>
+      <div className={Styles.LayoutContainer}>
+        <Sidebar />
+
+        <div className={Styles.ContentContainer}>
+          <InnerHeader />
+
+          <main className={Styles.Main}>
+            {children}
+          </main>
+        </div>
       </div>
-    </div>
+    </ScheduleProvider>
   )
 }

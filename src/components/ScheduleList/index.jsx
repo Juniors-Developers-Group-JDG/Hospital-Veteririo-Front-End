@@ -1,43 +1,34 @@
 'use client'
 
-import ScheduleContext from '@/contexts/schedule_context';
-import scheduleMock from '@/utils/scheduleMock';
-import { useContext } from 'react';
+import { useSchedule } from '@/hooks/useSchedule';
+import { isSameDay } from 'date-fns';
+import { formatInTimeZone, zonedTimeToUtc } from 'date-fns-tz';
+import { pt } from 'date-fns/locale';
+import { useMemo, useState } from 'react';
+import DatePicker from "react-datepicker";
 import { FaCat } from 'react-icons/fa';
 import { GiSittingDog } from 'react-icons/gi';
-import ScheduleDetails from '../ScheduleDetails';
+import { ScheduleDetails } from '../ScheduleDetails';
 import style from './ScheduleList.module.scss';
 
+export const ScheduleList = () => {
+  const [showScheduleDetails, setShowScheduleDetails] = useState(false);
 
-const ScheduleList = () => {
-  const {
-      showScheduleDetails,
-      setShowScheduleDetails,
-      setSelectedSchedule,
-      selectedUserName,
-      setSelectedUserName,
-      selectedPetName,
-      setSelectedPetName,
-      selectedSpecialty,
-      setSelectedSpecialty,
-      selectedDateTime,
-      setSelectedDateTime,
-      NewSchedule,
-      schedule,
-      setSchedule,
-    } = useContext(ScheduleContext);
+  const [selectedDatetime, setSelectedDatetime] = useState(null);
+
+  const { schedules, selectScheduleById } = useSchedule();
   
-  const filterDate = (event) => {
-    const date = event.target.value;
-    const filteredSchedule = scheduleMock.filter((schedule) => {
-      return schedule.date === date;
-    });
-    setSchedule(filteredSchedule);
-  };
+  const filteredSchedules = useMemo(() => {
+    if(selectedDatetime) {
+      return schedules.filter(schedule => isSameDay(zonedTimeToUtc(schedule.scheduleDate), selectedDatetime))
+    }
 
-  const handleScheduleDetails = (schedule) => {
+    return schedules
+  }, [schedules, selectedDatetime])
+
+  const handleScheduleItemClick = (scheduleId) => {
+    selectScheduleById(scheduleId);
     setShowScheduleDetails(true);
-    setSelectedSchedule(schedule);
   };
  
   return (
@@ -49,62 +40,57 @@ const ScheduleList = () => {
       <div 
         className={ style.containerFilter}
       >
-        <input
-        type="date" 
-        name="filtrar"
-        id="filtrar"
-        placeholder="Selecione uma data"
-        onChange={filterDate}
+        <DatePicker
+          locale={pt}
+          selected={selectedDatetime}
+          onChange={(date) => setSelectedDatetime(date)}
+          dateFormat="dd/MM/yyyy"
+          showIcon
+          placeholderText="dd/mm/aaaa"
         />
         <button
           type='button'
-          onClick={() => setSchedule(scheduleMock)}
+          onClick={() => setSelectedDatetime(null)}
         >Limpar filtros</button>
       </div>
     </div>
     <ul className={style.scheduleList}>
        {
-         schedule
-         .sort((a, b) => {
-            if (a.date < b.date) {
-              return -1;
-            }
-            if (a.date > b.date) {
-              return 1;
-            }
-            return 0;
-          })
-         .map((eachSchedule, index) => {
-          const date = eachSchedule.date.split('-').reverse().join('/');
-           return (
-             <li
-              key={index} 
-              className={ style.scheduleItem}
-              onClick={() => handleScheduleDetails(eachSchedule)}
-            >
-               <div className={ style.scheduleInfoLeft}>
-                  { eachSchedule.specie === 'Cachorro' ? <GiSittingDog className={ style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
-                <p
-                  className={ style.petName}
-                >{eachSchedule.pet}</p>
-                <p
-                  className={ style.clientName}
-                >{eachSchedule.clientName}</p>
-               </div>
-               <div className={ style.scheduleInfoRight}>
-                <p>{date}</p>
-                <p>{eachSchedule.time}h</p>
-               </div>
-             </li>
-           )
-         })
+        filteredSchedules.length > 0 
+          ?
+          filteredSchedules
+            .map((schedule, index) => {
+              const date = formatInTimeZone(schedule.scheduleDate, "UTC", 'dd/MM/yyyy');
+              const time = formatInTimeZone(schedule.scheduleDate, "UTC", 'HH:mm');
+              return (
+                <li
+                  key={index} 
+                  className={style.scheduleItem}
+                  onClick={() => handleScheduleItemClick(schedule["_id"])}
+                >
+                  <div className={ style.scheduleInfoLeft}>
+                      { schedule.specie === 'Cachorro' ? <GiSittingDog className={style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
+                    <p
+                      className={ style.petName}
+                    >{schedule.petName}</p>
+                    <p
+                      className={ style.clientName}
+                    >{schedule.name.name}</p>
+                  </div>
+                  <div className={ style.scheduleInfoRight}>
+                    <p>{date}</p>
+                    <p>{schedule.time}{time}</p>
+                  </div>
+                </li>
+              )
+            })
+          :
+            <li>Nenhum agendamento encontrado!</li>
        }
     {
-      showScheduleDetails  && <ScheduleDetails schedule={schedule } setSchedule={setSchedule}/>
+      showScheduleDetails  && <ScheduleDetails onClose={() => setShowScheduleDetails(false)} />
     }
     </ul>
     </section>
   );
 }
-
-export default ScheduleList;

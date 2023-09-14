@@ -1,12 +1,11 @@
 "use client"
-import styles from "./about.module.scss";
-import { scroller } from "react-scroll";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { scroller } from "react-scroll";
+import styles from "./about.module.scss";
 
 
 export default function About() {
-
   const [scroll, setScroll] = useState(0);
 
   const scrollToSection = (sectionId)=>{

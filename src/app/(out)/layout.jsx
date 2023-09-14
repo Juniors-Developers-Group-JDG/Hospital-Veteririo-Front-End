@@ -1,9 +1,9 @@
-import NavBar from "../../components/nav_bar/page";
+import { OuterNavBar } from "./components/NavBar";
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   return (
     <>
-      <NavBar />
+      <OuterNavBar />
       {children}
     </>
   );

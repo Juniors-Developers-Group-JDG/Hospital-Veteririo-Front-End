@@ -41,7 +41,7 @@
 
  select {
     width: 200px;
-    margin-right: 5%;
+    margin-right: 2%;
     border-radius: 5px;
     border: 0.5px solid #5d5c5c;
     padding: 0 5px;
@@ -58,7 +58,7 @@
  right: 2%;
 }
 
-.enabledButton {
+.ConfirmButton {
   width: 250px;
   background-color: rgb(95, 158, 160);
   border: none;
@@ -69,26 +69,36 @@
   margin-top: 1%;
   margin-left: 2%;
   padding: 2% 1%;
-  
   &:hover {
     background-color: rgb(70, 132, 133);
     cursor: pointer;
   }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
-.disabledButton {
-  width: 250px;
-  background-color: rgb(95, 158, 160);
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  margin-top: 1%;
-  margin-left: 2%;
-  padding: 2% 1%;
-  opacity: 0.5;
-  cursor: not-allowed;
+.newPetInputContainer {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+
+  &>button {
+    background-color: rgb(93, 170, 172);
+    color: white;
+    border-radius: 4px;
+    height: 2rem;
+    width: 2rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: rgb(70, 142, 145);
+    border-style: solid;
+    cursor: pointer;
+  }
 }
 
 
@@ -140,34 +150,3 @@
   }
 }
 
-.tutorInputWrapper {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  position: relative;
-  overflow: visible;
-
-  &>input {
-    width: 100%;
-  }
-}
-
-.userNames {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: rgb(95, 158, 160);
-  z-index: 2;
-  width: 200px;
- 
-  .userName {
-    cursor: pointer;
-    padding: 2px;
- 
-    &:hover {
-      background-color: rgb(70, 132, 133);
-    }
-  }
- }

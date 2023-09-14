@@ -1,183 +1,244 @@
 'use client'
 
-import ScheduleContext from '@/contexts/schedule_context';
-import userAndPetRegisterMock from '@/utils/userAndPetRegisterMock.jsx';
-import { useCallback, useContext, useEffect, useState } from 'react';
-import Loading from '../Loading/page';
+import { getCookie } from '@/app/actions';
+import { useSchedule } from '@/hooks/useSchedule';
+import { useUser } from '@/hooks/useUser';
+import axios from 'axios';
+import { isSameDay } from 'date-fns';
+import { zonedTimeToUtc } from 'date-fns-tz';
+import pt from 'date-fns/locale/pt-BR';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import DatePicker from "react-datepicker";
+import Loading from '../Loading';
+import { SearchListInput } from '../SearchListInput';
 import style from './NewSchedule.module.scss';
 
 const NewSchedule = () => {
-  const [userNamesArray, setUserNamesArray] = useState([]);
-  const [showUserNames, setShowUserNames] = useState(false);
-  const [userName, setUserName] = useState('');
-  const [ isBtnDisabled, setIsBtnDisabled ] = useState(true);
-  const [ loading , setLoading ] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [token, setToken] = useState('');
+  const [selectedUserPets, setSelectedUserPets] = useState([]);
+  const [selectedDatetime, setSelectedDatetime] = useState(new Date());
 
-  const { selectedUserName, setSelectedUserName, petNamesArray, setPetNamesArray, selectedSpecialty, setSelectedSpecialty, setSelectedDate, selectedDate, selectedTime, setSelectedTime, selectedPetName, setSelectedPetName,setSchedule} = useContext(ScheduleContext);
+  const [refetchPets, setRefetchPets] = useState(false);
+
+  const [watchedSelectPetNameInputData, setWatchedSelectPetNameInputData] = useState('')
+
+  const newPetInputRef = useRef(null);
+
+  const { scheduledDates } = useSchedule();
+
+  const selectedDateScheduledTimes = useMemo(() => {
+    return scheduledDates.filter(scheduledDate => isSameDay(selectedDatetime, zonedTimeToUtc(scheduledDate))).map(scheduledDate => {
+      const newDate = new Date(scheduledDate)
+
+      const minutes = newDate.getMinutes()
+
+      minutes < 30 ? newDate.setMinutes(0) : newDate.setMinutes(30)
+
+      return newDate;
+    })
+  }, [scheduledDates, selectedDatetime])
+
+  const { refetchSchedules } = useSchedule();
+
+  const { selectedUser, selectUserByName, users } = useUser();
+  
+  const usersName = useMemo(() => users.map(user => user.name), [users])
+
+  const isCreatingPet = useMemo(() => watchedSelectPetNameInputData === "addNewPet", [watchedSelectPetNameInputData])
 
   const getRegisteredUsers = (event) => {
-    const userData = event.target.value;
-    setUserName(userData);
-    setShowUserNames(true);
-    const foundUserNames = userAndPetRegisterMock.filter((user) =>
-      user.clientName.toLowerCase().includes(userData.toLowerCase())
-    );
-    setUserNamesArray(foundUserNames.map((user) => user.clientName));
-    if (userData === '') {
-      setShowUserNames(false);
-    }
   };
 
-  const getRegisteredPets = useCallback(() => { // o useCallback aqui é para evitar que a função seja recriada a cada renderização
-    const foundUser = userAndPetRegisterMock.find(
-      (user) => user.clientName === selectedUserName
-    );
-    if (foundUser) {
-      const foundPetNames = foundUser.pets.map((pet) => pet.name);
-      setPetNamesArray(foundPetNames);
-    }
-}, [selectedUserName, setPetNamesArray]);
+  const getRegisteredPets = useCallback(() => {}, []);
 
-const handleConfirmSchedule = () => {
-  setLoading(true);
-  const newSchedule = {
-    clientName: selectedUserName,
-    pet: selectedPetName,
-    specialty: selectedSpecialty,
-    date: selectedDate,
-    time: selectedTime,
+  async function handleCreateNewPet() {
+    setIsSubmitting(true);
+    
+    try {
+      if(!newPetInputRef.current?.value || newPetInputRef.current.value === "") {
+        window.alert('Pet não pode estar vazio!!');
+        
+        return;
+      }
+      const body = {
+        name: newPetInputRef.current.value,
+        age: 0,
+        breed: "",
+        weight: 0,
+        owner: selectedUser.name,
+        species: ""
+      };
+
+      await axios.post('https://jdg-site-vet.onrender.com/pets', body);
+      
+      setRefetchPets(true);
+    } catch(err) {
+      console.error({err});
+    }
+
+    setIsSubmitting(false)
+  }
+
+  async function handleCancelCreateNewPet() {
+    setWatchedSelectPetNameInputData("")
+  }
+
+
+  const handleConfirmSchedule = async (event) => {
+    event.preventDefault();
+
+    setIsSubmitting(true);
+
+    try {
+      const scheduleDate = zonedTimeToUtc(selectedDatetime).toISOString();
+  
+      const formData = new FormData(event.target)
+  
+      let formDataObject = { startTime: scheduleDate, scheduleDate }
+  
+      formData.forEach((value, key) => (formDataObject[key] = value));
+
+      await axios.post('https://jdg-site-vet.onrender.com/schedules/create', formDataObject, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      setWatchedSelectPetNameInputData('');
+      
+      refetchSchedules();
+    } catch(err) {
+      console.error({err})
+    }
+    setIsSubmitting(false)
   };
 
-  setTimeout(() => {
-  setSchedule((prevSchedule) => [...prevSchedule, newSchedule]);
-  setLoading(false);
-  setSelectedUserName('');
-  setSelectedPetName('');
-  setSelectedSpecialty('');
-  setSelectedDate('');
-  setSelectedTime('');
-  alert('Agendamento confirmado!');
-}, 1000);
+  useEffect(() => {
+    if(selectedUser && token) {
+      fetch('https://jdg-site-vet.onrender.com/pets', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        } 
+      })
+      .then(res => res.json())
+      .then(data => {
+        const userPets = data.filter(pet => pet.owner.id === selectedUser.id);
 
-};
+        setSelectedUserPets(userPets);
 
-  const handleDisableButton = useCallback(() => {
-    if (selectedUserName === '' || selectedPetName === '' || selectedSpecialty === '' || selectedDate === '' || selectedTime === '') {
-      setIsBtnDisabled(true);
-    } else {
-      setIsBtnDisabled(false);
+        if(refetchPets) {
+          setWatchedSelectPetNameInputData("")
+
+          setRefetchPets(false)
+        }
+      })
+      .catch(err => {
+        console.error({err});
+
+        if(refetchPets) {
+          setWatchedSelectPetNameInputData("")
+
+          setRefetchPets(false)
+        }
+      })
     }
-  }, [selectedUserName, selectedPetName, selectedSpecialty, selectedDate, selectedTime]);
+  }, [selectedUser, token, refetchPets, setRefetchPets, setWatchedSelectPetNameInputData])
 
   useEffect(() => {
-    getRegisteredPets();
-  }, [getRegisteredPets]);
-
-  useEffect(() => {
-    handleDisableButton();
-  }, [selectedUserName, selectedPetName, selectedSpecialty, selectedDate, selectedTime, handleDisableButton]);
+    getCookie('token')
+    .then(cookie => setToken(cookie));
+  }, [])
 
   return (
-    <section className={style.fullComponent}>
+    <form onSubmit={handleConfirmSchedule} className={style.fullComponent}>
       <div className={ style.containerTitle}>
         <h1>Novo agendamento</h1>
       </div>
       <div className={style.topDiv}>
         <label htmlFor="userName">Tutor:</label>
-        <div className={style.tutorInputWrapper}>
-          <input
-            type="text"
-            id="userName"
-            name="userName"
-            onChange={getRegisteredUsers}
-            value={userName}
-          />
-          {showUserNames && (
-            <ul className={style.userNames}>
-              {userNamesArray.map((userName) => (
-                <li
-                  key={userName}
-                  className={style.userName}
-                  onClick={() => {
-                    setSelectedUserName(userName);
-                    setUserName(userName);
-                    setShowUserNames(false);
-                    getRegisteredPets();
-                  }}
-                >
-                  {userName}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <SearchListInput 
+          placeholder='Selecione um Usuário' 
+          id="userName" 
+          required
+          list={usersName} 
+          onSelect={selectUserByName}
+        />
 
         <label htmlFor="petName">Pet:</label>
-        <select
-          id="petName"
-          type="text"
-          name="petName"
-          onChange={(e) => setSelectedPetName(e.target.value)}
-          value={selectedPetName}
-        >
-          <option id="" value="">
-            Selecionar
-          </option>
-          {petNamesArray.map((petName) => (
-            <option
-              key={petName}
-              id={petName} 
-              onClick={() => setSelectedPetName(petName)}
-            >
-              {petName}
+        {
+          isCreatingPet && selectedUser ? (
+            <div className={style.newPetInputContainer}>
+              <input id='petName' name='petName' required ref={newPetInputRef} placeholder='Nome do novo pet' disabled={isSubmitting} />
+
+              <button type='button' onClick={handleCreateNewPet} >
+                +
+              </button>
+
+              <button type='button' onClick={handleCancelCreateNewPet} >
+                x
+              </button>
+            </div>
+          ) :(
+          <select id='petName' name='petName' required value={watchedSelectPetNameInputData} onChange={e => setWatchedSelectPetNameInputData(e.target.value)}>
+            <option id="" value="">
+              Selecionar
             </option>
-          ))}
+            {selectedUserPets.map(({ name, id }) => (
+              <option
+                key={id}
+                value={name} 
+              >
+                {name}
+              </option>
+            ))}
+            {
+              selectedUser &&
+                <option value="addNewPet">
+                  Adicionar +
+                </option>
+            }
+          </select>)
+        }
+      </div>
+      <div className={style.topDiv}>
+        <label htmlFor="specialty">Especialidade:</label>
+        <select id='specialty' name='specialty' required>
+          <option id="" value="">Selecionar</option>
+          <option id="Clínica Médica Geral" value="Clínica Médica Geral">Clínica Médica Geral</option>
+          <option id="Dermatologia" value="Dermatologia">Dermatologia</option>
+          <option id="Endocrinologia" value="Endocrinologia">Endocrinologia</option>
+          <option id="Cirurgia Geral" value="Cirurgia Geral">Cirurgia Geral</option>
+          <option id="Cirurgia Ortopédica" value="Cirurgia Ortopédica">Cirurgia Ortopédica</option>
         </select>
       </div>
       <div className={style.topDiv}>
-        <label htmlFor="GET-especialidade">Especialidade:</label>
-        {/* Depois pegar da api de especialidades */}
-        <select
-          id="especialidade"
-          onChange={(e) => setSelectedSpecialty(e.target.value)}
-          value={selectedSpecialty}
-        >
-              <option id="" value="">Selecionar</option>
-              <option id="Clínica Médica Geral" value="Clínica Médica Geral">Clínica Médica Geral</option>
-              <option id="Dermatologia" value="Dermatologia">Dermatologia</option>
-              <option id="Endocrinologia" value="Endocrinologia">Endocrinologia</option>
-              <option id="Cirurgia Geral" value="Cirurgia Geral">Cirurgia Geral</option>
-              <option id="Cirurgia Ortopédica" value="Cirurgia Ortopédica">Cirurgia Ortopédica</option>
-        </select>
-      </div>
-      <div className={style.topDiv}>
-        <label htmlFor="dateTime">Quando:</label>
-        <input
-          id="date" 
-          type="date"
-          name="date"
-          onChange={(e) => setSelectedDate((e.target.value).split('-').reverse().join('/'))}
-        />
-        <input
-          id="time"
-          type="time"
-          name="time"
-          onChange={(e) => setSelectedTime(e.target.value)}
+        <label htmlFor="datetime">Quando:</label>
+        <DatePicker 
+          id="datetime"
+          locale={pt} 
+          timeCaption='Horário' 
+          selected={selectedDatetime}
+          onChange={(date) => setSelectedDatetime(date)}
+          dateFormat="Pp"
+          timeFormat="p"
+          excludeTimes={selectedDateScheduledTimes}
+          showIcon 
+          showTimeSelect 
+          required
         />
       </div>
       <div>
         <button
-          type='button'
-          className={
-            isBtnDisabled ? style.disabledButton : style.enabledButton
-          }
-          onClick={handleConfirmSchedule}
-          disabled={isBtnDisabled}
+          type='submit'
+          className={style.ConfirmButton}
+          disabled={isSubmitting || isCreatingPet}
         >
-          {loading ? <Loading /> : 'Confirmar agendamento'}
+          {isSubmitting ? <Loading /> : 'Confirmar agendamento'}
         </button>
       </div>
-    </section>
+    </form>
   );
 }
 
