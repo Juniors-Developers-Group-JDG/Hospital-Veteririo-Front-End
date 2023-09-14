@@ -4,6 +4,7 @@ import { getCookie } from '@/app/actions';
 import { useSchedule } from '@/hooks/useSchedule';
 import { useUser } from '@/hooks/useUser';
 import axios from 'axios';
+import { isSameDay } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt-BR';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -25,6 +26,18 @@ const NewSchedule = () => {
   const newPetInputRef = useRef(null);
 
   const { scheduledDates } = useSchedule();
+
+  const selectedDateScheduledTimes = useMemo(() => {
+    return scheduledDates.filter(scheduledDate => isSameDay(selectedDatetime, zonedTimeToUtc(scheduledDate))).map(scheduledDate => {
+      const newDate = new Date(scheduledDate)
+
+      const minutes = newDate.getMinutes()
+
+      minutes < 30 ? newDate.setMinutes(0) : newDate.setMinutes(30)
+
+      return newDate;
+    })
+  }, [scheduledDates, selectedDatetime])
 
   const { refetchSchedules } = useSchedule();
 
@@ -211,7 +224,7 @@ const NewSchedule = () => {
           onChange={(date) => setSelectedDatetime(date)}
           dateFormat="Pp"
           timeFormat="p"
-          excludeDates={scheduledDates}
+          excludeTimes={selectedDateScheduledTimes}
           showIcon 
           showTimeSelect 
           required
