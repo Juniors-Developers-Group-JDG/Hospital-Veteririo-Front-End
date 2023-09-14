@@ -67,7 +67,7 @@ export function SearchListInput({ list, onSelect, ...props }) {
         value={inputValue}
         onChange={handleChange}
         onFocus={handleFocus}
-        autocomplete="off"
+        autoComplete="off"
         {...props}
       />
       {isActive && (
