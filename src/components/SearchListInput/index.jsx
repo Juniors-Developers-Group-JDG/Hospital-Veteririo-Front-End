@@ -63,12 +63,13 @@ export function SearchListInput({ list, onSelect, ...props }) {
   return (
     <div ref={wrapper} className={Style.SearchListInputWrapper}>
       <input
+        {...props}
         type="text"
+        name="tutorName"
         value={inputValue}
         onChange={handleChange}
         onFocus={handleFocus}
-        autoComplete="off"
-        {...props}
+        autoComplete={false}
       />
       {isActive && (
         <ul className={Style.List}>

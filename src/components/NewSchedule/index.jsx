@@ -161,8 +161,7 @@ const NewSchedule = () => {
         <SearchListInput 
           placeholder='Selecione um Usuário' 
           id="userName" 
-          required 
-          name="name"
+          required
           list={usersName} 
           onSelect={selectUserByName}
         />
