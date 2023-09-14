@@ -2,6 +2,7 @@
 
 import { useSchedule } from '@/hooks/useSchedule';
 import scheduleMock from '@/utils/scheduleMock';
+import { formatInTimeZone } from 'date-fns-tz';
 import { useState } from 'react';
 import { FaCat } from 'react-icons/fa';
 import { GiSittingDog } from 'react-icons/gi';
@@ -54,7 +55,8 @@ export const ScheduleList = () => {
           ?
             schedules
             .map((schedule, index) => {
-              const date = schedule.date?.split('-').reverse().join('/');
+              const date = formatInTimeZone(schedule.scheduleDate, "UTC", 'dd/MM/yyyy');
+              const time = formatInTimeZone(schedule.scheduleDate, "UTC", 'hh:mm');
               return (
                 <li
                   key={index} 
@@ -65,14 +67,14 @@ export const ScheduleList = () => {
                       { schedule.specie === 'Cachorro' ? <GiSittingDog className={style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
                     <p
                       className={ style.petName}
-                    >{schedule.pet}</p>
+                    >{schedule.petName}</p>
                     <p
                       className={ style.clientName}
-                    >{schedule.clientName}</p>
+                    >{schedule.name.name}</p>
                   </div>
                   <div className={ style.scheduleInfoRight}>
                     <p>{date}</p>
-                    <p>{schedule.time}h</p>
+                    <p>{schedule.time}{time}</p>
                   </div>
                 </li>
               )
