@@ -27,6 +27,8 @@ const NewSchedule = () => {
 
   const { scheduledDates } = useSchedule();
 
+  const { refetchSchedules } = useSchedule();
+
   const { selectedUser, selectUserByName, users } = useUser();
   
   const usersName = useMemo(() => users.map(user => user.name), [users])
@@ -91,7 +93,9 @@ const NewSchedule = () => {
         }
       })
 
-      setWatchedSelectPetNameInputData('')
+      setWatchedSelectPetNameInputData('');
+      
+      refetchSchedules();
     } catch(err) {
       console.error({err})
     }
