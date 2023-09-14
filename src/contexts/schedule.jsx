@@ -2,7 +2,7 @@
 
 import { getCookie } from "@/app/actions";
 import { isSameDay, isSameMonth } from "date-fns";
-import { zonedTimeToUtc } from "date-fns-tz";
+import { utcToZonedTime, zonedTimeToUtc } from "date-fns-tz";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const { createContext } = require("react");
@@ -18,7 +18,7 @@ export function ScheduleProvider({ children }) {
 
   const selectedSchedule = useMemo(() => selectedScheduleId ? schedules.find(schedule => schedule.id === selectedScheduleId) : undefined , [schedules, selectedScheduleId])
 
-  const scheduledDates = useMemo(() => schedules.map(schedule => zonedTimeToUtc(schedule.startTime)), [schedules]);
+  const scheduledDates = useMemo(() => schedules.map(schedule => utcToZonedTime(schedule.scheduleDate, "UTC")), [schedules]);
 
   const monthTotalSchedules = useMemo(() => schedules 
     ? 
