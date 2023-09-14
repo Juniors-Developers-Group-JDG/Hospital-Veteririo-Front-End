@@ -64,6 +64,8 @@ export function OuterNavBar() {
             </Link>
           ))
         }
+
+        <LoginButton />
       </nav>
     </div>
   )
