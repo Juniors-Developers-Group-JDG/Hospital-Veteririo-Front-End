@@ -16,7 +16,7 @@ export function ScheduleProvider({ children }) {
 
   const [token, setToken] = useState('');
 
-  const selectedSchedule = useMemo(() => selectedScheduleId ? schedules.find(schedule => schedule.id === selectedScheduleId) : undefined , [schedules, selectedScheduleId])
+  const selectedSchedule = useMemo(() => selectedScheduleId ? schedules.find(schedule => schedule["_id"] === selectedScheduleId) : undefined , [schedules, selectedScheduleId])
 
   const scheduledDates = useMemo(() => schedules.map(schedule => utcToZonedTime(schedule.scheduleDate, "UTC")), [schedules]);
 
