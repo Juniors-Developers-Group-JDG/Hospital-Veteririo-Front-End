@@ -46,6 +46,7 @@ export const ScheduleList = () => {
           onChange={(date) => setSelectedDatetime(date)}
           dateFormat="dd/MM/yyyy"
           showIcon
+          placeholderText="dd/mm/aaaa"
         />
         <button
           type='button'
