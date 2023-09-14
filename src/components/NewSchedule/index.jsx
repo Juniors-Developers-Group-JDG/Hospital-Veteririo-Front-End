@@ -8,7 +8,6 @@ import { zonedTimeToUtc } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt-BR';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import Loading from '../Loading';
 import { SearchListInput } from '../SearchListInput';
 import style from './NewSchedule.module.scss';
