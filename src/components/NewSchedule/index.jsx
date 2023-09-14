@@ -85,14 +85,10 @@ const NewSchedule = () => {
   
       formData.forEach((value, key) => (formDataObject[key] = value));
 
-      const formDataJSON = JSON.stringify(formDataObject);
-
-      await fetch('https://jdg-site-vet.onrender.com/schedules/create', {
-        method: 'POST', 
+      await axios.post('https://jdg-site-vet.onrender.com/schedules/create', formDataObject, {
         headers: {
           Authorization: `Bearer ${token}`
-        },
-        body: formDataJSON
+        }
       })
 
       setWatchedSelectPetNameInputData('')
