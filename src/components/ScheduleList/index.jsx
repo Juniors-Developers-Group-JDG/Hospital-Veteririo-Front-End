@@ -61,7 +61,7 @@ export const ScheduleList = () => {
           filteredSchedules
             .map((schedule, index) => {
               const date = formatInTimeZone(schedule.scheduleDate, "UTC", 'dd/MM/yyyy');
-              const time = formatInTimeZone(schedule.scheduleDate, "UTC", 'hh:mm');
+              const time = formatInTimeZone(schedule.scheduleDate, "UTC", 'HH:mm');
               return (
                 <li
                   key={index} 
