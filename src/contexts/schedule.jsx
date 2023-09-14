@@ -3,7 +3,7 @@
 import { getCookie } from "@/app/actions";
 import { isSameDay, isSameMonth } from "date-fns";
 import { zonedTimeToUtc } from "date-fns-tz";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 const { createContext } = require("react");
 
@@ -12,6 +12,7 @@ export const scheduleContext = createContext({});
 export function ScheduleProvider({ children }) {
   const [schedules, setSchedules] = useState([]);
   const [selectedScheduleId, setSelectedScheduleId] = useState('');
+  const [shouldRefetchSchedules, setShouldRefetchSchedules] = useState(true);
 
   const [token, setToken] = useState('');
 
@@ -52,12 +53,14 @@ export function ScheduleProvider({ children }) {
     [schedules],
   )
 
+  const refetchSchedules = useCallback(() => setShouldRefetchSchedules(true), [])
+
   useEffect(() => {
     getCookie('token').then(cookie => setToken(cookie));
   }, [])
 
   useEffect(() => {
-    if(token) {
+    if(token && shouldRefetchSchedules) {
       fetch('https://jdg-site-vet.onrender.com/schedules/getAll', { 
         method: 'GET', 
         headers: {
@@ -65,21 +68,29 @@ export function ScheduleProvider({ children }) {
         } 
       })
       .then(res => res.json())
-      .then(data => setSchedules(data.sort((a, b) => {
-        if (a.date < b.date) {
-          return -1;
-        }
-        if (a.date > b.date) {
-          return 1;
-        }
-        return 0;
-      })))
-      .catch(err => console.error(err))
+      .then(data => {
+        setSchedules(data.sort((a, b) => {
+          if (a.date < b.date) {
+            return -1;
+          }
+          if (a.date > b.date) {
+            return 1;
+          }
+          return 0;
+        }))
+
+        setShouldRefetchSchedules(false)
+      })
+      .catch(err => {
+        console.error(err);
+
+        setShouldRefetchSchedules(false)
+      })
     }
-  }, [token])
+  }, [token, shouldRefetchSchedules])
   
   return (
-    <scheduleContext.Provider value={{schedules, monthTotalSchedules, monthTotalCanceledSchedules, todayTotalSchedules, selectScheduleById: setSelectedScheduleId, selectedSchedule, scheduledDates}}>
+    <scheduleContext.Provider value={{schedules, monthTotalSchedules, monthTotalCanceledSchedules, todayTotalSchedules, selectScheduleById: setSelectedScheduleId, selectedSchedule, scheduledDates, refetchSchedules}}>
       {children}
     </scheduleContext.Provider>
   )
