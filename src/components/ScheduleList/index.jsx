@@ -27,8 +27,8 @@ export const ScheduleList = () => {
   }, [schedules, selectedDatetime])
 
   const handleScheduleItemClick = (scheduleId) => {
-    setShowScheduleDetails(true);
     selectScheduleById(scheduleId);
+    setShowScheduleDetails(true);
   };
  
   return (
@@ -66,7 +66,7 @@ export const ScheduleList = () => {
                 <li
                   key={index} 
                   className={style.scheduleItem}
-                  onClick={() => handleScheduleItemClick(schedule.id)}
+                  onClick={() => handleScheduleItemClick(schedule["_id"])}
                 >
                   <div className={ style.scheduleInfoLeft}>
                       { schedule.specie === 'Cachorro' ? <GiSittingDog className={style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
@@ -88,7 +88,7 @@ export const ScheduleList = () => {
             <li>Nenhum agendamento encontrado!</li>
        }
     {
-      showScheduleDetails  && <ScheduleDetails />
+      showScheduleDetails  && <ScheduleDetails onClose={() => setShowScheduleDetails(false)} />
     }
     </ul>
     </section>
