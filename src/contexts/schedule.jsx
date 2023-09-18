@@ -20,11 +20,13 @@ export function ScheduleProvider({ children }) {
 
   const scheduledDates = useMemo(() => schedules.map(schedule => utcToZonedTime(schedule.scheduleDate, "UTC")), [schedules]);
 
+  console.log({schedules})
+
   const monthTotalSchedules = useMemo(() => schedules 
     ? 
       schedules.filter(schedule => {
         const utcToday = zonedTimeToUtc(new Date()); 
-        return isSameMonth(schedule.scheduleDate, utcToday)
+        return isSameMonth(zonedTimeToUtc(new Date(schedule.scheduleDate)), utcToday)
       }).length
     : 
       0, 
@@ -35,7 +37,7 @@ export function ScheduleProvider({ children }) {
     ? 
       schedules.filter(schedule => {
         const utcToday = zonedTimeToUtc(new Date()); 
-        return schedule.closed && isSameMonth(schedule.scheduleDate, utcToday)
+        return schedule.closed && isSameMonth(zonedTimeToUtc(new Date(schedule.scheduleDate)), utcToday)
       }).length
     : 
       0, 
@@ -46,7 +48,7 @@ export function ScheduleProvider({ children }) {
     ? 
       schedules.filter(schedule => {
         const utcToday = zonedTimeToUtc(new Date()); 
-        return isSameDay(schedule.scheduleDate, utcToday)
+        return isSameDay(zonedTimeToUtc(new Date(schedule.scheduleDate)), utcToday)
       }).length
     : 
       0, 
