@@ -69,13 +69,13 @@ export function SearchListInput({ list, onSelect, ...props }) {
         value={inputValue}
         onChange={handleChange}
         onFocus={handleFocus}
-        autoComplete={false}
+        autoComplete="true"
       />
       {isActive && (
         <ul className={Style.List}>
           {searchedList.map((item) => (
             <li
-              tabindex="0" 
+              tabIndex="0" 
               role="button"
               className={Style.Item}
               key={item}
