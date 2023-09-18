@@ -64,10 +64,8 @@ const NewSchedule = () => {
       const body = {
         name: newPetInputRef.current.value,
         age: 0,
-        breed: "",
         weight: 0,
         owner: selectedUser.name,
-        species: ""
       };
 
       await axios.post('https://jdg-site-vet.onrender.com/pets', body);
