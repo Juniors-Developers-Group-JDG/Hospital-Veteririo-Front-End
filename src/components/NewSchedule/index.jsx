@@ -157,8 +157,9 @@ const NewSchedule = () => {
       <div className={style.topDiv}>
         <label htmlFor="userName">Tutor:</label>
         <SearchListInput 
-          placeholder='Selecione um Usuário' 
-          id="userName" 
+          placeholder='Selecione um Usuário'
+          id="userName"
+          name="name"
           required
           list={usersName} 
           onSelect={selectUserByName}
