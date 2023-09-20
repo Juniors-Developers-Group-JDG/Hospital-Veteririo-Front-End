@@ -3,7 +3,7 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
