@@ -71,6 +71,7 @@
 
 .scheduleItem {
   display: flex;
+  align-items: center;
   width: 100%;
   border: 1px solid #FFFFFF;
   justify-content: space-between;
@@ -146,12 +147,13 @@
 
   .scheduleList {
     width: 100%;
-    overflow-y: scroll;
+    max-height: 800px;
   }
 
   .scheduleItem {
     flex-direction: column;
     height: 100px;
+    min-height: 100px;
     justify-content: space-between;
   }
 
