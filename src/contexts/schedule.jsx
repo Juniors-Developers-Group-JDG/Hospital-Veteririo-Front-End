@@ -20,8 +20,6 @@ export function ScheduleProvider({ children }) {
 
   const scheduledDates = useMemo(() => schedules.map(schedule => utcToZonedTime(schedule.scheduleDate, "UTC")), [schedules]);
 
-  console.log({schedules})
-
   const monthTotalSchedules = useMemo(() => schedules 
     ? 
       schedules.filter(schedule => {
