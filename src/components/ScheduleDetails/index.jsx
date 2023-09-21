@@ -44,6 +44,8 @@ export const ScheduleDetails = ({onClose}) => {
     }
   }, [selectedSchedule])
 
+  console.log({selectedSchedule})
+
   return (
     selectedSchedule &&
       <section className={style.scheduleDetailContainer}>
@@ -55,7 +57,7 @@ export const ScheduleDetails = ({onClose}) => {
               type="text"
               name="clientName"
               id="clientName"
-              value={ selectedSchedule.name.name }
+              value={ selectedSchedule.name[0].name }
               
             />
           </div>

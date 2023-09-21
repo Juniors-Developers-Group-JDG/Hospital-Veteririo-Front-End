@@ -26,16 +26,19 @@ export function InnerHeader() {
   }, [])
 
   return (
-    <header className={Styles.HeaderContainer}>
+    <div className={Styles.HeaderWrapper}>
       <InnerHeaderNavList />
-      <div className={Styles.HeaderUserContainer}>
-        <p>{userName}</p>
 
-        <Avatar userName={userName} />
-      </div>
-      <button className={Styles.HeaderLogoutButton} onClick={handleLogout}>
-        Logout
-      </button>
-    </header>
+      <header className={Styles.HeaderContainer}>
+        <div className={Styles.HeaderUserContainer}>
+          <p>{userName}</p>
+
+          <Avatar userName={userName} />
+        </div>
+        <button className={Styles.HeaderLogoutButton} onClick={handleLogout}>
+          Logout
+        </button>
+      </header>
+    </div>
   )
 } 

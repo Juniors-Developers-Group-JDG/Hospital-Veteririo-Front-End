@@ -5,6 +5,7 @@ import { Sidebar } from "./components/Sidebar";
 
 
 import { ScheduleProvider } from "@/contexts/schedule";
+import { UserProvider } from "@/contexts/user";
 import Styles from './layout.module.sass';
 
 export default async function InnerLayout({ children }) {
@@ -14,17 +15,19 @@ export default async function InnerLayout({ children }) {
 
   return (
     <ScheduleProvider>
-      <div className={Styles.LayoutContainer}>
-        <Sidebar />
+      <UserProvider>
+        <div className={Styles.LayoutContainer}>
+          <Sidebar />
 
-        <div className={Styles.ContentContainer}>
-          <InnerHeader />
+          <div className={Styles.ContentContainer}>
+            <InnerHeader />
 
-          <main className={Styles.Main}>
-            {children}
-          </main>
+            <main className={Styles.Main}>
+              {children}
+            </main>
+          </div>
         </div>
-      </div>
+      </UserProvider>
     </ScheduleProvider>
   )
 }

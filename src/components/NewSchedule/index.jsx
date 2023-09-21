@@ -64,10 +64,8 @@ const NewSchedule = () => {
       const body = {
         name: newPetInputRef.current.value,
         age: 0,
-        breed: "",
         weight: 0,
         owner: selectedUser.name,
-        species: ""
       };
 
       await axios.post('https://jdg-site-vet.onrender.com/pets', body);
@@ -159,8 +157,9 @@ const NewSchedule = () => {
       <div className={style.topDiv}>
         <label htmlFor="userName">Tutor:</label>
         <SearchListInput 
-          placeholder='Selecione um Usuário' 
-          id="userName" 
+          placeholder='Selecione um Usuário'
+          id="userName"
+          name="name"
           required
           list={usersName} 
           onSelect={selectUserByName}

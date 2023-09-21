@@ -24,7 +24,7 @@ export function ScheduleProvider({ children }) {
     ? 
       schedules.filter(schedule => {
         const utcToday = zonedTimeToUtc(new Date()); 
-        return isSameMonth(schedule.scheduleDate, utcToday)
+        return isSameMonth(zonedTimeToUtc(new Date(schedule.scheduleDate)), utcToday)
       }).length
     : 
       0, 
@@ -35,7 +35,7 @@ export function ScheduleProvider({ children }) {
     ? 
       schedules.filter(schedule => {
         const utcToday = zonedTimeToUtc(new Date()); 
-        return schedule.closed && isSameMonth(schedule.scheduleDate, utcToday)
+        return schedule.closed && isSameMonth(zonedTimeToUtc(new Date(schedule.scheduleDate)), utcToday)
       }).length
     : 
       0, 
@@ -46,7 +46,7 @@ export function ScheduleProvider({ children }) {
     ? 
       schedules.filter(schedule => {
         const utcToday = zonedTimeToUtc(new Date()); 
-        return isSameDay(schedule.scheduleDate, utcToday)
+        return isSameDay(zonedTimeToUtc(new Date(schedule.scheduleDate)), utcToday)
       }).length
     : 
       0, 

@@ -1,59 +1,92 @@
+'use client'
+
 import Styles from './ClientOverlap.module.sass'
 
-
+import { useUser } from '@/hooks/useUser'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { Avatar } from '../../../../../../../components/Avatar'
 import { TrashSimple, X } from '../../../../../../../components/PhosphorIcons'
-import { SelectInput } from './components/SelectInput'
 import { TextInput } from './components/TextInput'
 
-export function ClientOverlap({ isOpen, onClose, userId }) {
-  const userDataRetrievedByUserId = {
-    avatarUrl: undefined,
-    name: "John Doe",
+const defaultFormData = {
+  name: "",
+  email: "",
+}
+
+export function ClientOverlap({ isOpen, onClose }) {
+  const { selectedUser, refetchUsers } = useUser()
+
+  console.log({selectedUser})
+
+  const [formData, setFormData] = useState(defaultFormData)
+
+  console.log({formData})
+
+  function handleInputChange(val, name) {
+    setFormData(state => ({...state, [name]: val}))
+  }
+
+  function register(name) {
+    return { value: formData[name], onChange: e =>  handleInputChange(e.target.value, name)}
   }
 
   function handleClose() {
-    onClose()
+    setFormData(defaultFormData);
+    onClose();
   }
 
-  if(isOpen) {
-    return (
-      <form className={Styles.ClientOverlapContainer}>
-        <header>
-          <div className={Styles.AvatarWrapper}>
-            <Avatar avatarUrl={userDataRetrievedByUserId.avatarUrl} userName={userDataRetrievedByUserId.name} outlined={true} size='lg' />
+  async function handleFormSubmit(e) {
+    e.preventDefault();
 
-            <TrashSimple weight='fill' role='button' className={Styles.DeleteClientButton} />
-          </div>
+    try {
+      await axios.patch(`https://jdg-site-vet.onrender.com/user/${selectedUser["_id"]}`, formData)
 
-          <X role='button' onClick={handleClose} weight='bold' className={Styles.CloseOverlapButton} />
-        </header>
+      refetchUsers()
 
-        <main>
-          <TextInput placeholder="Nome" label="Nome:" id='name' />
-          
-          <TextInput placeholder="Email" label="Email:" id='email' />
+      handleClose()
+    } catch(err) {
+      console.error(err)
+    }
+  }
 
-          <SelectInput defaultValue='' label="Gênero:" id='gender'>
-            <option value='Male'>Masculino</option>
-            <option value='Female'>Feminino</option>
-            <option value=''>Selecione seu gênero</option>
-          </SelectInput>
-        </main>
+  useEffect(() => {
+    if(selectedUser) {
+      setFormData({
+        email: selectedUser.email || "",
+        name: selectedUser.name || "",
+      })
+    }
+  }, [selectedUser])
 
-        <footer>
-          <button onClick={handleClose} data-color="danger" className={Styles.Button}>
-            <X weight='bold' />
-            Cancelar
-          </button>
+  return isOpen ? (
+    <form onSubmit={handleFormSubmit} className={Styles.ClientOverlapContainer}>
+      <header>
+        <div className={Styles.AvatarWrapper}>
+          <Avatar avatarUrl={selectedUser?.avatarUrl} userName={selectedUser?.name} outlined={true} size='lg' />
 
-          <button className={Styles.Button}>
-            Salvar
-          </button>
-        </footer>
-      </form>
-    )
-}
+          <TrashSimple weight='fill' role='button' className={Styles.DeleteClientButton} />
+        </div>
 
-  return <></>
+        <X role='button' onClick={handleClose} weight='bold' className={Styles.CloseOverlapButton} />
+      </header>
+
+      <main>
+        <TextInput {...register("name")} placeholder="Nome" label="Nome:" id='name' />
+        
+        <TextInput {...register("email")} placeholder="Email" label="Email:" id='email' type="email" />
+      </main>
+
+      <footer>
+        <button type='button' onClick={handleClose} data-color="danger" className={Styles.Button}>
+          <X weight='bold' />
+          Cancelar
+        </button>
+
+        <button className={Styles.Button}>
+          Salvar
+        </button>
+      </footer>
+    </form>
+  ) : <></>
 }

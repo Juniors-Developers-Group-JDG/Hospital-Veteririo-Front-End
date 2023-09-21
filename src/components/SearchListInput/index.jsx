@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Style from './SearchListInput.module.sass';
 
-export function SearchListInput({ list, onSelect, ...props }) {
+export function SearchListInput({ list, onSelect, name,...props }) {
   const wrapper = useRef(null);
 
   const [isActive, setIsActive] = useState(false);
@@ -65,17 +65,17 @@ export function SearchListInput({ list, onSelect, ...props }) {
       <input
         {...props}
         type="text"
-        name="tutorName"
+        name={name}
         value={inputValue}
         onChange={handleChange}
         onFocus={handleFocus}
-        autoComplete={false}
+        autoComplete="true"
       />
       {isActive && (
         <ul className={Style.List}>
           {searchedList.map((item) => (
             <li
-              tabindex="0" 
+              tabIndex="0" 
               role="button"
               className={Style.Item}
               key={item}

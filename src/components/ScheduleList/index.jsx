@@ -69,7 +69,7 @@ export const ScheduleList = () => {
                   onClick={() => handleScheduleItemClick(schedule["_id"])}
                 >
                   <div className={ style.scheduleInfoLeft}>
-                      { schedule.specie === 'Cachorro' ? <GiSittingDog className={style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
+                      { schedule.specie?.length > 0 && schedule.specie === 'Cachorro' ? <GiSittingDog className={style.scheduleIcon}/> : <FaCat className={ style.scheduleIcon}/>}
                     <p
                       className={ style.petName}
                     >{schedule.petName}</p>
