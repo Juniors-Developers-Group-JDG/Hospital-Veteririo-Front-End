@@ -2,6 +2,7 @@
 
 import { Users } from '@/components/PhosphorIcons';
 import { SearchInput } from '@/components/form_components/SearchInput';
+import { useUser } from '@/hooks/useUser';
 import { useState } from 'react';
 import Styles from './ClientsList.module.sass';
 import { ClientOverlap } from './components/ClientOverlap';
@@ -10,14 +11,14 @@ import { ClientsListItem } from './components/ClientsListItem';
 export function ClientsList() {
   const [isClientOverlapOpen, setIsClientOverlapOpen] = useState(false);
 
-  const [selectedUserId, setSelectedUserId] = useState('');
+  const { selectedUser, selectUserByName, users } = useUser()
 
   function onClientOverlapClose() {
     setIsClientOverlapOpen(false)
   }
 
-  function onClientListItemClick(userId) {
-    setSelectedUserId(userId)
+  function onClientListItemClick(userName) {
+    selectUserByName(userName)
 
     setIsClientOverlapOpen(true)
   }
@@ -31,12 +32,17 @@ export function ClientsList() {
       </header>
 
       <main>
-        <ClientsListItem userName="John" onClick={() => onClientListItemClick("89f4742a-11e1-11ee-be56-0242ac120002")} />
-
-        <ClientsListItem userName="John" onClick={() => onClientListItemClick("86987006-11e1-11ee-be56-0242ac120002")} />
+          { 
+            users || users.length > 0 ?
+              users.map(user => (
+                <ClientsListItem onClick={() => onClientListItemClick(user.name)} userName={user.name} key={user["_id"]} />
+              ))
+            :
+              <p>Nenhum usuário encontrado</p>
+          }
       </main>
       
-      <ClientOverlap isOpen={isClientOverlapOpen} onClose={onClientOverlapClose} userId={selectedUserId} />
+      <ClientOverlap isOpen={isClientOverlapOpen} onClose={onClientOverlapClose} />
     </section>
   )
 }

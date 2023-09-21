@@ -1,6 +1,6 @@
 import Styles from './TextInput.module.sass'
 
-export function TextInput({ label, id, placeholder }) {
+export function TextInput({ label, id, placeholder, ...props }) {
   return (
     <div className={Styles.TextInputContainer}>
       {
@@ -10,7 +10,7 @@ export function TextInput({ label, id, placeholder }) {
           </label>
       }
 
-      <input className={Styles.TextInput} id={id} placeholder={placeholder} />
+      <input {...props} className={Styles.TextInput} id={id} placeholder={placeholder} />
     </div>
   )
 }
