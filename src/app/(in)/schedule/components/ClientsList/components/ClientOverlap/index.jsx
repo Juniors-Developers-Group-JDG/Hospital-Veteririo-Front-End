@@ -15,7 +15,7 @@ const defaultFormData = {
 }
 
 export function ClientOverlap({ isOpen, onClose }) {
-  const { selectedUser } = useUser()
+  const { selectedUser, refetchUsers } = useUser()
 
   console.log({selectedUser})
 
@@ -41,6 +41,10 @@ export function ClientOverlap({ isOpen, onClose }) {
 
     try {
       await axios.patch(`https://jdg-site-vet.onrender.com/user/${selectedUser["_id"]}`, formData)
+
+      refetchUsers()
+
+      handleClose()
     } catch(err) {
       console.error(err)
     }
