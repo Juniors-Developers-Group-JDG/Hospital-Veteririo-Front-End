@@ -11,7 +11,6 @@ const navigation = {
   home: '/landing',
   sobre: '/landing#about',
   serviços: '/landing#services',
-  blog: '/blog',
   contato: '/landing#contact'
 }
 
