@@ -20,7 +20,7 @@ export default function Login() {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const {push} = useRouter();
+    const {push, refresh} = useRouter();
 
     const handleEmail = (event) => {
         setEmail(event.target.value);
@@ -77,7 +77,9 @@ export default function Login() {
 
     useEffect(() => {
       getCookie('username').then(cookie => setIsAuthenticated(!!cookie));
-    }, [])
+
+      refresh()
+    }, [refresh])
 
     useEffect(() => {
       if(isAuthenticated)
